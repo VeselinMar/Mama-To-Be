@@ -56,13 +56,6 @@ class Profile(models.Model):
         verbose_name='Profile Picture',
     )
 
-    social_links = JSONField(
-        blank=True,
-        null=True,
-        verbose_name='Social Media Links',
-        help_text='Add links as a JSON object, e.g., {"facebook": "url", "twitter": "url"}',
-    )
-
     def __str__(self):
         if self.username:
             return f"Profile of {self.username}"
