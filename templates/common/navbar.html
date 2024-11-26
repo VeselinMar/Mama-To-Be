@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Forum</a>
@@ -19,11 +19,16 @@
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="nav-link btn btn-link" style="border: none; background: none;">
+                Logout
+              </button>
+          </form>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>
         {% endif %}
       </ul>
