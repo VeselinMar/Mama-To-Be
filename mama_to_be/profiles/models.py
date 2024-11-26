@@ -3,6 +3,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.forms import JSONField
+from django.utils.timezone import now
 
 from mama_to_be.profiles.managers import AppUserManager
 
@@ -21,6 +22,17 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
+    date_joined = models.DateTimeField(
+        default=now,
+        verbose_name="Date Joined"
+    )
+
+    last_login = models.DateTimeField(
+        blank=True,
+        null=True,
+        verbose_name="Last Login"
+    )
 
     objects = AppUserManager()
 
