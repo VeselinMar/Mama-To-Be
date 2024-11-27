@@ -68,6 +68,12 @@ class Profile(models.Model):
         verbose_name='Profile Picture',
     )
 
+    description = models.TextField(
+        blank=True,
+        null=True,
+        max_length=250,
+    )
+
     def __str__(self):
         if self.username:
             return f"Profile of {self.username}"
