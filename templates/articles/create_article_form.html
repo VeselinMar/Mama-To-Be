@@ -1,0 +1,32 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Create Or Edit Article</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div class="article-content">
+                {{ article.content|safe }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Publish Article</button>
+
+            <!-- Include TinyMCE -->
+            <script type="text/javascript" src="{% static 'tinymce/tinymce.min.js' %}"></script>
+            <script type="text/javascript">
+                tinymce.init({
+        selector: 'textarea',
+        plugins: 'link image media',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image media',
+        media_live_embeds: true, // Allows live media previews
+        image_advtab: true,
+    });
+</script>
+        </form>
+    </div>
+{% endblock %}
+
+
