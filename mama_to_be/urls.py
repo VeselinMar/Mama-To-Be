@@ -24,7 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mama_to_be.common.urls')),
     path('profile/', include('mama_to_be.profiles.urls')),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('article/', include('mama_to_be.articles.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
