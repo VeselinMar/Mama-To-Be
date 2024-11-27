@@ -1,12 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import FormView
+from django.views.generic import FormView, UpdateView, DetailView
 
-from mama_to_be.profiles.forms import RegisterForm
+from mama_to_be.profiles.forms import RegisterForm, ProfileEditForm
+from mama_to_be.profiles.models import Profile
 
 
 # Create your views here.
@@ -14,7 +16,7 @@ from mama_to_be.profiles.forms import RegisterForm
 class RegisterView(FormView):
     template_name = "profiles/register.html"
     form_class = RegisterForm
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("edit")
 
     def form_valid(self, form):
         # Save the user and log them in
@@ -44,3 +46,26 @@ class CustomLogoutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
         return redirect('home')
+
+
+class ProfileEditView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileEditForm
+    template_name = 'profiles/profile_update.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        # Ensure the logged-in user can only edit their own profile
+        return Profile.objects.get(user=self.request.user)
+
+
+class ProfileDisplayView(DetailView):
+    model = Profile
+    template_name = 'profiles/profile_details.html'
+    context_object_name = 'profile'
+
+    def get_object(self):
+        username = self.kwargs.get('username')
+        if username:
+            return get_object_or_404(Profile, username=username)
+        return get_object_or_404(Profile, user=self.request.user)

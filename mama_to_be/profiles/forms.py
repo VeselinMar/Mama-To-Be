@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from mama_to_be.profiles.models import AppUser
+from mama_to_be.profiles.models import AppUser, Profile
 
 
 class RegisterForm(UserCreationForm):
@@ -19,3 +19,14 @@ class RegisterForm(UserCreationForm):
         if AppUser.objects.filter(email=email).exists():
             raise forms.ValidationError("This email is already registered.")
         return email
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['username', 'profile_picture', 'description']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username'}),
+            'profile_picture': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tell us about yourself'}),
+        }
