@@ -1,6 +1,33 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Welcome to MamaToBe {{ profile.username }}</h1>
-        <p>Your go-to resource for new parents in Vienna!</p>
+<div class="container mt-5">
+
+    <div class="row">
+        {% for category, articles in articles_by_category.items %}
+            <div class="col-12 mb-4">
+                <h5 class="text-muted text-uppercase" style="text-decoration: underline;">{{ category }}</h5>
+            </div>
+            {% for article in articles %}
+                <div class="col-md-4 mb-5 text-center">
+                    <div class="card border-2 shadow-sm" style="cursor: pointer;">
+                        <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none;">
+                            {% if article.thumbnail_url %}
+                                <img src="{{ article.thumbnail_url }}" class="card-img-top img-fluid" alt="{{ article.title }}" style="border: 1px solid #ddd; border-radius: 5px;">
+                            {% else %}
+                                <img src="{% static 'icons/default-thumbnail.jpg' %}" class="card-img-top img-fluid" alt="Default thumbnail" style="border: 1px solid #ddd; border-radius: 5px;">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <h4 class="mt-3 mb-1">
+                        <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none; color: black;">
+                            {{ article.title }}
+                        </a>
+                    </h4>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
