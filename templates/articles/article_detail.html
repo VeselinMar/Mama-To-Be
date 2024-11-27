@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">{{ article.title }}</h1>
+        
+        <p class="text-muted">Author: {{ author_name }}</p>
+    
+        <!-- Edit Article Button for the Author -->
+        {% if user.is_authenticated and user == article.author %}
+            <a href="{% url 'article-edit' article.slug %}" class="btn btn-warning mb-3">Edit Article</a>
+        {% endif %}
+
+        <div class="article-content">
+            {{ article.content|safe }}
+        </div>
+
+        <div class="article-images mt-4">
+            {% for image in article.images.all %}
+                <div class="article-image">
+                    <img src="{{ image.image.url }}" alt="{{ image.caption }}" class="img-fluid">
+                    {% if image.caption %}
+                        <p class="text-muted">{{ image.caption }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
