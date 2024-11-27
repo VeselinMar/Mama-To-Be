@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mama_to_be.profiles',
     'mama_to_be.articles',
     'mama_to_be.forum',
+    'tinymce'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,22 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'profiles.AppUser'
+
+
+# TINYMCE CONFIG
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 500,
+    "width": "100%",
+    "plugins": "advlist autolink lists link image charmap print preview hr anchor pagebreak "
+               "searchreplace wordcount visualblocks visualchars code fullscreen "
+               "insertdatetime media nonbreaking save table directionality "
+               "emoticons template paste textpattern imagetools",
+    "toolbar": "insertfile undo redo | styleselect | bold italic | "
+               "alignleft aligncenter alignright alignjustify | "
+               "bullist numlist outdent indent | link image media",
+    "image_advtab": True,
+    "file_picker_types": "image",
+    "images_upload_url": "/upload-image/",
+    "file_picker_callback": "function(callback, value, meta) { window.open('/file-picker/', '_blank'); }",
+    "content_style": "body { font-family: Arial, Helvetica, sans-serif; font-size: 14px; }",
+}
