@@ -3,7 +3,12 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4">{{ profile.username }}'s Profile</h1>
+    <h1 class="mb-4 d-flex justify-content-between align-items-center">
+        <span>{{ profile.username }}'s Profile</span>
+        {% if profile.user == request.user %}
+            <a href="{% url 'profile-edit' %}" class="btn btn-primary">Edit Profile</a>
+        {% endif %}
+    </h1>
     <div class="card">
         <div class="card-body text-center">
             {% if profile.profile_picture %}
@@ -11,19 +16,43 @@
             {% else %}
                 <img src="{% static 'icons/default-profile.png' %}" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
             {% endif %}
-                <h5 class="card-title">{{ profile.username }}</h5>
-                <p class="card-text">
-                    {% if profile.user == request.user %}
-                        <strong>Email:</strong> {{ profile.user.email }}
-                    {% endif %}
-                </p>
+            <h5 class="card-title">{{ profile.username }}</h5>
+            <p class="card-text">
+                {% if profile.user == request.user %}
+                    <strong>Email:</strong> {{ profile.user.email }}
+                {% endif %}
+            </p>
             {% if profile.description %}
                 <p>{{ profile.description }}</p>
             {% endif %}
         </div>
     </div>
-    {% if profile.user == request.user %}
-    <a href="{% url 'profile-edit' %}" class="btn btn-primary mt-4">Edit Profile</a>
+
+    <div class="row">
+        {% for article in published_articles %}
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'article-detail' article.slug %}" class="btn btn-primary">
+                    <div class="card">
+                        <img src="{% if article.thumbnail_url %}{{ article.thumbnail_url }}{% else %}{% static 'icons/default-thumbnail.jpg' %}{% endif %}" class="card-img-top" alt="{{ article.title }}">
+                        </div>
+                    <h5 class="card-title">{{ article.title }}</h5>
+                </a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No published articles available.</p>
+        {% endfor %}
+    </div>
+
+    {% if unpublished_articles %}
+        <h3 class="mt-5">Unpublished Articles (Edit or Publish)</h3>
+        <div class="list-group">
+            {% for article in unpublished_articles %}
+                <a href="{% url 'article-edit' article.slug %}" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">{{ article.title }}</h5>
+                    <small>Last edited on {{ article.updated_at|date:"F j, Y" }}</small>
+                </a>
+            {% endfor %}
+        </div>
     {% endif %}
-</div>
 {% endblock %}
