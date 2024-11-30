@@ -43,12 +43,9 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-UserModel = get_user_model()
-
-
 class Profile(models.Model):
     user = models.OneToOneField(
-        UserModel,
+        AppUser,
         on_delete=models.CASCADE,
         primary_key=True,
     )
