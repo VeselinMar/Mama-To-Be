@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'mama_to_be.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mama_to_be_db",
+        "NAME": "mama_db",
         "USER": "postgres",
         "PASSWORD": "Veselin4o",
         "HOST": "127.0.0.1",
