@@ -1,14 +1,8 @@
-import os
-import uuid
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, HttpResponseForbidden
-from django.shortcuts import render
+from django.http import HttpResponseForbidden
 from django.urls import reverse_lazy
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, UpdateView, DetailView
 
-from mama_to_be import settings
 from mama_to_be.articles.forms import ArticleForm
 from mama_to_be.articles.models import Article
 from mama_to_be.profiles.models import Profile
@@ -58,4 +52,5 @@ class ArticleDisplayView(DetailView):
 
         author_profile = Profile.objects.get(user=article.author)
         context['author_name'] = author_profile.username
+        context['author_id'] = author_profile.user_id
         return context
