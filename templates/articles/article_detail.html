@@ -3,9 +3,11 @@
 {% block content %}
     <div class="container mt-5">
         <h1 class="mb-4">{{ article.title }}</h1>
-        
+
+    <a href="{% url 'profile-display' author_id %}">
         <p class="text-muted">Author: {{ author_name }}</p>
-    
+    </a>
+
         <!-- Edit Article Button for the Author -->
         {% if user.is_authenticated and user == article.author %}
             <a href="{% url 'article-edit' article.slug %}" class="btn btn-warning mb-3">Edit Article</a>
