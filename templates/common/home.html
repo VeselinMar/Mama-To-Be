@@ -7,7 +7,9 @@
     <div class="row">
         {% for category, articles in articles_by_category.items %}
             <div class="col-12 mb-4">
-                <h5 class="text-muted text-uppercase" style="text-decoration: underline;">{{ category }}</h5>
+                <a href="{% url 'category-articles' category %}" style="text-decoration: none;">
+                        {{ category }}
+                </a>
             </div>
             {% for article in articles %}
                 <div class="col-md-4 mb-5 text-center">
