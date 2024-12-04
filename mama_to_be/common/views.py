@@ -9,7 +9,8 @@ from mama_to_be.articles.models import Article
 def home(request):
     recent_articles = (
         Article.objects.filter(is_published=True)
-        .order_by('-published_at')[:12]
+        .distinct('category')
+        .order_by('category', '-published_at')[:12]
     )
 
     articles_by_category = {}
