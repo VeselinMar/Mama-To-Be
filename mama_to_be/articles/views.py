@@ -1,8 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
 
+from mama_to_be.articles.choices import CategoryChoices
 from mama_to_be.articles.forms import ArticleForm
 from mama_to_be.articles.models import Article
 from mama_to_be.profiles.models import Profile
@@ -54,3 +57,23 @@ class ArticleDisplayView(DetailView):
         context['author_name'] = author_profile.username
         context['author_id'] = author_profile.user_id
         return context
+
+
+def category_articles(request, category):
+    if category not in CategoryChoices.values:
+        # Handle invalid category (e.g., return a 404 error or redirect)
+        return redirect('home')
+
+    # Fetch articles of the given category
+    articles = Article.objects.filter(category=category, is_published=True).order_by('-published_at')
+
+    # Paginate the articles (5 per page)
+    paginator = Paginator(articles, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'category': category,
+        'page_obj': page_obj,
+    }
+    return render(request, 'articles/category_articles.html', context)
