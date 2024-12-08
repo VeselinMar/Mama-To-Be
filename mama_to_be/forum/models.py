@@ -12,7 +12,15 @@ class Category(models.Model):
         max_length=40,
         unique=True
     )
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+    )
+
+    description = models.TextField(
+        blank=True,
+        null=True,
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -48,10 +56,27 @@ class Topic(models.Model):
         return self.title
 
 
-class Comment(models.Model):
-
+class Discussion(models.Model):
     topic = models.ForeignKey(
         Topic,
+        on_delete=models.CASCADE,
+        related_name="discussions"
+    )
+    created_by = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Discussion on {self.topic.title}"
+
+
+class Comment(models.Model):
+
+    discussion = models.ForeignKey(
+        Discussion,
         on_delete=models.CASCADE,
         related_name='comments'
     )
