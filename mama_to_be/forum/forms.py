@@ -1,6 +1,6 @@
 from django import forms
 
-from mama_to_be.forum.models import Topic, Comment, Category
+from mama_to_be.forum.models import Topic, Comment, Category, Discussion
 
 
 class CategoryForm(forms.ModelForm):
@@ -28,6 +28,12 @@ class TopicForm(forms.ModelForm):
         labels = {
             'title': 'Title',
         }
+
+
+class DiscussionForm(forms.ModelForm):
+    class Meta:
+        model = Discussion
+        fields = ['content']
 
 
 class CommentForm(forms.ModelForm):
