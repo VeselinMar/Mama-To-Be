@@ -13,7 +13,7 @@
         <h3>Replying to:</h3>
         <blockquote class="blockquote">
             <p class="mb-0">{{ parent_comment.content }}</p>
-            <footer class="blockquote-footer">By {{ parent_comment.created_by }} on {{ parent_comment.created_at }}</footer>
+            <footer class="blockquote-footer">By {{ parent_comment.created_by.profile.username }} on {{ parent_comment.created_at }}</footer>
         </blockquote>
     {% endif %}
 </div>

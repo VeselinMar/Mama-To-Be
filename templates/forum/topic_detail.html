@@ -1,0 +1,75 @@
+{{% extends 'common/base.html' %}
+{% load custom_filters %}
+{% block content %}
+<section class="gradient-custom">
+  <div class="container my-5 py-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <div class="card">
+          <div class="card-body p-4">
+            <h4 class="text-center mb-4 pb-2">{{ topic.title }}</h4>
+
+            <div class="row">
+              <div class="col">
+                <!-- Loop through the root comments (parent__isnull=True) -->
+                <div class="comments-section">
+                  {% for comment in topic.comments.all %}
+                    <div class="d-flex flex-start">
+                      <img class="rounded-circle shadow-1-strong me-3" 
+                           src="{{ comment.created_by.profile.profile_picture.url }}" 
+                           alt="avatar" width="65" height="65" />
+                      <div class="flex-grow-1 flex-shrink-1">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <p class="mb-1">
+                            {{ comment.created_by.profile.username }} 
+                            <span class="small">- {{ comment.created_at|timeago_filter }}</span>
+                          </p>
+                          <a href="{% url 'reply-comment' topic.id comment.id %}" class="btn btn-link btn-sm">
+                            <i class="fas fa-reply fa-xs"></i><span class="small"> reply</span>
+                          </a>
+                        </div>
+                        <p class="small mb-0">{{ comment.content }}</p>
+                      </div>
+                    </div>
+
+                    <!-- Loop through the nested comments (replies) -->
+                    {% for reply in comment.replies.all %}
+                      <div class="d-flex flex-start mt-4 ms-5">
+                        <img class="rounded-circle shadow-1-strong me-3" 
+                             src="{{ reply.created_by.profile.profile_picture.url }}" 
+                             alt="avatar" width="65" height="65" />
+                        <div class="flex-grow-1 flex-shrink-1">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-1">
+                              {{ reply.created_by.profile.username }} 
+                              <span class="small">- {{ reply.created_at|timeago_filter }}</span>
+                            </p>
+                          </div>
+                          <p class="small mb-0">{{ reply.content }}</p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                    <hr>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+            <!-- Form for Adding a New Comment -->
+            {% if user.is_authenticated %}
+              <h3>Add a Comment</h3>
+              <form method="post" action="{% url 'create-comment' topic.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+              </form>
+            {% else %}
+              <p>You must <a href="{% url 'login' %}">log in</a> to add a comment.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

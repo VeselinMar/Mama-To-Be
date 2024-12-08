@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Topics in {{ category.name }}</h2>
+    <ul>
+        {% for topic in topics %}
+            <li>
+                <a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Form to create a new topic -->
+    {% if user.is_authenticated %}
+        <h3>Create a New Topic</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ topic_form.as_p }}
+            <button type="submit" class="btn btn-primary">Create Topic</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
