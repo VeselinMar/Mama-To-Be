@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic.edit import FormMixin
 
-from mama_to_be.forum.forms import TopicForm, CommentForm, CategoryForm
-from mama_to_be.forum.models import Topic, Comment, Like, Category
+from mama_to_be.forum.forms import TopicForm, CommentForm, CategoryForm, DiscussionForm
+from mama_to_be.forum.models import Topic, Comment, Like, Category, Discussion
 
 
 # Create your views here.
@@ -20,6 +22,9 @@ class ForumCategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
             context['category_form'] = CategoryForm()
+
+        # Prefetch topics for all categories
+        context['categories'] = Category.objects.prefetch_related('topics').all()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -27,8 +32,8 @@ class ForumCategoryListView(ListView):
             form = CategoryForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('category-list')
-        return self.get(request)
+                return redirect('category_list')
+        return self.get(request, *args, **kwargs)
 
 
 class TopicListView(ListView):
@@ -64,28 +69,28 @@ class TopicListView(ListView):
         return self.get(request, *args, **kwargs)
 
 
-class TopicDetailView(DetailView):
+class TopicDetailView(FormMixin, DetailView):
     model = Topic
-    template_name = 'forum/topic_detail.html'
-    context_object_name = 'topic'
+    template_name = "forum/topic_detail.html"
+    context_object_name = "topic"
+    form_class = DiscussionForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            context['comment_form'] = CommentForm()
-        context['comments'] = Comment.objects.filter(topic=self.object).order_by('-likes')
+        topic = self.object
+        context['discussions'] = topic.discussions.all()
+        context['discussion_form'] = self.get_form()
         return context
 
     def post(self, request, *args, **kwargs):
-        topic = self.get_object()
-        if request.user.is_authenticated:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.author = request.user
-                comment.topic = topic
-                comment.save()
-                return redirect('topic-detail', pk=topic.pk)
+        form = self.get_form()
+        if form.is_valid():
+            topic = self.get_object()
+            discussion = form.save(commit=False)
+            discussion.topic = topic
+            discussion.created_by = request.user
+            discussion.save()
+            return self.get(request, *args, **kwargs)
         return self.get(request, *args, **kwargs)
 
 
@@ -103,47 +108,66 @@ def create_topic(request):
     return render(request, 'forum/create_topic.html', {'form': form})
 
 
+class DiscussionDetailView(DetailView):
+    model = Discussion
+    template_name = "forum/discussion_detail.html"
+    context_object_name = "discussion"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+
+
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'forum/create_comment.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        # Fetch the topic and optionally the parent comment
-        self.topic = get_object_or_404(Topic, pk=self.kwargs.get('topic_id'))
-        self.parent_comment = None
-
-        if 'parent_id' in self.kwargs:
-            self.parent_comment = get_object_or_404(Comment, pk=self.kwargs.get('parent_id'))
-
-        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        # Associate the topic and parent comment if provided
-        form.instance.topic = self.topic
-        form.instance.parent = self.parent_comment
+        discussion_id = self.kwargs.get('discussion_id')
+        self.discussion = get_object_or_404(Discussion, pk=discussion_id)
+        form.instance.discussion = self.discussion
         form.instance.created_by = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
-        # Redirect back to the topic detail page
-        return reverse('topic-detail', kwargs={'pk': self.topic.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['topic'] = self.topic
-        context['parent_comment'] = self.parent_comment
-        return context
+        return reverse('discussion-detail', kwargs={'pk': self.discussion.pk})
 
 
-class LikeCommentView(LoginRequiredMixin, DetailView):
-    def get(self, request, *args, **kwargs):
-        comment = get_object_or_404(Comment, pk=self.kwargs['comment_id'])
-        like, created = Like.objects.get_or_create(comment=comment, user=request.user)
-        if not created:
-            like.delete()
-            comment.likes -= 1
-        else:
-            comment.likes += 1
-        comment.save()
-        return redirect('topic-detail', pk=comment.topic.pk)
+class ReplyCommentView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+
+    def dispatch(self, request, *args, **kwargs):
+        self.parent_comment = get_object_or_404(Comment, pk=self.kwargs['comment_id'])
+        self.discussion = self.parent_comment.discussion  # Get the discussion of the parent comment
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.instance.parent = self.parent_comment  # Link the parent comment
+        form.instance.discussion = self.discussion  # Ensure the reply is linked to the same discussion
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('discussion-detail', kwargs={'pk': self.discussion.pk})
+
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    # Check if the user already liked the comment
+    like, created = Like.objects.get_or_create(comment=comment, user=request.user)
+    if not created:
+        # User already liked, so remove the like
+        like.delete()
+        comment.likes -= 1  # Decrease like count
+    else:
+        # New like, add it
+        comment.likes += 1  # Increase like count
+
+    comment.save()
+
+    # Return updated like count as JSON
+    return JsonResponse({'likes': comment.likes})
