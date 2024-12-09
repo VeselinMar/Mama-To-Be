@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
@@ -32,11 +32,11 @@ class ForumCategoryListView(ListView):
             form = CategoryForm(request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('category_list')
+                return redirect('category-list')
         return self.get(request, *args, **kwargs)
 
 
-class TopicListView(ListView):
+class TopicListView(UserPassesTestMixin, ListView):
     model = Topic
     template_name = 'forum/topic_list.html'
     context_object_name = 'topics'
@@ -67,6 +67,10 @@ class TopicListView(ListView):
                 return redirect(reverse('topic-list', kwargs={'category_slug': category_slug}))
 
         return self.get(request, *args, **kwargs)
+
+    def test_func(self):
+        # Restrict form usage to specific groups
+        return self.request.user.groups.filter(name__in=['Restricted Admin', 'Unrestricted Admin']).exists()
 
 
 class TopicDetailView(FormMixin, DetailView):
