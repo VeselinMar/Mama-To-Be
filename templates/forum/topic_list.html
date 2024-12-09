@@ -1,11 +1,13 @@
 {% extends 'common/base.html' %}
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 fs-4">
     <h2>Topics in {{ category.name }}</h2>
     <ul>
         {% for topic in topics %}
-            <li>
-                <a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'topic-detail' topic.pk %}" class="text-decoration-none text-dark fs-4">
+                    <strong>{{ topic.title }}</strong>
+                </a>
             </li>
         {% endfor %}
     </ul>
