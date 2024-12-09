@@ -107,7 +107,7 @@ class Comment(models.Model):
     likes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"Comment by {self.created_by} on {self.topic.title}"
+        return f"Comment by {self.created_by} on {self.discussion}"
 
 
 class Like(models.Model):
