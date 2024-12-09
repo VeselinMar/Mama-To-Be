@@ -9,19 +9,20 @@ from mama_to_be.profiles.models import AppUser, Profile
 
 @admin.register(AppUser)
 class AppUserAdmin(UserAdmin):
+
     # Fields to display in admin list view
     list_display = ('email', 'is_active', 'is_staff', 'is_superuser')
     list_filter = ('is_active', 'is_staff', 'is_superuser')
     search_fields = ('email',)
     ordering = ('email',)
 
-    # Customize the fields displayed in admin detail view
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important Dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
+    # Fields to display in the admin detail/edit view
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -32,6 +33,7 @@ class AppUserAdmin(UserAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
+
     # Fields to display in the admin list view
     list_display = ('user', 'username', 'profile_picture',)
     search_fields = ('user__email', 'username')
