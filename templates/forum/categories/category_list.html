@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+{% block content %}
+<div class="container my-5">
+
+    {% if is_admin %}
+        <!-- Category Creation Form -->
+        <div class="card my-4">
+            <div class="card-header bg-primary text-white">Create a New Category</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ category_form.as_p }}
+                    <button type="submit" class="btn btn-success">Add Category</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- List Categories -->
+    {% for category in categories %}
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h2>
+                <a href="{% url 'topic-list' category.slug %}" class="text-white text-decoration-none hover-underline-animation">
+                    {{ category.name }}
+                </a>
+            </h2>
+            {% if is_admin %}
+                <a href="{% url 'category-edit' category.pk %}" class="btn btn-sm btn-warning">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+            {% endif %}
+        </div>
+        {% if category.description %}
+            <p class="text-secondary-emphasis">{{ category.description }}</p>
+        {% endif %}
+        <div class="card-body">
+            {% if category.topics.all %}
+                <ul class="list-group">
+                    {% for topic in category.topics.all %}
+                        <li class="list-group-item">
+                            <h5>
+                                <a href="{% url 'topic-detail' topic.id %}">{{ topic.title }}</a>
+                            </h5>
+                            <small>Posted by {{ topic.created_by.username }} on {{ topic.created_at }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No topics in this category yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
