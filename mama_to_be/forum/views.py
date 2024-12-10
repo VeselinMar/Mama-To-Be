@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
-from django.views.generic import DetailView, ListView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.views.generic.edit import FormMixin
 
 from mama_to_be.forum.forms import TopicForm, CommentForm, CategoryForm, DiscussionForm
@@ -12,23 +12,33 @@ from mama_to_be.forum.models import Topic, Comment, Like, Category, Discussion
 
 # Create your views here.
 
-
+# Category views
 class ForumCategoryListView(ListView):
     model = Category
-    template_name = 'forum/category_list.html'
+    template_name = 'forum/categories/category_list.html'
     context_object_name = 'categories'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
+        # Check if the user is in one of the required groups
+        is_admin = self.request.user.groups.filter(
+            name__in=['Restricted Admin', 'Unrestricted Admin']
+        ).exists()
+
+        if self.request.user.is_authenticated and is_admin:
             context['category_form'] = CategoryForm()
 
         # Prefetch topics for all categories
         context['categories'] = Category.objects.prefetch_related('topics').all()
+        context['is_admin'] = is_admin
         return context
 
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        is_admin = self.request.user.groups.filter(
+            name__in=['Restricted Admin', 'Unrestricted Admin']
+        ).exists()
+
+        if request.user.is_authenticated and is_admin:
             form = CategoryForm(request.POST)
             if form.is_valid():
                 form.save()
@@ -36,7 +46,20 @@ class ForumCategoryListView(ListView):
         return self.get(request, *args, **kwargs)
 
 
-class TopicListView(UserPassesTestMixin, ListView):
+class CategoryUpdateView(UserPassesTestMixin, UpdateView):
+    model = Category
+    fields = ['name', 'description']
+    template_name = 'forum/categories/category_edit.html'
+    success_url = reverse_lazy('category-list')
+
+    def test_func(self):
+        # Restrict access to specific groups
+        return self.request.user.groups.filter(
+            name__in=['Restricted Admin', 'Unrestricted Admin']
+        ).exists()
+
+
+class TopicListView(ListView):
     model = Topic
     template_name = 'forum/topic_list.html'
     context_object_name = 'topics'
@@ -67,10 +90,6 @@ class TopicListView(UserPassesTestMixin, ListView):
                 return redirect(reverse('topic-list', kwargs={'category_slug': category_slug}))
 
         return self.get(request, *args, **kwargs)
-
-    def test_func(self):
-        # Restrict form usage to specific groups
-        return self.request.user.groups.filter(name__in=['Restricted Admin', 'Unrestricted Admin']).exists()
 
 
 class TopicDetailView(FormMixin, DetailView):
