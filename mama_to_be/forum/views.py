@@ -171,13 +171,27 @@ class TopicEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 # Discussion views
 class DiscussionDetailView(DetailView):
     model = Discussion
-    template_name = "forum/discussion_detail.html"
+    template_name = "forum/discussions/discussion_detail.html"
     context_object_name = "discussion"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
         return context
+
+class EditDiscussionView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Discussion
+    fields = ['content']
+    template_name = "forum/discussions/discussion_edit.html"
+
+    def test_func(self):
+        """Ensure the user is the author of the discussion."""
+        discussion = self.get_object()
+        return self.request.user == discussion.created_by
+
+    def get_success_url(self):
+        """Redirect back to the topic detail page."""
+        return reverse('topic-detail', kwargs={'pk': self.object.topic.pk})
 
 
 # Comment Views
@@ -213,6 +227,20 @@ class ReplyCommentView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('discussion-detail', kwargs={'pk': self.discussion.pk})
+
+
+class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "forum/comments/comment_edit.html"
+
+    def test_func(self):
+        """Ensure that only the comment's creator can edit it."""
+        comment = self.get_object()
+        return comment.created_by == self.request.user
+
+    def get_success_url(self):
+        return reverse('discussion-detail', kwargs={'pk': self.object.discussion.pk})
 
 
 # Others

@@ -2,7 +2,7 @@ from django.urls import path
 
 from mama_to_be.forum.views import ForumCategoryListView, TopicListView, TopicDetailView, \
     create_topic, CreateCommentView, DiscussionDetailView, like_comment, ReplyCommentView, CategoryUpdateView, \
-    TopicEditView
+    TopicEditView, EditCommentView, EditDiscussionView
 
 urlpatterns = [
     path('', ForumCategoryListView.as_view(), name='category-list'),
@@ -13,6 +13,8 @@ urlpatterns = [
     path('create-topic/', create_topic, name='create-topic'),
     path('discussion/<int:pk>/', DiscussionDetailView.as_view(), name='discussion-detail'),
     path('discussion/<int:discussion_id>/add-comment/', CreateCommentView.as_view(), name='create-comment'),
+    path('discussion/<int:pk>/edit/', EditDiscussionView.as_view(), name='edit-discussion'),
     path('comment/<int:comment_id>/reply/', ReplyCommentView.as_view(), name='reply-comment'),
+    path('comment/<int:pk>/edit/', EditCommentView.as_view(), name='edit-comment'),
     path('comment/<int:comment_id>/like/', like_comment, name='like-comment'),
 ]
