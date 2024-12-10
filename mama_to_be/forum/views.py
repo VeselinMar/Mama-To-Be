@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import BooleanField, Value, F, Prefetch
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
@@ -12,26 +13,29 @@ from mama_to_be.forum.models import Topic, Comment, Like, Category, Discussion
 
 # Create your views here.
 
-# Category views
+
+# Category Views
 class ForumCategoryListView(ListView):
     model = Category
     template_name = 'forum/categories/category_list.html'
     context_object_name = 'categories'
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Check if the user is in one of the required groups
         is_admin = self.request.user.groups.filter(
             name__in=['Restricted Admin', 'Unrestricted Admin']
         ).exists()
-
-        if self.request.user.is_authenticated and is_admin:
-            context['category_form'] = CategoryForm()
-
-        # Prefetch topics for all categories
-        context['categories'] = Category.objects.prefetch_related('topics').all()
         context['is_admin'] = is_admin
+
+        if is_admin:
+            context['category_form'] = CategoryForm()
         return context
+
+    def get_queryset(self):
+        return Category.objects.prefetch_related(
+            Prefetch('topics', queryset=Topic.objects.only('title', 'created_by', 'created_at'))
+        )
 
     def post(self, request, *args, **kwargs):
         is_admin = self.request.user.groups.filter(
@@ -59,15 +63,28 @@ class CategoryUpdateView(UserPassesTestMixin, UpdateView):
         ).exists()
 
 
+# Topic Views
 class TopicListView(ListView):
     model = Topic
-    template_name = 'forum/topic_list.html'
+    template_name = 'forum/topics/topic_list.html'
     context_object_name = 'topics'
-    paginate_by = 10
+    paginate_by = 5
 
     def get_queryset(self):
         category_slug = self.kwargs.get('category_slug')
-        return Topic.objects.filter(category__slug=category_slug)
+        topics = Topic.objects.filter(category__slug=category_slug)
+        user = self.request.user
+
+        if user.is_authenticated:
+            is_admin = user.groups.filter(name__in=['Restricted Admin', 'Unrestricted Admin']).exists()
+            # Annotate each topic with an "is_editable" field
+            topics = topics.annotate(
+                is_editable=Value(
+                    is_admin or (user == F('created_by')),
+                    output_field=BooleanField()
+                )
+            )
+        return topics
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -94,7 +111,7 @@ class TopicListView(ListView):
 
 class TopicDetailView(FormMixin, DetailView):
     model = Topic
-    template_name = "forum/topic_detail.html"
+    template_name = "forum/topics/topic_detail.html"
     context_object_name = "topic"
     form_class = DiscussionForm
 
@@ -128,9 +145,30 @@ def create_topic(request):
             return redirect('forum-home')
     else:
         form = TopicForm()
-    return render(request, 'forum/create_topic.html', {'form': form})
+    return render(request, 'forum/topics/create_topic.html', {'form': form})
 
 
+class TopicEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Topic
+    form_class = TopicForm
+    template_name = "forum/topics/topic_edit.html"
+    context_object_name = "topic"
+
+    def test_func(self):
+        # Get the topic instance
+        topic = self.get_object()
+        # Check if the user is the author or belongs to one of the admin groups
+        return (
+            self.request.user == topic.created_by or
+            self.request.user.groups.filter(name__in=['Restricted Admin', 'Unrestricted Admin']).exists()
+        )
+
+    def get_success_url(self):
+        # Redirect to the topic detail page after successful editing
+        return reverse('category-list')
+
+
+# Discussion views
 class DiscussionDetailView(DetailView):
     model = Discussion
     template_name = "forum/discussion_detail.html"
@@ -142,6 +180,7 @@ class DiscussionDetailView(DetailView):
         return context
 
 
+# Comment Views
 class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
@@ -176,6 +215,7 @@ class ReplyCommentView(LoginRequiredMixin, CreateView):
         return reverse('discussion-detail', kwargs={'pk': self.discussion.pk})
 
 
+# Others
 @login_required
 def like_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
