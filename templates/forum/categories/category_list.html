@@ -2,20 +2,6 @@
 {% block content %}
 <div class="container my-5">
 
-    {% if is_admin %}
-        <!-- Category Creation Form -->
-        <div class="card my-4">
-            <div class="card-header bg-primary text-white">Create a New Category</div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ category_form.as_p }}
-                    <button type="submit" class="btn btn-success">Add Category</button>
-                </form>
-            </div>
-        </div>
-    {% endif %}
-
     <!-- List Categories -->
     {% for category in categories %}
     <div class="card mb-4">
@@ -40,8 +26,15 @@
                     {% for topic in category.topics.all %}
                         <li class="list-group-item">
                             <h5>
-                                <a href="{% url 'topic-detail' topic.id %}">{{ topic.title }}</a>
+                                <a href="{% url 'topic-detail' topic.id %}">
+                                    {{ topic.title }}
+                                </a>
                             </h5>
+                            {% if topic.is_editable %}
+                            <a href="{% url 'topic-edit' topic.pk %}" class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+                {% endif %}
                             <small>Posted by {{ topic.created_by.username }} on {{ topic.created_at }}</small>
                         </li>
                     {% endfor %}
@@ -52,6 +45,20 @@
         </div>
     </div>
     {% endfor %}
+
+    {% if is_admin %}
+        <!-- Category Creation Form -->
+        <div class="card my-4">
+            <div class="card-header bg-primary text-white">Create a New Category</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ category_form.as_p }}
+                    <button type="submit" class="btn btn-success">Add Category</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
 
 </div>
 {% endblock %}
