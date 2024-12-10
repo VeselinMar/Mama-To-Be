@@ -8,6 +8,13 @@
                 <a href="{% url 'topic-detail' topic.pk %}" class="text-decoration-none text-dark fs-4">
                     <strong>{{ topic.title }}</strong>
                 </a>
+                <!-- Debug -->
+                <small>is_editable: {{ topic.is_editable }}</small>
+                {% if topic.is_editable %}
+                    <a href="{% url 'topic-edit' topic.pk %}" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
