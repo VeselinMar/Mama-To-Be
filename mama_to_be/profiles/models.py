@@ -63,6 +63,7 @@ class Profile(models.Model):
         blank=True,
         null=True,
         verbose_name='Profile Picture',
+        default='profile_pictures/381A0560.jpg'
     )
 
     description = models.TextField(
