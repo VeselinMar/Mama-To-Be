@@ -28,22 +28,32 @@
         </div>
     </div>
 
-    <div class="row">
-        {% for article in published_articles %}
-            <div class="col-md-4 mb-4">
-                <a href="{% url 'article-detail' article.slug %}" class="btn btn-primary">
-                    <div class="card">
-                        <img src="{% if article.thumbnail_url %}{{ article.thumbnail_url }}{% else %}{% static 'icons/default-thumbnail.jpg' %}{% endif %}" class="card-img-top" alt="{{ article.title }}">
+    <!-- Articles Section -->
+    <div class="mt-5">
+        <h3 class="mb-4">Published Articles</h3>
+        <div class="row">
+            {% for article in published_articles %}
+                <div class="col-md-4 mb-4">
+                    <a href="{% url 'article-detail' article.slug %}" class="text-decoration-none">
+                        <div class="card h-100">
+                            <img src="{% if article.thumbnail_url %}{{ article.thumbnail_url }}{% else %}{% static 'icons/default-thumbnail.jpg' %}{% endif %}"
+                                 class="card-img-top"
+                                 alt="{{ article.title }}"
+                                 style="height: 250px; object-fit: contain;">
+
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-center">{{ article.title }}</h5>
+                            </div>
                         </div>
-                    <h5 class="card-title">{{ article.title }}</h5>
-                </a>
+                    </a>
                 </div>
-            </div>
-        {% empty %}
-            <p>No published articles available.</p>
-        {% endfor %}
+            {% empty %}
+                <p>No published articles available.</p>
+            {% endfor %}
+        </div>
     </div>
 
+    <!-- Unpublished Articles Section -->
     {% if unpublished_articles %}
         <h3 class="mt-5">Unpublished Articles (Edit or Publish)</h3>
         <div class="list-group">
@@ -55,4 +65,5 @@
             {% endfor %}
         </div>
     {% endif %}
+</div>
 {% endblock %}
