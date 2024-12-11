@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'mama_to_be.profiles',
     'mama_to_be.articles',
     'mama_to_be.forum',
-    'tinymce'
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -143,6 +143,8 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'profiles.AppUser'
+
+LOGIN_URL = '/profile/login/'
 
 
 # TINYMCE CONFIG
