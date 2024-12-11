@@ -13,7 +13,9 @@
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile-display_own' %}">My Profile</a>
+                <a class="nav-link" href="{% url 'profile-display' user_id=request.user.id %}">
+                    My Profile
+                </a>
             </li>
             <li class="nav-item">
               <form method="POST" action="{% url 'logout' %}" style="display:inline;">
