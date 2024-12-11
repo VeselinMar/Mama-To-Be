@@ -9,5 +9,4 @@ urlpatterns = [
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('edit/', ProfileEditView.as_view(), name='profile-edit'),
     path('<int:user_id>/', ProfileDisplayView.as_view(), name='profile-display'),
-    path('', ProfileDisplayView.as_view(), name='profile-display_own'),
 ]

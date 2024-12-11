@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView, UpdateView, DetailView
@@ -46,6 +46,7 @@ class CustomLoginView(FormView):
 class CustomLogoutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
+        messages.success(request, "You have been logged out successfully.")
         return redirect('home')
 
 
@@ -53,11 +54,14 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
     template_name = 'profiles/profile_update.html'
-    success_url = reverse_lazy('profile-display_own')
 
     def get_object(self, queryset=None):
-        # Ensure the logged-in user can only edit their own profile
-        return Profile.objects.get(user=self.request.user)
+        # Return the current user's profile efficiently
+        return self.request.user.profile
+
+    def get_success_url(self):
+        # Redirect to the profile display page of the current user after editing
+        return reverse_lazy('profile-display', kwargs={'user_id': self.request.user.id})
 
 
 class ProfileDisplayView(DetailView):
@@ -66,26 +70,23 @@ class ProfileDisplayView(DetailView):
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
-        # Check if username is provided in the URL, else fetch the profile for the logged-in user
+        # Use the user_id parameter, if provided, or default to the logged-in user's profile
         user_id = self.kwargs.get('user_id', None)
-
         if user_id:
-            # Fetch the Profile based on the username of the related User model
             return get_object_or_404(Profile, user__id=user_id)
-        else:
-            # If no username, get the profile of the logged-in user
-            return get_object_or_404(Profile, user=self.request.user)
+        return self.request.user.profile  # Default to the logged-in user's profile
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # Get the profile object
         profile = self.get_object()
         user = profile.user
 
-        # Get the last 3 published articles for this user
+        # Fetch the last 3 published articles for this user
         published_articles = Article.objects.filter(author=user, is_published=True).order_by('-published_at')[:3]
 
-        # Include unpublished articles if the profile belongs to the logged-in user
+        # Include unpublished articles only if the profile belongs to the logged-in user
         unpublished_articles = None
         if user == self.request.user:
             unpublished_articles = Article.objects.filter(author=user, is_published=False)
