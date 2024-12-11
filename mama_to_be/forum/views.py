@@ -2,20 +2,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import BooleanField, Value, F, Prefetch
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.views.generic.edit import FormMixin
 
 from mama_to_be.forum.forms import TopicForm, CommentForm, CategoryForm, DiscussionForm
 from mama_to_be.forum.models import Topic, Comment, Like, Category, Discussion
+from mama_to_be.settings import ADMIN_GROUPS
 
 
 # Create your views here.
 
 
 # Category Views
-class ForumCategoryListView(ListView):
+class ForumCategoryListView(LoginRequiredMixin, ListView):
     model = Category
     template_name = 'forum/categories/category_list.html'
     context_object_name = 'categories'
@@ -23,27 +24,25 @@ class ForumCategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        is_admin = self.request.user.groups.filter(
-            name__in=['Restricted Admin', 'Unrestricted Admin']
-        ).exists()
+        # Check if the user is an admin
+        is_admin = self.request.user.groups.filter(name__in=ADMIN_GROUPS).exists()
         context['is_admin'] = is_admin
 
+        # Add the category form if the user is an admin
         if is_admin:
-            context['category_form'] = CategoryForm()
+            context['category_form'] = CategoryForm(user=self.request.user)
         return context
 
     def get_queryset(self):
+        # Prefetch related topics to minimize database hits
         return Category.objects.prefetch_related(
             Prefetch('topics', queryset=Topic.objects.only('title', 'created_by', 'created_at'))
         )
 
     def post(self, request, *args, **kwargs):
-        is_admin = self.request.user.groups.filter(
-            name__in=['Restricted Admin', 'Unrestricted Admin']
-        ).exists()
-
-        if request.user.is_authenticated and is_admin:
-            form = CategoryForm(request.POST)
+        # Only admins can create new categories
+        if request.user.groups.filter(name__in=ADMIN_GROUPS).exists():
+            form = CategoryForm(request.POST, user=request.user)
             if form.is_valid():
                 form.save()
                 return redirect('category-list')
@@ -59,7 +58,7 @@ class CategoryUpdateView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         # Restrict access to specific groups
         return self.request.user.groups.filter(
-            name__in=['Restricted Admin', 'Unrestricted Admin']
+            name__in=ADMIN_GROUPS
         ).exists()
 
 
@@ -76,7 +75,7 @@ class TopicListView(ListView):
         user = self.request.user
 
         if user.is_authenticated:
-            is_admin = user.groups.filter(name__in=['Restricted Admin', 'Unrestricted Admin']).exists()
+            is_admin = user.groups.filter(name__in=ADMIN_GROUPS).exists()
             # Annotate each topic with an "is_editable" field
             topics = topics.annotate(
                 is_editable=Value(
@@ -134,20 +133,6 @@ class TopicDetailView(FormMixin, DetailView):
         return self.get(request, *args, **kwargs)
 
 
-@login_required
-def create_topic(request):
-    if request.method == 'POST':
-        form = TopicForm(request.POST)
-        if form.is_valid():
-            topic = form.save(commit=False)
-            topic.author = request.user
-            topic.save()
-            return redirect('forum-home')
-    else:
-        form = TopicForm()
-    return render(request, 'forum/topics/create_topic.html', {'form': form})
-
-
 class TopicEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Topic
     form_class = TopicForm
@@ -178,6 +163,7 @@ class DiscussionDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
         return context
+
 
 class EditDiscussionView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Discussion
