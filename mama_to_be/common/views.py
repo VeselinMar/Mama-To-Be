@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.views.generic import ListView
 
 from mama_to_be.articles.models import Article
 
@@ -6,20 +6,31 @@ from mama_to_be.articles.models import Article
 # Create your views here.
 
 
-def home(request):
-    recent_articles = (
-        Article.objects.filter(is_published=True)
-        .distinct('category')
-        .order_by('category', '-published_at')[:12]
-    )
+class HomeView(ListView):
+    model = Article
+    template_name = 'common/home.html'
+    context_object_name = 'articles'  # For referencing in the template
 
-    articles_by_category = {}
-    for article in recent_articles:
-        if article.category not in articles_by_category:
-            articles_by_category[article.category] = []
-        articles_by_category[article.category].append(article)
+    def get_queryset(self):
+        # Fetch all published articles and order by publication date
+        return Article.objects.filter(is_published=True).order_by('-published_at')
 
-    context = {
-        'articles_by_category': articles_by_category,
-    }
-    return render(request, 'common/home.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Categorize articles by category, limiting to the last 3 articles per category
+        articles_by_category = {}
+
+        # Get the last 3 articles for each category
+        categories = Article.objects.filter(is_published=True).values('category').distinct()
+        for category in categories:
+            articles = (
+                Article.objects.filter(category=category['category'], is_published=True)
+                .order_by('-published_at')[:3]  # Limit to 3 articles per category
+            )
+            articles_by_category[category['category']] = articles
+
+        # Add the articles_by_category dictionary to the context
+        context['articles_by_category'] = articles_by_category
+
+        return context
