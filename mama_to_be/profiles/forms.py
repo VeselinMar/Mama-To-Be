@@ -1,24 +1,35 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from mama_to_be.profiles.models import AppUser, Profile
 
 
-class RegisterForm(UserCreationForm):
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+
+class RegisterForm(forms.ModelForm):
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = AppUser
-        fields = ['email', 'password1', 'password2']
+        fields = ['email']
 
-        widgets = {
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}),
-        }
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if AppUser.objects.filter(email=email).exists():
-            raise forms.ValidationError("This email is already registered.")
-        return email
+        if password1 != password2:
+            raise forms.ValidationError("The two password fields didn’t match.")
+        return password2
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
 
 
 class ProfileEditForm(forms.ModelForm):
