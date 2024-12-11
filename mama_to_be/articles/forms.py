@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 from django import forms
 from .models import Article
 
+
 class ArticleForm(forms.ModelForm):
     MAX_URLS = 10
     MAX_URL_LENGTH = 500  # Limit URL length
@@ -14,8 +15,10 @@ class ArticleForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'thumbnail_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter thumbnail URL'}),
-            'media_urls': forms.HiddenInput(attrs={'class': 'form-control', 'placeholder': 'Enter media URLs (comma separated)'}),
+            'thumbnail_url': forms.URLInput(attrs={'class': 'form-control',
+                                                   'placeholder': 'Enter thumbnail URL'}),
+            'media_urls': forms.HiddenInput(attrs={'class': 'form-control',
+                                                   'placeholder': 'Enter media URLs (comma separated)'}),
         }
 
     def clean_url_field(self, field_name, trusted_domains):
