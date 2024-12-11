@@ -146,6 +146,8 @@ AUTH_USER_MODEL = 'profiles.AppUser'
 
 LOGIN_URL = '/profile/login/'
 
+ADMIN_GROUPS = ['Restricted Admin', 'Unrestricted Admin']
+
 
 # TINYMCE CONFIG
 TINYMCE_DEFAULT_CONFIG = {
