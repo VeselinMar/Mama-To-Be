@@ -4,8 +4,8 @@
     <div class="container mt-5">
         <h1 class="mb-4">{{ article.title }}</h1>
 
-    <a href="{% url 'profile-display' author_id %}">
-        <p class="text-muted">Author: {{ author_name }}</p>
+    <a href="{% url 'profile-display'  article.author.profile.user_id %}">
+        <p class="text-muted">Author: {{ article.author.profile.username }}</p>
     </a>
 
         <!-- Edit Article Button for the Author -->

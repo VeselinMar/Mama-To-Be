@@ -7,56 +7,79 @@
     <h2 class="text-center text-muted">{{ category }}</h2>
 
     <div class="row">
-        {% for article in page_obj %}
-            <div class="col-md-4 mb-4 text-center">
-                <div class="card border-2 shadow-sm">
-                    <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none;">
+    {% for article in page_obj %}
+        <div class="col-md-4 mb-4 text-center">
+            <div class="card border-2 shadow-sm">
+                <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none;">
+                    <div class="ratio ratio-4x3"> <!-- Ensures a consistent aspect ratio -->
                         {% if article.thumbnail_url %}
-                            <img src="{{ article.thumbnail_url }}" class="card-img-top img-fluid" alt="{{ article.title }}" style="border: 1px solid #ddd; border-radius: 5px;">
+                            <img src="{{ article.thumbnail_url }}" 
+                                 class="card-img-top img-fluid object-fit-cover" 
+                                 alt="{{ article.title }}">
                         {% else %}
-                            <img src="{% static 'icons/default-thumbnail.jpg' %}" class="card-img-top img-fluid" alt="Default thumbnail" style="border: 1px solid #ddd; border-radius: 5px;">
+                            <img src="{% static 'icons/default-thumbnail.jpg' %}" 
+                                 class="card-img-top img-fluid object-fit-cover" 
+                                 alt="Default thumbnail">
                         {% endif %}
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none; color: black;">
-                                {{ article.title }}
-                            </a>
-                        </h5>
                     </div>
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'article-detail' article.slug %}" 
+                           style="text-decoration: none; color: black;">
+                            {{ article.title }}
+                        </a>
+                    </h5>
                 </div>
             </div>
-        {% empty %}
-            <p>No articles in this category yet.</p>
-        {% endfor %}
-    </div>
+        </div>
+    {% empty %}
+        <p>No articles in this category yet.</p>
+    {% endfor %}
+    </div> 
+
 
     <!-- Pagination -->
     <div class="d-flex justify-content-center mt-4">
         <ul class="pagination">
-            {% if page_obj.has_previous %}
+            <!-- First Page Link -->
+            {% if page_obj.number > 3 %}
                 <li class="page-item">
-                    <a class="page-link" href="?page=1">First</a>
+                    <a class="page-link" href="?page=1">1</a>
                 </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
                 </li>
             {% endif %}
-
-            <li class="page-item disabled">
-                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-            </li>
-
-            {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+    
+            <!-- Pages Around Current Page -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+                    {% if num == page_obj.number %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+    
+            <!-- Ellipsis and Last Page -->
+            {% if page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
                 </li>
             {% endif %}
         </ul>
     </div>
+
+
 </div>
 
 {% endblock %}
