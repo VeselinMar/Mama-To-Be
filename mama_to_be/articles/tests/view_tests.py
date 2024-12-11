@@ -141,8 +141,15 @@ class CategoryArticlesViewTest(TestCase):
         self.assertContains(response, self.article2.title)
         self.assertEqual(len(response.context['page_obj']), 2)  # Ensure pagination works
 
-    def test_invalid_category(self):
-        # Test if an invalid category redirects to home
+    def test_invalid_category_raises_404(self):
         response = self.client.get(reverse('category-articles', kwargs={'category': 'invalid-category'}))
+        self.assertEqual(response.status_code, 404)
 
-        self.assertRedirects(response, reverse('home'))
+    def test_pagination(self):
+        category = 'Food'
+        for i in range(20):  # Create more articles to test pagination
+            Article.objects.create(title=f"Article {i}", category=category, is_published=True)
+
+        response = self.client.get(reverse('category-articles', kwargs={'category': category}), {'page': 2})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Article 10")  # Check if the second page contains the correct article
