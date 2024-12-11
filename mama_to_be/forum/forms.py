@@ -1,6 +1,7 @@
 from django import forms
 
 from mama_to_be.forum.models import Topic, Comment, Category, Discussion
+from mama_to_be.settings import ADMIN_GROUPS
 
 
 class CategoryForm(forms.ModelForm):
@@ -21,6 +22,15 @@ class CategoryForm(forms.ModelForm):
             'name': 'Category Name',
             'description': 'Description'
         }
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        if not self.user.groups.filter(name__in=ADMIN_GROUPS).exists():
+            raise forms.ValidationError("You do not have permission to create categories.")
+        return super().clean()
 
 
 class TopicForm(forms.ModelForm):
