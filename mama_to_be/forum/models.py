@@ -24,8 +24,17 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = self.get_unique_slug()
         super().save(*args, **kwargs)
+
+    def get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        num = 1
+        while Category.objects.filter(slug=unique_slug).exists():
+            unique_slug = f"{slug}-{num}"
+            num += 1
+        return unique_slug
 
     def __str__(self):
         return self.name
@@ -41,19 +50,30 @@ class Topic(models.Model):
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
-        related_name='topics')
+        related_name='topics'
+    )
     created_by = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='topics')
+        related_name='topics'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = self.get_unique_slug()
         super().save(*args, **kwargs)
+
+    def get_unique_slug(self):
+        slug = slugify(self.title)
+        unique_slug = slug
+        num = 1
+        while Topic.objects.filter(slug=unique_slug).exists():
+            unique_slug = f"{slug}-{num}"
+            num += 1
+        return unique_slug
 
     def __str__(self):
         return self.title
@@ -106,6 +126,11 @@ class Comment(models.Model):
 
     likes = models.PositiveIntegerField(default=0)
 
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self.likes = self.comment_likes.count()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"Comment by {self.created_by} on {self.discussion}"
 
@@ -122,4 +147,6 @@ class Like(models.Model):
     )
 
     class Meta:
-        unique_together = ('comment', 'user')
+        constraints = [
+            models.UniqueConstraint(fields=['comment', 'user'], name='unique_comment_like')
+        ]
