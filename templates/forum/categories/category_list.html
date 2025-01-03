@@ -35,7 +35,7 @@
                                 Edit
                             </a>
                 {% endif %}
-                            <small>Posted by {{ topic.created_by.username }} on {{ topic.created_at }}</small>
+                            <small>Posted by {{ topic.created_by.profile.username }} on {{ topic.created_at }}</small>
                         </li>
                     {% endfor %}
                 </ul>
