@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 
+from mama_to_be.forum.mixins import CreatedByMixin
 from mama_to_be.settings import AUTH_USER_MODEL
 
 
@@ -43,7 +44,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'  # Correct pluralization
 
 
-class Topic(models.Model):
+class Topic(models.Model, CreatedByMixin):
     title = models.CharField(
         max_length=130,
     )
@@ -79,7 +80,7 @@ class Topic(models.Model):
         return self.title
 
 
-class Discussion(models.Model):
+class Discussion(models.Model, CreatedByMixin):
     topic = models.ForeignKey(
         Topic,
         on_delete=models.CASCADE,
