@@ -38,6 +38,6 @@ class ProfileEditForm(forms.ModelForm):
         fields = ['username', 'profile_picture', 'description']
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username'}),
-            'profile_picture': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'profile_picture': forms.FileInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Tell us about yourself'}),
         }
