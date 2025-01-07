@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Search Results for "{{ query }}"</h1>
+    {% if results %}
+        <ul class="list-group">
+            {% for article in results %}
+                <li class="list-group-item">
+                    <a href="{% url 'article-detail' article.slug %}">{{ article.title }}</a>
+                    <p>{{ article.category }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% if no_results %}
+            <p>No results found for "{{ query }}".</p>
+        {% else %}
+            <p>Please enter a search term to see results.</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

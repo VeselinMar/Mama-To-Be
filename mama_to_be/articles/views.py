@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.http import Http404
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
 
@@ -85,3 +87,25 @@ class CategoryArticlesView(ListView):
         # Ensure page_obj is explicitly passed to the context
         context['page_obj'] = context.get('page_obj', context['object_list'])
         return context
+
+
+def update_search_vector():
+    articles = Article.objects.all()
+    for article in articles:
+        article.search_vector = (
+            SearchVector('title', weight='A') + SearchVector('content', weight='B')
+        )
+        article.save()
+
+
+def search_view(request):
+    query = request.GET.get('q')
+    results = Article.objects.filter(title__icontains=query, is_published=True) if query else []
+
+    context = {
+        'query': query,
+        'results': results,
+        'no_results': not results,
+    }
+
+    return render(request, 'articles/search_results.html', {'query': query, 'results': results})
