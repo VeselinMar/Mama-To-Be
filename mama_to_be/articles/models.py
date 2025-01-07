@@ -1,6 +1,8 @@
 import uuid
 
+from django.contrib.postgres.search import SearchVectorField
 from django.db import models
+from django.db.models import Index
 from django.utils.text import slugify
 from tinymce.models import HTMLField
 
@@ -33,6 +35,8 @@ class Article(models.Model):
     )
     is_published = models.BooleanField(default=False)
 
+    search_vector = SearchVectorField(null=True, blank=True)
+
     # Attach the custom queryset
     objects = ArticleQuerySet.as_manager()
 
@@ -60,3 +64,4 @@ class Article(models.Model):
 
     class Meta:
         ordering = ['-published_at']
+        indexes = [Index(fields=['search_vector'])]
