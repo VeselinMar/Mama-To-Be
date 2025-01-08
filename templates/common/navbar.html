@@ -7,37 +7,57 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href={% url 'category-list' %}>
-              Forum
+          <a class="nav-link" href="{% url 'category-list' %}">
+            Forum
           </a>
         </li>
+
+        <!-- Dropdown for Categories -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Articles
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
+            <li class="dropdown-header">Learn more about</li>
+            {% for category in navbar_categories %}
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'category-articles' category=category.value %}">
+                  <i class="bi bi-folder-fill me-2"></i> {{ category.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+
       </ul>
-        <form class="d-flex me-3" action="{% url 'search' %}" method="get" style="flex-grow: 1;">
-            <input class="form-control me-2" type="search" name="q" placeholder="Search articles" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+
+      <form class="d-flex me-3" action="{% url 'search' %}" method="get" style="flex-grow: 1;">
+        <input class="form-control me-2" type="search" name="q" placeholder="Search articles" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile-display' user_id=request.user.id %}">
-                    My Profile
-                </a>
-            </li>
-            <li class="nav-item">
-              <form method="POST" action="{% url 'logout' %}" style="display:inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="nav-link btn btn-link" style="border: none; background: none;">
-                    Logout
-                  </button>
-              </form>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile-display' user_id=request.user.id %}">
+              My Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="nav-link btn btn-link" style="border: none; background: none;">
+                Logout
+              </button>
+            </form>
+          </li>
         {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
         {% endif %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'create-article' %}">Create Article</a>
+          <a class="nav-link" href="{% url 'create-article' %}">Create Article</a>
         </li>
       </ul>
     </div>
