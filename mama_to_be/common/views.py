@@ -23,6 +23,7 @@ class HomeView(ListView):
 
         # Get the last 3 articles for each category
         categories = Article.objects.filter(is_published=True).values('category').distinct()
+
         for category in categories:
             articles = (
                 Article.objects.filter(category=category['category'], is_published=True)
@@ -30,7 +31,6 @@ class HomeView(ListView):
             )
             articles_by_category[category['category']] = articles
 
-        # Add the articles_by_category dictionary to the context
         context['articles_by_category'] = articles_by_category
 
         return context
