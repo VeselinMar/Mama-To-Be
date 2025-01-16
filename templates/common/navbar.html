@@ -13,6 +13,7 @@
             Helpful
           </a>
           <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
+            <li class="dropdown-header">Essential Information about</li>
             {% for article in helpful_articles %}
               <li>
                 <a class="dropdown-item d-flex align-items-center" href="{% url 'article-detail' article.slug %}">
