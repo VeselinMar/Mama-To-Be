@@ -1,6 +1,7 @@
 from django.db import models
 
 from mama_to_be import settings
+from mama_to_be.common.choices import PriorityChoices
 
 
 # Create your models here.
@@ -38,3 +39,37 @@ class ToDoList(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Task(models.Model):
+    todo_list = models.ForeignKey(
+        ToDoList,
+        on_delete=models.CASCADE,
+        related_name="tasks",
+    )
+
+    description = models.CharField(
+        max_length=500,
+    )
+
+    is_completed = models.BooleanField(
+        default=False,
+    )
+
+    priority = models.CharField(
+        max_length=10,
+        choices = PriorityChoices.choices,
+        default=PriorityChoices.MEDIUM,
+    )
+
+    due_date = models.DateField(
+        null=True,
+        blank=True,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    def __str__(self):
+        return self.description
