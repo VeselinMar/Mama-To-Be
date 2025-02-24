@@ -46,7 +46,7 @@ class Article(models.Model):
     def generate_unique_slug(self):
         """Generates a unique slug for the article."""
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.title)[:50]
 
         original_slug = self.slug
         queryset = Article.objects.filter(slug=self.slug)
@@ -54,7 +54,10 @@ class Article(models.Model):
             queryset = queryset.exclude(pk=self.pk)
 
         while queryset.exists():
-            self.slug = f"{original_slug}-{uuid.uuid4().hex[:8]}"
+            suffix = f"-{uuid.uuid4().hex[:8]}"
+            max_base_length = 50 - len(suffix)
+            base_slug = original_slug[:max_base_length]
+            self.slug = f"{base_slug}-{suffix}"
             queryset = Article.objects.filter(slug=self.slug)
 
     def save(self, *args, **kwargs):
