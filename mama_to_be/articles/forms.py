@@ -21,16 +21,14 @@ class ArticleForm(forms.ModelForm):
                                                    'placeholder': 'Enter media URLs (comma separated)'}),
         }
 
-    def clean_url_field(self, field_name, trusted_domains):
+    def clean_url_field(self, field_name):
         """ Helper method to clean and validate URL fields """
         url_field = self.cleaned_data.get(field_name, '')
         if url_field:
             url = urlparse(url_field)
-            # Ensure proper scheme and domain
+            # Ensure proper scheme
             if url.scheme not in ['http', 'https']:
                 raise ValidationError(f"{field_name} must use a valid scheme (http or https).")
-            if not any(domain in url.netloc for domain in trusted_domains):
-                raise ValidationError(f"{field_name} must be from a trusted source.")
             # Check URL length
             if len(url_field) > self.MAX_URL_LENGTH:
                 raise ValidationError(f"{field_name} exceeds the maximum length of {self.MAX_URL_LENGTH} characters.")
@@ -40,9 +38,6 @@ class ArticleForm(forms.ModelForm):
         """ Clean and validate media_urls field, which is comma-separated """
         media_urls = self.cleaned_data.get('media_urls', '')
         if media_urls:
-            trusted_domains = ['youtube.com', 'vimeo.com',
-                               'unsplash.com', 'imgur.com', 'shopify.com', 'dupe.com',
-                               'shutterstock.com', 'timg.com', 'pinimg.com']
             urls = [url.strip() for url in media_urls.split(',')]
 
             # Check number of URLs
@@ -57,10 +52,6 @@ class ArticleForm(forms.ModelForm):
                 if parsed_url.scheme not in ['http', 'https']:
                     raise ValidationError(f"URL '{url}' must start with 'http://' or 'https://'.")
 
-                # Ensure the domain is trusted
-                if not any(domain in parsed_url.netloc for domain in trusted_domains):
-                    raise ValidationError(f"URL '{url}' is not from a trusted source.")
-
                 # Ensure the URL length does not exceed the maximum length
                 if len(url) > self.MAX_URL_LENGTH:
                     raise ValidationError(f"URL '{url}' is too long. Max length is {self.MAX_URL_LENGTH} characters.")
@@ -69,6 +60,4 @@ class ArticleForm(forms.ModelForm):
 
     def clean_thumbnail_url(self):
         """ Clean and validate thumbnail_url using the helper function """
-        return self.clean_url_field('thumbnail_url', ['youtube.com', 'vimeo.com',
-                                                      'unsplash.com', 'imgur.com', 'shopify.com', 'dupe.com',
-                                                      'shutterstock.com', 'timg.com', 'pinimg.com'])
+        return self.clean_url_field('thumbnail_url')
