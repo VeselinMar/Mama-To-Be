@@ -31,7 +31,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
             <li class="dropdown-header">Learn more about</li>
-            {% for category in articles %}
+            {% for category in navbar_categories %}
               <li>
                 <a class="dropdown-item d-flex align-items-center" href="{% url 'category-articles' category=category.value %}">
                   <i class="bi bi-folder-fill me-2"></i> {{ category.name }}
