@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>My To-Do Lists</h2>
+    {% if todo_lists %}
+        <ul class="list-group">
+            {% for todo_list in todo_lists %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'edit-todo-list' todo_list.id %}">{{ todo_list.name }}</a>
+                    <div>
+                        <a href="{% url 'edit-todo-list' todo_list.id %}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'share-todo-list' todo_list.id %}" class="btn btn-sm btn-warning">Share</a>
+                        <a href="{% url 'delete-todo-list' todo_list.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't created any to-do lists yet.</p>
+    {% endif %}
+    {% if can_create %}
+        <a href="{% url 'create-todo-list' %}" class="btn btn-success mt-3">Create New List</a>
+    {% else %}
+        <p class="text-muted">You can only save up to 3 lists.</p>
+    {% endif %}
+</div>
+{% endblock %}

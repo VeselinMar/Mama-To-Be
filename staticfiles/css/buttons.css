@@ -1,0 +1,12 @@
+/* Buttons */
+button, .btn {
+    background-color: #FFB4A2; /* Warm Peach */
+    color: #FFF8F0; /* Cream */
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
+button:hover, .btn:hover {
+    background-color: #FF977D; /* Slightly darker peach */
+}

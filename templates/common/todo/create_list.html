@@ -1,0 +1,18 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h2>To-Do List</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        {% if user.is_authenticated %}
+            <button type="submit" class="btn btn-success">Save List</button>
+        {% else %}
+            <button type="submit" name="export_csv" class="btn btn-info">Export as CSV</button>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}
+

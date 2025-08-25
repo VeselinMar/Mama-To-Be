@@ -1,0 +1,7 @@
+.card, .content-section {
+    background-color: #FFF8F0; /* Cream */
+    border: 1px solid #F1D1B5; /* Subtle Shadow/Border */
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}

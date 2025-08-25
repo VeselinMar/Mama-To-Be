@@ -1,0 +1,13 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Shared To-Do List</h2>
+    <p>This list was shared with you.</p>
+    <ul class="list-group">
+        {% for item in todo_list.items.all %}
+            <li class="list-group-item">{{ item.text }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
