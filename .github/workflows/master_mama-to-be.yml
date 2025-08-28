@@ -47,9 +47,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-    SECRET_KEY: ${{ secrets.SECRET_KEY }}
-    ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-    
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+
     needs: build
     permissions:
       id-token: write #This is required for requesting the JWT
