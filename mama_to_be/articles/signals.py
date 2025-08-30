@@ -10,9 +10,11 @@ from mama_to_be.articles.models import Article
 
 @receiver(post_save, sender=Article)
 def update_search_vector_on_save(sender, instance, **kwargs):
-    Article.objects.filter(pk=instance.pk).update(
-        search_vector=SearchVector('title', weight='A') + SearchVector('content', weight='B')
-    )
+    if 'postgres' in settings.DATABASE['default']['ENGINE']:
+        instance.search_vector = (
+            SearchVector('title', weight='A') + SearchVector('content', weight='B')
+        )
+        instance.save()
 
 @receiver([post_save, post_delete], sender=Article)
 def article_changed(sender, **kwargs):
