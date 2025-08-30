@@ -1,4 +1,4 @@
-from django.config import settings
+from django.conf import settings
 from django.contrib.postgres.search import SearchVector
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
