@@ -1,20 +1,64 @@
 import os
-import subprocess
+import base64
+import requests
+import threading
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 GITHUB_REPO = os.environ.get("GITHUB_REPO")
-GITHUB_BRANCH = os.environ.get("GITHUB_BRANCH", "master")
+GITHUB_BRANCH = os.environ.get("GITHUB_BRANCH", "main")
+GITHUB_FILE_PATH = os.environ.get("GITHUB_FILE_PATH", "seed.json")
+
+_commit_timer = None
+INACTIVITY_SECONDS = 180
 
 def commit_seed_to_github():
+    """Push seed.json to GitHub using REST API"""
     if not GITHUB_TOKEN or not GITHUB_REPO:
-        print("Github Token missing, skipping commit")
+        print("GitHub token or repo not set, skipping commit")
         return
-    
-    subprocess.run(["git", "config", "--global", "user.email", "seed-bot@example.com"])
-    subprocess.run(["git", "config", "--global", "user.name", "Seed Bot"])
 
-    subprocess.run(["git", "add", "seed.json"])
-    subprocess.run(["git", "commit", "-m", "Update seed.json auto"], check=False)
+    try:
+        with open(GITHUB_FILE_PATH, "rb") as f:
+            content = f.read()
+        b64_content = base64.b64encode(content).decode("utf-8")
 
-    repo_url = f"https://{GITHUB_TOKEN}@github.com/{GITHUB_REPO}.git"
-    subprocess.run(["git", "push", repo_url, GITHUB_BRANCH])
+        url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE_PATH}?ref={GITHUB_BRANCH}"
+        headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+
+        resp = requests.get(url, headers=headers)
+
+        if resp.status_code == 200:
+            sha = resp.json()["sha"]
+            data = {
+                "message": "Update seed.json",
+                "content": b64_content,
+                "sha": sha,
+                "branch": GITHUB_BRANCH,
+            }
+        elif resp.status_code == 404:
+            data = {
+                "message": "Add seed.json",
+                "content": b64_content,
+                "branch": GITHUB_BRANCH,
+            }
+        else:
+            print(f"GitHub API error: {resp.status_code} {resp.text}")
+            return
+
+        put_resp = requests.put(url, headers=headers, json=data)
+        if put_resp.status_code in [200, 201]:
+            print("seed.json successfully pushed to GitHub")
+        else:
+            print(f"Failed to push seed.json: {put_resp.status_code} {put_resp.text}")
+
+    except Exception as e:
+        print(f"Error committing seed.json: {e}")
+
+
+def schedule_commit():
+    """Debounce GitHub commit: push only after INACTIVITY_SECONDS of no changes"""
+    global _commit_timer
+    if _commit_timer:
+        _commit_timer.cancel()
+    _commit_timer = threading.Timer(INACTIVITY_SECONDS, commit_seed_to_github)
+    _commit_timer.start()
