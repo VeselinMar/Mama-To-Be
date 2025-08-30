@@ -1,0 +1,32 @@
+[
+{
+  "model": "profiles.appuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$EFph7tvThTT3QWG7d6bsKs$XgcNo9+u9XeLdfaUbA8UmugnZG27AeZwtLBI3g3iblk=",
+    "is_superuser": false,
+    "email": "vesko@abv.bg",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-08-30T14:17:01.711Z",
+    "last_login": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "profiles.appuser",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$UZKSVIQua2FROxAO2QIx4c$LY1isgvmun/4ekuxs394B649UkWOEnUI3YPm5rf0jq4=",
+    "is_superuser": false,
+    "email": "vesko2@abv.bg",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-08-30T14:17:16.808Z",
+    "last_login": null,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
