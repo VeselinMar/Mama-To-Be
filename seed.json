@@ -31,5 +31,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 2,
+  "fields": {
+    "title": "Cat",
+    "slug": "cat",
+    "content": "<p>MeowMeow</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "https://media.istockphoto.com/id/1097490360/vector/vector-illustration-of-cute-black-cat.jpg?s=612x612&w=0&k=20&c=Ef0qYl79aZJ6NJXJVbJ0onjXVNnSyqrN_TKPjieAIGE=",
+    "created_at": "2025-08-31T11:09:18.599Z",
+    "updated_at": "2025-08-31T11:09:18.599Z",
+    "published_at": null,
+    "category": "Education",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
