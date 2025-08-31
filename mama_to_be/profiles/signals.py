@@ -17,4 +17,4 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver([post_save], sender=UserModel)
 def user_changed(sender, **kwargs):
     dump_seed()
-    schedule_commit()
+    commit_seed_to_github()
