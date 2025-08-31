@@ -49,5 +49,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 3,
+  "fields": {
+    "title": "Baby sunglasses",
+    "slug": "baby-sunglasses",
+    "content": "<p style=\"text-align: center;\"><strong><em>COOL</em></strong></p>\r\n<p style=\"text-align: center;\"><strong><em><img src=\"https://www.kietla.fr/cdn/shop/files/DSC_1965.webp?v=1738854639\" alt=\"\" width=\"255\" height=\"255\"></em></strong></p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "https://www.kietla.fr/cdn/shop/files/DSC_1965.webp?v=1738854639",
+    "created_at": "2025-08-31T11:11:18.786Z",
+    "updated_at": "2025-08-31T11:11:18.786Z",
+    "published_at": null,
+    "category": "Baby Gear",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
