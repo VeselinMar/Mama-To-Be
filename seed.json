@@ -85,5 +85,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 6,
+  "fields": {
+    "title": "Top Family Travel Destinations",
+    "slug": "top-family-travel-destinations",
+    "content": "<p>Content for family travel destinations</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "",
+    "created_at": "2025-09-01T10:20:00Z",
+    "updated_at": "2025-09-01T10:20:00Z",
+    "published_at": null,
+    "category": "Family Travel",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
