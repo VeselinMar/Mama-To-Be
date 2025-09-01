@@ -121,5 +121,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 8,
+  "fields": {
+    "title": "Home Safety for Babies",
+    "slug": "home-safety-for-babies",
+    "content": "<p>Content for home safety</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "",
+    "created_at": "2025-09-01T10:30:00Z",
+    "updated_at": "2025-09-01T10:30:00Z",
+    "published_at": null,
+    "category": "Safety",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
