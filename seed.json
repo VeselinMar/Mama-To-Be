@@ -139,5 +139,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 9,
+  "fields": {
+    "title": "Childproofing Tips",
+    "slug": "childproofing-tips",
+    "content": "<p>Content for childproofing</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "",
+    "created_at": "2025-09-01T10:35:00Z",
+    "updated_at": "2025-09-01T10:35:00Z",
+    "published_at": null,
+    "category": "Safety",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
