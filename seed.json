@@ -9,27 +9,9 @@
     "is_active": true,
     "is_staff": false,
     "date_joined": "2025-08-31T07:25:02.888Z",
-    "last_login": "2025-09-01T12:28:50.690Z",
+    "last_login": "2025-08-31T07:25:05.357Z",
     "groups": [],
     "user_permissions": []
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 1,
-  "fields": {
-    "title": "Baubau",
-    "slug": "baubau",
-    "content": "<p>bauba</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://www.shutterstock.com/image-vector/illustration-cute-baby-golden-retrieve-600nw-2488093199.jpg",
-    "created_at": "2025-08-31T07:26:14.918Z",
-    "updated_at": "2025-08-31T07:26:27.433Z",
-    "published_at": null,
-    "category": "Education",
-    "is_published": true,
-    "search_vector": null
   }
 }
 ]
