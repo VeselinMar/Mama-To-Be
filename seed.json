@@ -31,5 +31,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 3,
+  "fields": {
+    "title": "Fun Learning Games",
+    "slug": "fun-learning-games",
+    "content": "<p>Content for fun learning games</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "",
+    "created_at": "2025-09-01T10:05:00Z",
+    "updated_at": "2025-09-01T10:05:00Z",
+    "published_at": null,
+    "category": "Education",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
