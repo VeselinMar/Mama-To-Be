@@ -211,5 +211,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 13,
+  "fields": {
+    "title": "Family Travel Packing List",
+    "slug": "family-travel-packing-list",
+    "content": "<p>Content for packing list</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbvmF25ZEVS6zCVeVQUPQVDXD3JMitQKCFyA&s",
+    "created_at": "2025-09-01T10:55:00Z",
+    "updated_at": "2025-09-01T10:55:00Z",
+    "published_at": null,
+    "category": "Family Travel",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
