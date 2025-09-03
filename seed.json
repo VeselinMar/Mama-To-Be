@@ -175,5 +175,23 @@
     "is_published": true,
     "search_vector": null
   }
+},
+{
+  "model": "articles.article",
+  "pk": 11,
+  "fields": {
+    "title": "Educational Apps for Kids",
+    "slug": "educational-apps-for-kids",
+    "content": "<p>Content for educational apps</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkzStWIQKNkHrvAfABKs4fkFIRIBy2KQHlfg&s",
+    "created_at": "2025-09-01T10:45:00Z",
+    "updated_at": "2025-09-01T10:45:00Z",
+    "published_at": null,
+    "category": "Education",
+    "is_published": true,
+    "search_vector": null
+  }
 }
 ]
