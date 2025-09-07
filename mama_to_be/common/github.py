@@ -1,15 +1,11 @@
 import os
 import base64
 import requests
-import threading
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 GITHUB_REPO = os.environ.get("GITHUB_REPO")
 GITHUB_BRANCH = os.environ.get("GITHUB_BRANCH", "main")
 GITHUB_FILE_PATH = os.environ.get("GITHUB_FILE_PATH", "seed.json")
-
-_commit_timer = None
-INACTIVITY_SECONDS = 180
 
 def commit_seed_to_github():
     """Push seed.json to GitHub using REST API"""
@@ -53,12 +49,3 @@ def commit_seed_to_github():
 
     except Exception as e:
         print(f"Error committing seed.json: {e}")
-
-
-def schedule_commit():
-    """Debounce GitHub commit: push only after INACTIVITY_SECONDS of no changes"""
-    global _commit_timer
-    if _commit_timer:
-        _commit_timer.cancel()
-    _commit_timer = threading.Timer(INACTIVITY_SECONDS, commit_seed_to_github)
-    _commit_timer.start()

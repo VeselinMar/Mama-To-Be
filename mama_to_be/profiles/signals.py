@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from mama_to_be.common.signals import dump_seed
-from mama_to_be.common.github import schedule_commit
+from mama_to_be.common.github import commit_seed_to_github
 
 from mama_to_be.profiles.models import Profile
 
@@ -17,4 +17,4 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver([post_save], sender=UserModel)
 def user_changed(sender, **kwargs):
     dump_seed()
-    schedule_commit()
+    commit_seed_to_github()
