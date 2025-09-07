@@ -30,6 +30,6 @@ EXPOSE 10000
 # Entry point: run migrations, collect static, then start Gunicorn
 CMD sh -c "\
     python manage.py migrate --noinput && \
-    if [ -f seed.json ]; then python manage.py loaddata seed.json || true; fi && \
+    if [ -f seed.json ]; then python manage.py seed || true; fi && \
     python manage.py collectstatic --noinput && \
     gunicorn --bind 0.0.0.0:10000 mama_to_be.wsgi:application"
