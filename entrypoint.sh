@@ -5,7 +5,7 @@ python manage.py migrate --noinput
 
 if [ -f seed.json ]; then
     echo "Loading seed data..."
-    python manage.py loaddata seed.json || true
+    python manage.py seed || true
 else
     echo "No seed.json found, skipping seeding"
 fi
