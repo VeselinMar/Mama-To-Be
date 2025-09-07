@@ -11,10 +11,14 @@ UserModel = get_user_model()
 
 @receiver(post_save, sender=UserModel)
 def create_profile(sender, instance, created, **kwargs):
+    if DISABLE_SEED_SIGNALS:
+        return
     if created:
         Profile.objects.update_or_create(user=instance)
 
 @receiver([post_save], sender=UserModel)
 def user_changed(sender, **kwargs):
+    if DISABLE_SEED_SIGNALS:
+        return
     dump_seed()
     commit_seed_to_github()
