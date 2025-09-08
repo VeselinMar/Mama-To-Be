@@ -12,7 +12,7 @@ from mama_to_be.articles.models import Article
 
 @receiver(post_save, sender=Article)
 def update_search_vector_on_save(sender, instance, **kwargs):
-    if utils.signal_control.DISABLE_SEED_SIGNALS:
+    if signal_control.DISABLE_SEED_SIGNALS:
         return
     if 'postgres' in settings.DATABASES['default']['ENGINE']:
         instance.search_vector = (
@@ -22,7 +22,7 @@ def update_search_vector_on_save(sender, instance, **kwargs):
 
 @receiver([post_save, post_delete], sender=Article)
 def article_changed(sender, **kwargs):
-    if utils.signal_control.DISABLE_SEED_SIGNALS:
+    if signal_control.DISABLE_SEED_SIGNALS:
         return
     dump_seed()
     commit_seed_to_github()
