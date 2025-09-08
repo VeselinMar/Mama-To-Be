@@ -15,6 +15,21 @@
   }
 },
 {
+  "model": "profiles.appuser",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$8QxltfxhLEKwK856SCbOG6$Zphbb89wsSKsB/EPKbFG046JbzjD/3ein8Dy2CUi6ck=",
+    "is_superuser": false,
+    "email": "veselin@avb.bg",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-09-08T21:38:04.034Z",
+    "last_login": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "articles.article",
   "pk": 2,
   "fields": {
