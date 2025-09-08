@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from mama_to_be.common.signals import dump_seed
 from mama_to_be.common.github import commit_seed_to_github
-from mama_to_be.common import utils
+import mama_to_be.common.utils.signal_control as signal_control
 
 
 from mama_to_be.articles.models import Article
