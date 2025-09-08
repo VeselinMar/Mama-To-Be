@@ -9,7 +9,22 @@
     "is_active": true,
     "is_staff": false,
     "date_joined": "2025-08-31T07:25:02.888Z",
-    "last_login": "2025-08-31T07:25:05.357Z",
+    "last_login": "2025-09-08T21:37:42.674Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "profiles.appuser",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$8QxltfxhLEKwK856SCbOG6$Zphbb89wsSKsB/EPKbFG046JbzjD/3ein8Dy2CUi6ck=",
+    "is_superuser": false,
+    "email": "veselin@avb.bg",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-09-08T21:38:04.034Z",
+    "last_login": "2025-09-08T21:38:05.962Z",
     "groups": [],
     "user_permissions": []
   }
@@ -224,222 +239,6 @@
     "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbvmF25ZEVS6zCVeVQUPQVDXD3JMitQKCFyA&s",
     "created_at": "2025-09-01T10:55:00Z",
     "updated_at": "2025-09-01T10:55:00Z",
-    "published_at": null,
-    "category": "Family Travel",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 2,
-  "fields": {
-    "title": "Early Learning Tips",
-    "slug": "early-learning-tips",
-    "content": "<p>Content for early learning tips</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCeuJS2PVMLEexW3hVYohKukvxs5wpjzoeJA&s",
-    "created_at": "2025-09-01T10:00:00.000Z",
-    "updated_at": "2025-09-01T10:00:00.000Z",
-    "published_at": null,
-    "category": "Education",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 3,
-  "fields": {
-    "title": "Fun Learning Games",
-    "slug": "fun-learning-games",
-    "content": "<p>Content for fun learning games</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://www.universityofcalifornia.edu/sites/default/files/baby-learning-uc-riverside.jpg",
-    "created_at": "2025-09-01T10:05:00.000Z",
-    "updated_at": "2025-09-01T10:05:00.000Z",
-    "published_at": null,
-    "category": "Education",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 4,
-  "fields": {
-    "title": "Healthy Pregnancy Diet",
-    "slug": "healthy-pregnancy-diet",
-    "content": "<p>Content for pregnancy diet</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQufCFOo9mTa8Py-Z8Qg8bjWrSrtHQG5wNDGw&s",
-    "created_at": "2025-09-01T10:10:00.000Z",
-    "updated_at": "2025-09-01T10:10:00.000Z",
-    "published_at": null,
-    "category": "Pregnancy",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 5,
-  "fields": {
-    "title": "Pregnancy Exercise Guide",
-    "slug": "pregnancy-exercise-guide",
-    "content": "<p>Content for pregnancy exercise</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://www.tricitymed.org/wp-content/uploads/2018/08/shutterstock_440505859.jpg",
-    "created_at": "2025-09-01T10:15:00.000Z",
-    "updated_at": "2025-09-01T10:15:00.000Z",
-    "published_at": null,
-    "category": "Pregnancy",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 6,
-  "fields": {
-    "title": "Top Family Travel Destinations Around Vienna",
-    "slug": "top-family-travel-destinations",
-    "content": "<p>Content for family travel destinations</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://as2.ftcdn.net/jpg/02/71/65/07/1000_F_271650718_ncJVlZmwU31VQ07nsfKyjwAzlk4kEzss.jpg",
-    "created_at": "2025-09-01T10:20:00.000Z",
-    "updated_at": "2025-09-01T10:20:00.000Z",
-    "published_at": null,
-    "category": "Family Travel",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 7,
-  "fields": {
-    "title": "Traveling with Toddlers",
-    "slug": "traveling-with-toddlers",
-    "content": "<p>Content for traveling with toddlers</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://images.ctfassets.net/2ql69mthp94m/6ccwRp3KnsOD4xxVv1PcLF/e09557cb63b487802bf35ad74beaef74/A313.jpeg?fm=webp&q=70",
-    "created_at": "2025-09-01T10:25:00.000Z",
-    "updated_at": "2025-09-01T10:25:00.000Z",
-    "published_at": null,
-    "category": "Family Travel",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 8,
-  "fields": {
-    "title": "Home Safety for Babies",
-    "slug": "home-safety-for-babies",
-    "content": "<p>Content for home safety</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP8oJjm8LQRUMujqxVdVVzn3HRins-8PPD_Q&s",
-    "created_at": "2025-09-01T10:30:00.000Z",
-    "updated_at": "2025-09-01T10:30:00.000Z",
-    "published_at": null,
-    "category": "Safety",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 9,
-  "fields": {
-    "title": "Childproofing Tips",
-    "slug": "childproofing-tips",
-    "content": "<p>Content for childproofing</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://illinoisearlylearning.org/wp-content/uploads/2022/03/Childproofing.jpeg",
-    "created_at": "2025-09-01T10:35:00.000Z",
-    "updated_at": "2025-09-01T10:35:00.000Z",
-    "published_at": null,
-    "category": "Safety",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 10,
-  "fields": {
-    "title": "Parenting Strategies",
-    "slug": "parenting-strategies",
-    "content": "<p>Content for parenting strategies</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAWltUyJS5LqXVj0Nr9edNupuYiMnPjp99Kw&s",
-    "created_at": "2025-09-01T10:40:00.000Z",
-    "updated_at": "2025-09-01T10:40:00.000Z",
-    "published_at": null,
-    "category": "Family Travel",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 11,
-  "fields": {
-    "title": "Educational Apps for Kids",
-    "slug": "educational-apps-for-kids",
-    "content": "<p>Content for educational apps</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkzStWIQKNkHrvAfABKs4fkFIRIBy2KQHlfg&s",
-    "created_at": "2025-09-01T10:45:00.000Z",
-    "updated_at": "2025-09-01T10:45:00.000Z",
-    "published_at": null,
-    "category": "Education",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 12,
-  "fields": {
-    "title": "Mindful Pregnancy",
-    "slug": "mindful-pregnancy",
-    "content": "<p>Content for mindful pregnancy</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcWNV8-TsGNb974Bk7tDzs6Suc1d8rN21PXg&s",
-    "created_at": "2025-09-01T10:50:00.000Z",
-    "updated_at": "2025-09-01T10:50:00.000Z",
-    "published_at": null,
-    "category": "Pregnancy",
-    "is_published": true,
-    "search_vector": null
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 13,
-  "fields": {
-    "title": "Family Travel Packing List",
-    "slug": "family-travel-packing-list",
-    "content": "<p>Content for packing list</p>",
-    "author": 1,
-    "media_urls": "",
-    "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbvmF25ZEVS6zCVeVQUPQVDXD3JMitQKCFyA&s",
-    "created_at": "2025-09-01T10:55:00.000Z",
-    "updated_at": "2025-09-01T10:55:00.000Z",
     "published_at": null,
     "category": "Family Travel",
     "is_published": true,
