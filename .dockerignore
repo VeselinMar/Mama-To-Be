@@ -5,4 +5,3 @@ venv/
 *.pyd
 *.db
 .env
-static/
