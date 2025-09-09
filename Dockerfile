@@ -32,4 +32,5 @@ CMD sh -c "\
     python manage.py migrate --noinput && \
     if [ -f seed.json ]; then python manage.py seed || true; fi && \
     python manage.py collectstatic --noinput && \
+    python manage.py create_missing_profiles && \
     gunicorn --bind 0.0.0.0:10000 mama_to_be.wsgi:application"

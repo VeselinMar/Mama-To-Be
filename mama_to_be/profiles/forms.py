@@ -17,8 +17,9 @@ class RegisterForm(forms.ModelForm):
         fields = ['email']
 
     def clean_password2(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
+        email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+        password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
         if password1 != password2:
             raise forms.ValidationError("The two password fields didn’t match.")
@@ -30,6 +31,7 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
 
 
 class ProfileEditForm(forms.ModelForm):
