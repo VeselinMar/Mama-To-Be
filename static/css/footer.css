@@ -1,6 +1,123 @@
-footer {
+.site-footer {
   background-color: #FFB4A2; /* Warm Peach */
-  color: #FFF8F0; /* Cream */
-  padding: 0.1rem 0;
-  text-align: center;
+  color: #FFF8F0;            /* Cream */
+  padding: 0.5em 1.5em;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  max-height: 4em;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+/* Top part: nav + contact in a row */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  flex-shrink: 1;
+  white-space: nowrap;
+}
+
+/* Footer sections (nav and contact) */
+.footer-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Navigation links as inline list */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.footer-section li {
+  display: inline;
+}
+.footer-section a {
+  color: #FFF8F0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+/* Contact info inline */
+.contact-section p {
+  margin: 0;
+  padding: 0 0.75rem;
+  display: inline;
+  white-space: nowrap;
+}
+
+/* Bottom part: legal links and copyright */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  border-top: 1px solid rgba(255, 248, 240, 0.3);
+  padding-top: 0.4em;
+  margin-top: 0.4em;
+  white-space: nowrap;
+}
+
+/* Legal links */
+.legal-links {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.legal-links a {
+  color: #FFF8F0;
+  text-decoration: none;
+}
+
+.legal-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    max-height: none;
+    padding: 1em;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-section ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-section p {
+    display: block;
+    padding: 0;
+  }
+
+  .footer-bottom {
+    margin-top: 1.5em;  /* Adjust as needed */
+    padding-top: 1em;   /* Extra breathing room inside */
+  }
+}
+
