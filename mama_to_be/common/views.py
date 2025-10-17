@@ -48,16 +48,13 @@ class HomeView(ListView):
         return context
 
 class PrivacyView(TemplateView):
-    template_name = 'privacy.html'
+    template_name = 'common/footer_related/privacy.html'
 
 class ImpressumView(TemplateView):
-    template_name = 'impressum.html'
+    template_name = 'common/footer_related/impressum.html'
 
 class ContactView(TemplateView):
-    template_name = 'contact.html'
+    template_name = 'common/footer_related/contact.html'
 
 class AboutView(TemplateView):
-    template_name = 'about.html'
-
-class ResourcesView(TemplateView):
-    template_name = 'resources.html'
+    template_name = 'common/footer_related/about.html'
