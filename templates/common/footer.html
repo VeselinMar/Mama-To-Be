@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-section nav-section">
+      <ul>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact-section">
+      <p>Email: <a href="mailto:mariamarina5030@gmail.com">mariamarina5030@gmail.com</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="legal-links">
+      <a href="{% url 'impressum' %}">Impressum</a>
+      <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
+    </div>
+    <div class="copyright">
+      &copy; {{ now|date:"Y" }} MamaToBe. All rights reserved.
+    </div>
+  </div>
+</footer>

@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from mama_to_be.articles.choices import CategoryChoices
 from mama_to_be.articles.models import Article
@@ -46,3 +46,15 @@ class HomeView(ListView):
         context['articles'] = articles
 
         return context
+
+class PrivacyView(TemplateView):
+    template_name = 'common/footer_related/privacy.html'
+
+class ImpressumView(TemplateView):
+    template_name = 'common/footer_related/impressum.html'
+
+class ContactView(TemplateView):
+    template_name = 'common/footer_related/contact.html'
+
+class AboutView(TemplateView):
+    template_name = 'common/footer_related/about.html'
