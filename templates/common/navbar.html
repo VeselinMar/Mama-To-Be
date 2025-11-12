@@ -56,6 +56,9 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'create-article' %}">Create Article</a>
+          </li>
+          <li class="nav-item">
             <form method="POST" action="{% url 'logout' %}" style="display:inline;">
               {% csrf_token %}
               <button type="submit" class="nav-link btn btn-link" style="border: none; background: none;">
@@ -68,9 +71,6 @@
             <a class="nav-link" href="{% url 'login' %}">Login</a>
           </li>
         {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'create-article' %}">Create Article</a>
-        </li>
       </ul>
     </div>
   </div>
