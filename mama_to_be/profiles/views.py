@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -8,7 +7,7 @@ from django.views import View
 from django.views.generic import FormView, UpdateView, DetailView
 
 from mama_to_be.articles.models import Article
-from mama_to_be.profiles.forms import RegisterForm, ProfileEditForm
+from mama_to_be.profiles.forms import RegisterForm, ProfileEditForm, CustomLoginForm
 from mama_to_be.profiles.models import Profile
 
 
@@ -33,7 +32,7 @@ class RegisterView(FormView):
 
 class CustomLoginView(FormView):
     template_name = 'profiles/login.html'
-    form_class = AuthenticationForm
+    form_class = CustomLoginForm
 
     def form_valid(self, form):
         login(self.request, form.get_user())
