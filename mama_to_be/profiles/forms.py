@@ -4,24 +4,40 @@ from mama_to_be.profiles.models import AppUser, Profile
 
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        label="Email"
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="Password"
+    )
 
 
 class RegisterForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="Password"
+    )
+    password2 = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="Confirm Password"
+    )
 
     class Meta:
         model = AppUser
         fields = ['email']
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
 
     def clean_password2(self):
-        email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-        password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-        password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
 
-        if password1 != password2:
+        if password1 and password2 and password1 != password2:
             raise forms.ValidationError("The two password fields didn’t match.")
         return password2
 
