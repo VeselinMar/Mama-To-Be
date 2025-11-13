@@ -167,3 +167,5 @@ crash.log
 crash.*.log
 
 /staticfiles
+
+.idea/
