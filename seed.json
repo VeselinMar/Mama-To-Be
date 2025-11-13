@@ -9,7 +9,7 @@
     "is_active": true,
     "is_staff": false,
     "date_joined": "2025-08-31T07:25:02.888Z",
-    "last_login": "2025-09-08T22:50:17.195Z",
+    "last_login": "2025-11-13T12:18:48.164Z",
     "groups": [],
     "user_permissions": []
   }
@@ -25,6 +25,36 @@
     "is_staff": false,
     "date_joined": "2025-09-08T21:38:04.034Z",
     "last_login": "2025-09-08T21:38:05.962Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "profiles.appuser",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$EFph7tvThTT3QWG7d6bsKs$XgcNo9+u9XeLdfaUbA8UmugnZG27AeZwtLBI3g3iblk=",
+    "is_superuser": false,
+    "email": "vesko@abv.bg",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-08-30T14:17:01.711Z",
+    "last_login": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "profiles.appuser",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$UZKSVIQua2FROxAO2QIx4c$LY1isgvmun/4ekuxs394B649UkWOEnUI3YPm5rf0jq4=",
+    "is_superuser": false,
+    "email": "vesko2@abv.bg",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2025-08-30T14:17:16.808Z",
+    "last_login": null,
     "groups": [],
     "user_permissions": []
   }
@@ -241,6 +271,24 @@
     "updated_at": "2025-09-01T10:55:00Z",
     "published_at": null,
     "category": "Family Travel",
+    "is_published": true,
+    "search_vector": null
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 14,
+  "fields": {
+    "title": "new",
+    "slug": "new",
+    "content": "<p>newnew</p>",
+    "author": 1,
+    "media_urls": "",
+    "thumbnail_url": "https://i.pinimg.com/236x/61/44/b5/6144b543ccc19a9f5320734314b6ec7b.jpg",
+    "created_at": "2025-11-13T12:14:28.346Z",
+    "updated_at": "2025-11-13T12:14:28.346Z",
+    "published_at": null,
+    "category": "Relationship",
     "is_published": true,
     "search_vector": null
   }
