@@ -1,0 +1,27 @@
+.hero-section {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: #fff;
+}
+
+.hero-section h1 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.about-section {
+    background-color: #fafafa;
+}
+
+.about-section img {
+    max-width: 90%;
+}
+
+.cta-section {
+    background-color: #1e293b;
+    color: white;
+}
+
+.cta-section .btn-outline-light:hover {
+    background-color: white;
+    color: #1e293b;
+}
