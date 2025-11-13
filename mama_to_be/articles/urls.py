@@ -1,9 +1,11 @@
 from django.urls import path
 
 from mama_to_be.articles.views import (ArticleCreateView, ArticleDisplayView,
-                                       ArticleEditView, CategoryArticlesView, search_view)
+                                       ArticleEditView, CategoryArticlesView, search_view,
+                                       RecentArticlesView)
 
 urlpatterns = [
+    path('', RecentArticlesView.as_view(), name='recent-articles'),
     path('create/', ArticleCreateView.as_view(), name='create-article'),
     path('search/', search_view, name='search'),
     path('<slug:slug>/', ArticleDisplayView.as_view(), name='article-detail'),

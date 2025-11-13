@@ -1,0 +1,44 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% for category, articles in articles_by_category.items %}
+            <div class="col-12 mb-4">
+                <h3 class="h4">
+                    <a href="{% url 'category-articles' category %}" style="text-decoration: none; color: black;">
+                        {{ category }}
+                    </a>
+                </h3>  <!-- Category Name, Linked to category articles page -->
+            </div>
+            
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-md-4 mb-5 text-center">
+                        <div class="card border-2 shadow-sm" style="cursor: pointer;">
+                            <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none;">
+                                {% if article.thumbnail_url %}
+                                    <img src="{{ article.thumbnail_url }}" class="card-img-top img-fluid" alt="{{ article.title }}"
+                                         style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
+                                {% else %}
+                                    <img src="{% static 'icons/default-thumbnail.jpg' %}" class="card-img-top img-fluid" alt="Default thumbnail"
+                                         style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <h5 class="mt-3 mb-1">
+                            <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none; color: black;">
+                                {{ article.title }}
+                            </a>
+                        </h5>
+                    </div>
+                    {% if forloop.counter == 3 %}
+                        <div class="w-100"></div>  <!-- Force break after 3 articles per category -->
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
