@@ -1,10 +1,20 @@
 .site-footer {
-  background-color: #FFB4A2; /* Warm peach */
-  color: #FFF8F0;            /* Light cream */
-  font-family: 'Arial', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  padding: 1.5em 2em;
+  background-color: #FFB4A2;
+  padding: 0.5rem 0;
+  text-align: center;
+  border-radius: 8px;
+  margin: 10px;
+  color: #f1e7d5;
+}
+
+.site-footer a {
+  color: #f1e7d5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
 }
 
 .footer {
