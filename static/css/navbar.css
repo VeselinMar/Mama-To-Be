@@ -1,6 +1,149 @@
+/* Nav bar base styles */
 nav {
   background-color: #FFB4A2; /* Warm Peach */
-  color: #FFF8F0; /* Cream */
+  color: #FFB4A2; /* Cream */
   padding: 0.5rem 0;
   text-align: center;
+  border-radius: 8px; /* Rounded corners for the navbar */
+  margin: 10px;
+}
+
+/* Logo Section */
+.navbar-logo-container {
+  text-align: center;
+  margin-bottom: 15px; /* Space between logo and navbar */
+}
+
+.logo-img {
+  width: 150px; /* Adjust logo size */
+  height: auto;
+  transition: width 0.3s ease;
+}
+
+/* Logo Hover Effect */
+.logo-img:hover {
+  width: 160px; /* Slightly increase the logo size on hover */
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+}
+
+/* Navbar items styling */
+.navbar-nav {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+}
+
+.navbar-nav .nav-link {
+    color: #f1e7d5 !important;  /* warm white */
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+/* Search Form */
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align to the right */
+  width: 100%; /* Ensure the form stretches across the container */
+  margin-left: auto; /* Push search to the right */
+  padding-right: 20px; /* Optional: to give some padding from the edge */
+}
+
+.search-input {
+  width: 150px; /* Initial width of the input */
+  transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for expanding */
+  padding: 0.8rem 1rem; /* More padding for better input field size */
+  border-radius: 25px; /* Rounded corners */
+  border: 2px solid #ddd; /* Subtle border color */
+  font-size: 1rem; /* Consistent font size */
+  background-color: #f7f7f7; /* Light background for a soft, modern look */
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.search-input:focus {
+  width: 250px; /* Expanded width on focus */
+  border-color: #FFB4A2; /* Change border color when focused */
+  background-color: #fff; /* White background on focus for contrast */
+  box-shadow: 0 2px 8px rgba(78, 41, 41, 0.15); /* Stronger shadow on focus */
+}
+
+.search-input::placeholder {
+  color: #aaa; /* Lighter placeholder text */
+}
+
+.search-form button {
+  background-color: #FFB4A2; /* Warm Peach */
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth button transition */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-form button:hover {
+  background-color: #c2492a; /* Darker green on hover */
+  transform: translateY(-1px); /* Subtle hover effect */
+}
+
+.search-form button:active {
+  transform: translateY(1px); /* Active press effect */
+}
+
+.search-form .form-control {
+  outline: none;
+}
+
+/* Optional: Add focus styles to the entire form */
+.search-form:focus-within {
+  border-color: #6c757d; /* Add border color when input is focused */
+}
+
+/* Mobile Responsiveness: Logo and Search Form */
+@media (max-width: 991px) {
+  .navbar-logo-container {
+    margin-bottom: 20px;
+  }
+
+  .logo-img {
+    width: 120px; /* Adjust logo size for mobile */
+  }
+
+  /* Ensure the search form stays centered */
+  .search-form {
+    transform: translateX(-25%);
+    width: auto;
+  }
+}
+
+/* Additional mobile responsiveness adjustments */
+@media (max-width: 767px) {
+  .navbar-logo-container {
+    margin-bottom: 20px;
+  }
+
+  .logo-img {
+    width: 120px; /* Adjust logo size for smaller screens */
+  }
+
+  .search-form {
+    width: 100%;
+    padding-right: 15px;
+  }
+
+  /* Optional: Adjust search input width on mobile */
+  .search-input {
+    width: 100%;
+  }
 }
