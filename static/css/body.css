@@ -1,13 +1,9 @@
 body {
-  background-color: #FFE5D4;
-  font-family: 'Poppins', sans-serif;  
+    background-color: #FFF4EC; /* soft warm cream */
+    padding: 20px;
+
 }
 
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-}
-
-.py-5 {
-    padding-top: 1.8rem !important;
-    padding-bottom: 1.8rem !important;
 }
