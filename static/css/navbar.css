@@ -79,6 +79,12 @@ nav {
   color: #aaa; /* Lighter placeholder text */
 }
 
+.search-form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .search-form button {
   background-color: #FFB4A2; /* Warm Peach */
   color: white;
@@ -110,40 +116,18 @@ nav {
   border-color: #6c757d; /* Add border color when input is focused */
 }
 
-/* Mobile Responsiveness: Logo and Search Form */
 @media (max-width: 991px) {
   .navbar-logo-container {
     margin-bottom: 20px;
   }
 
   .logo-img {
-    width: 120px; /* Adjust logo size for mobile */
-  }
-
-  /* Ensure the search form stays centered */
-  .search-form {
-    transform: translateX(-25%);
-    width: auto;
+    width: 120px;
   }
 }
 
-/* Additional mobile responsiveness adjustments */
-@media (max-width: 767px) {
-  .navbar-logo-container {
-    margin-bottom: 20px;
-  }
-
+@media (max-width: 500px) {
   .logo-img {
-    width: 120px; /* Adjust logo size for smaller screens */
-  }
-
-  .search-form {
-    width: 100%;
-    padding-right: 15px;
-  }
-
-  /* Optional: Adjust search input width on mobile */
-  .search-input {
-    width: 100%;
+    width: 100px; /* Optional: smaller logo on very small screens */
   }
 }
