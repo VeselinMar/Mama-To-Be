@@ -1,21 +1,22 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class CategoryChoices(models.TextChoices):
-    FOOD = 'Food', 'Food'
-    PREGNANCY = 'Pregnancy', 'Pregnancy'
-    SLEEP = 'Sleep', 'Sleep'
-    BEHAVIOUR = 'Behaviour', 'Behaviour'
-    NONE = 'None', 'None'
-    HEALTH = 'Health', 'Health'
-    DIET_NUTRITION = 'Diet & Nutrition', 'Diet & Nutrition'
-    FITNESS = 'Fitness', 'Fitness'
-    TOYS_PLAY = 'Toys & Play', 'Toys & Play'
-    SAFETY = 'Safety', 'Safety'
-    FAMILY_TRAVEL = 'Family Travel', 'Family Travel'
-    CLOTHING = 'Clothing', 'Clothing'
-    MENTAL_HEALTH = 'Mental Health', 'Mental Health'
-    BABY_GEAR = 'Baby Gear', 'Baby Gear'
-    EDUCATION = 'Education', 'Education'
-    RELATIONSHIP = 'Relationship', 'Relationship'
-    HELPFUL = 'Helpful', 'Helpful'
+    FOOD = 'Food', _('Food')
+    PREGNANCY = 'Pregnancy', _('Pregnancy')
+    SLEEP = 'Sleep', _('Sleep')
+    BEHAVIOUR = 'Behaviour', _('Behaviour')
+    NONE = 'None', _('None')
+    HEALTH = 'Health', _('Health')
+    DIET_NUTRITION = 'Diet & Nutrition', _('Diet & Nutrition')
+    FITNESS = 'Fitness', _('Fitness')
+    TOYS_PLAY = 'Toys & Play', _('Toys & Play')
+    SAFETY = 'Safety', _('Safety')
+    FAMILY_TRAVEL = 'Family Travel', _('Family Travel')
+    CLOTHING = 'Clothing', _('Clothing')
+    MENTAL_HEALTH = 'Mental Health', _('Mental Health')
+    BABY_GEAR = 'Baby Gear', _('Baby Gear')
+    EDUCATION = 'Education', _('Education')
+    RELATIONSHIP = 'Relationship', _('Relationship')
+    HELPFUL = 'Helpful', _('Helpful')
