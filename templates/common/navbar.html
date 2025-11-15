@@ -1,19 +1,32 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #FFB4A2; margin-top 0px margin-bottom: 5px;">
+{% load static i18n %}
+
+<nav class="navbar navbar-expand-lg" style="background-color: #FFB4A2; margin-bottom: 5px;">
   <div class="container" style="padding-left: 20px; padding-right: 20px;">
-    <a class="navbar-brand" href="{% url 'home' %}">Mom-To-Be</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Brand -->
+    <a class="navbar-brand" href="{% url 'home' %}">{% trans "Mom-To-Be" %}</a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <a class = "nav-link" href="{% url 'home' %}">Home</a>
-        <!-- Dropdown for Helpful -->
+        <!-- Home link -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+        </li>
+
+        <!-- Helpful dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Helpful
+          <a class="nav-link dropdown-toggle" href="#" id="helpfulDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+            {% trans "Helpful" %}
           </a>
-          <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
-            <li class="dropdown-header">Essential Information about</li>
+          <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="helpfulDropdown">
+            <li class="dropdown-header">{% trans "Essential Information about" %}</li>
             {% for article in helpful_articles %}
               <li>
                 <a class="dropdown-item d-flex align-items-center" href="{% url 'article-detail' article.slug %}">
@@ -23,58 +36,82 @@
             {% endfor %}
           </ul>
         </li>
-      
-        <!-- Dropdown for Categories -->
+
+        <!-- Articles dropdown -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Articles
+          <a class="nav-link dropdown-toggle" href="#" id="articlesDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+            {% trans "Articles" %}
           </a>
-          <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
-            <li class="dropdown-header">Learn more about</li>
+          <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="articlesDropdown">
+            <li class="dropdown-header">{% trans "Learn more about" %}</li>
             {% for category in navbar_categories %}
               <li>
                 <a class="dropdown-item d-flex align-items-center" href="{% url 'category-articles' category=category.value %}">
-                  <i class="bi bi-book-half"></i> {{ category.name }}
+                  <i class="bi bi-book-half me-2"></i> {{ category.name }}
                 </a>
               </li>
             {% endfor %}
           </ul>
         </li>
-      
       </ul>
 
-        <ul class="navbar-nav">
+      <!-- User auth links -->
+      <ul class="navbar-nav">
         {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile-display' user_id=request.user.id %}">
-              My Profile
-            </a>
+            <a class="nav-link" href="{% url 'profile-display' user_id=user.id %}">{% trans "My Profile" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'create-article' %}">Create Article</a>
+            <a class="nav-link" href="{% url 'create-article' %}">{% trans "Create Article" %}</a>
           </li>
           <li class="nav-item">
             <form method="POST" action="{% url 'logout' %}" style="display:inline;">
               {% csrf_token %}
-              <button type="submit" class="nav-link btn btn-link" style="border: none; background: none;">
-                Logout
+              <button type="submit" class="nav-link btn btn-link" style="border:none; background:none;">
+                {% trans "Logout" %}
               </button>
             </form>
           </li>
         {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
           </li>
         {% endif %}
       </ul>
 
-      <!-- Search form moved outside of collapsing navbar -->
-      <form class="d-flex search-form" action="{% url 'search' %}" method="get">
-        <input class="form-control search-input" type="search" name="q" placeholder="Search" aria-label="Search">
+      <!-- Search form -->
+      <form class="d-flex search-form ms-3" action="{% url 'search' %}" method="get">
+        <input class="form-control search-input" type="search" name="q" placeholder="{% trans 'Search' %}" aria-label="{% trans 'Search' %}">
         <button class="btn btn-outline-success" type="submit">
           <i class="bi bi-search"></i> 
         </button>
       </form>
+
+      <!-- Language switcher -->
+
+      <div class="dropdown language-switcher ms-3">
+        <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="{% static 'icons/'|add:CURRENT_LANGUAGE|add:'.svg' %}" alt="{{ CURRENT_LANGUAGE }}" class="flag-icon me-1">
+          {{ CURRENT_LANGUAGE|upper }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+          {% get_available_languages as LANGUAGES %}
+          {% for lang in LANGUAGES %}
+            <li>
+              <form action="{% url 'set_language' %}" method="post" class="m-0">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <input type="hidden" name="language" value="{{ lang.0 }}">
+                <button type="submit" class="dropdown-item d-flex align-items-center">
+                  <img src="{% static 'icons/'|add:lang.0|add:'.svg' %}" alt="{{ lang.0 }}" class="flag-icon me-2">
+                  {{ lang.1 }}
+                </button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
 
     </div>
   </div>

@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-15 21:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: German <LL@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: mama_to_be/articles/choices.py:6
+msgid "Food"
+msgstr "Essen"
+
+#: mama_to_be/articles/choices.py:7
+msgid "Pregnancy"
+msgstr "Schwangerschaft"
+
+#: mama_to_be/articles/choices.py:8
+msgid "Sleep"
+msgstr "Schlaf"
+
+#: mama_to_be/articles/choices.py:9
+msgid "Behaviour"
+msgstr "Verhalten"
+
+#: mama_to_be/articles/choices.py:10
+msgid "None"
+msgstr "Keine"
+
+#: mama_to_be/articles/choices.py:11
+msgid "Health"
+msgstr "Gesundheit"
+
+#: mama_to_be/articles/choices.py:12
+msgid "Diet & Nutrition"
+msgstr "Ernährung & Diät"
+
+#: mama_to_be/articles/choices.py:13
+msgid "Fitness"
+msgstr "Fitness"
+
+#: mama_to_be/articles/choices.py:14
+msgid "Toys & Play"
+msgstr "Spielzeug & Spiele"
+
+#: mama_to_be/articles/choices.py:15
+msgid "Safety"
+msgstr "Sicherheit"
+
+#: mama_to_be/articles/choices.py:16
+msgid "Family Travel"
+msgstr "Familienreisen"
+
+#: mama_to_be/articles/choices.py:17
+msgid "Clothing"
+msgstr "Kleidung"
+
+#: mama_to_be/articles/choices.py:18
+msgid "Mental Health"
+msgstr "Psychische Gesundheit"
+
+#: mama_to_be/articles/choices.py:19
+msgid "Baby Gear"
+msgstr "Baby-Ausrüstung"
+
+#: mama_to_be/articles/choices.py:20
+msgid "Education"
+msgstr "Bildung"
+
+#: mama_to_be/articles/choices.py:21
+msgid "Relationship"
+msgstr "Beziehungen"
+
+#: mama_to_be/articles/choices.py:22 templates/common/navbar.html:26
+msgid "Helpful"
+msgstr "Hilfreich"
+
+#: mama_to_be/profiles/admin.py:21
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+#: mama_to_be/profiles/admin.py:22
+msgid "Important Dates"
+msgstr "Wichtige Daten"
+
+#: templates/common/navbar.html:6
+msgid "Mom-To-Be"
+msgstr ""
+
+#: templates/common/navbar.html:10
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/common/navbar.html:19
+msgid "Home"
+msgstr "Start"
+
+#: templates/common/navbar.html:29
+msgid "Essential Information about"
+msgstr "Wichtige Informationen über"
+
+#: templates/common/navbar.html:44
+msgid "Articles"
+msgstr "Artikel"
+
+#: templates/common/navbar.html:47
+msgid "Learn more about"
+msgstr "Erfahren Sie mehr über"
+
+#: templates/common/navbar.html:63
+msgid "My Profile"
+msgstr ""
+
+#: templates/common/navbar.html:66
+msgid "Create Article"
+msgstr ""
+
+#: templates/common/navbar.html:72
+msgid "Logout"
+msgstr ""
+
+#: templates/common/navbar.html:78
+msgid "Login"
+msgstr ""
+
+#: templates/common/navbar.html:85
+msgid "Search"
+msgstr ""
