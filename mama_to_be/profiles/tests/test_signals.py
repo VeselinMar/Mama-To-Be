@@ -7,5 +7,5 @@ UserModel = get_user_model()
 
 class ProfileSignalTest(TestCase):
     def test_profile_created_on_user_creation(self):
-        user = UserModel.objects.create_user(username="JohnDoe@gmail.com", password="Password14@7")
+        user = UserModel.objects.create_user(email="JohnDoe@gmail.com", password="Password14@7")
         self.assertTrue(Profile.objects.filter(user=user).exists())
