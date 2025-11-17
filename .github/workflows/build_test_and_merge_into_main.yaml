@@ -7,6 +7,10 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY_MAMA }}
+      DEBUG: 'True'
+      DATABASE_URL: 'sqlite:///db.sqlite3'
 
     steps:
       - uses: actions/checkout@v3
@@ -23,14 +27,14 @@ jobs:
   
       - name: Run Tests
         run: |
-          python manage.py test
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY_MAMA }}
+          python manage.py migrate --noinput
+          python manage.py test --parallel
+          
   
   merge-to-master:
     needs: build-and-test
     runs-on: ubuntu-latest
-    if: success()
+    if: success() && github.ref == 'refs/heads/deploy'
 
     steps:
       - name: Checkout code
@@ -43,8 +47,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Merge develop into main
+      - name: Merge deploy into main
         run: |
           git checkout master
-          git merge origin/develop --no-ff -m "Merge develop into master [skip ci]"
+          git merge origin/deploy --no-ff -m "Merge deploy into master [skip ci]"
           git push origin master
