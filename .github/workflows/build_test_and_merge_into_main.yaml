@@ -26,6 +26,9 @@ jobs:
           python manage.py test
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY_MAMA }}
+          DEBUG: 'True'
+          DATABASE_URL: 'sqlite:///db.sqlite3'
+          
   
   merge-to-master:
     needs: build-and-test
