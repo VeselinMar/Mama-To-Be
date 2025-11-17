@@ -47,8 +47,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Merge develop into main
+      - name: Merge deploy into main
         run: |
           git checkout master
-          git merge origin/develop --no-ff -m "Merge develop into master [skip ci]"
+          git merge origin/deploy --no-ff -m "Merge develop into master [skip ci]"
           git push origin master
