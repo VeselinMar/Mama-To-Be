@@ -4,8 +4,6 @@ from django.dispatch import receiver
 import mama_to_be.common.utils.signal_control as signal_control
 from mama_to_be.profiles.models import Profile, AppUser
 
-UserModel = get_user_model()
-
 
 @receiver(post_save, sender=AppUser)
 def create_profile(sender, instance, created, **kwargs):

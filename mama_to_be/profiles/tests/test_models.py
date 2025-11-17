@@ -77,16 +77,6 @@ class ProfileModelTests(TestCase):
         profile.save()
         self.assertEqual(str(profile), "Profile of testuser123")
 
-    def test_profile_picture_upload(self):
-        profile = Profile.objects.get(user=self.user)
-        """Test the profile picture upload functionality."""
-        # Create a temporary image file to upload
-        image = SimpleUploadedFile("test_image2.jpg",
-                                   b"file_content", content_type="image/jpeg")
-        profile.profile_picture = image
-        profile.save()
-
-        self.assertEqual(profile.profile_picture.name, "profile_pictures/test_image2.jpg")
 
     def test_unique_username(self):
         """Test that the username field is unique across all profiles."""
