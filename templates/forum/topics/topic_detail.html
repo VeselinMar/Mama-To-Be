@@ -35,7 +35,7 @@
 
           <!-- Form for Adding a New Discussion -->
           {% if user.is_authenticated %}
-    <h3>Start New Discussion Now</h3>
+    <h3>Start New Discussion</h3>
     <form method="post" action="">
       {% csrf_token %}
       {{ discussion_form.as_p }}
