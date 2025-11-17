@@ -10,7 +10,7 @@
               <form method="post" action="{% url 'create-discussion' topic.id %}">
                 {% csrf_token %}
                 <div class="form-group">
-                  <label for="content">Main Comment (Your Problem)?</label>
+                  <label for="content">Main Comment of user (Your Problem)</label>
                   {{ form.as_p }}
                 </div>
                 <button type="submit" class="btn btn-primary">Start Discussion</button>
