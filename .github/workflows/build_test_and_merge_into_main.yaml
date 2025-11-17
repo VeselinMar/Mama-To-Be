@@ -50,5 +50,5 @@ jobs:
       - name: Merge deploy into main
         run: |
           git checkout master
-          git merge origin/deploy --no-ff -m "Merge develop into master [skip ci]"
+          git merge origin/deploy --no-ff -m "Merge deploy into master [skip ci]"
           git push origin master
