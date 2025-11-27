@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'mama_to_be.profiles',
     'mama_to_be.articles',
     'mama_to_be.forum',
+    'mama_to_be.food',
+    'mama_to_be.planner'
     'tinymce',
 ]
 

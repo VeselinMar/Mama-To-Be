@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container mt-5">
-        <h1 class="mb-4">Article Modification</h1>
+        <h1 class="mb-4">Modify Article</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
@@ -21,8 +21,18 @@
         selector: 'textarea',
         plugins: 'link image media',
         toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image media',
-        media_live_embeds: true, // Allows live media previews
+        media_live_embeds: true,
         image_advtab: true,
+
+        font_family_formats: 
+        'Arial=arial,helvetica,sans-serif;' +
+        'Arial Black=arial black,avant garde;' +
+        'Times New Roman=times new roman,times;' +
+        'Courier New=courier new,courier;' +
+        'Roboto=Roboto,sans-serif;' +
+        'Open Sans=Open Sans,sans-serif',
+
+        font_size_formats: '10px 12px 14px 16px 18px 24px 36px',
     });
 </script>
         </form>
