@@ -62,7 +62,8 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         """Overrides the default save method to ensure unique slugs."""
-        self.generate_unique_slug()
+        if not self.slug:
+            self.generate_unique_slug()
         super().save(*args, **kwargs)
 
     class Meta:
