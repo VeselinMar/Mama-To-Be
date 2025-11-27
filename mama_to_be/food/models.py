@@ -27,15 +27,22 @@ class Ingredient(models.Model):
         blank=True,
         null=True,
     )
+    
+    # SUBSTITUTE 
 
-    allergens = ArrayField(
-        base_field=models.CharField(
-            max_length=1,
-            choices=AllergenChoices.choices,
-        ),
+    allergens = models.JSONField(
         default=list,
         blank=True,
+        null=False,
     )
+    # allergens = ArrayField(
+    #     base_field=models.CharField(
+    #         max_length=1,
+    #         choices=AllergenChoices.choices,
+    #     ),
+    #     default=list,
+    #     blank=True,
+    # )
     
     # calculate calories for 100g when creating a recipe object
     @property
