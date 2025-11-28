@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-15 21:18+0000\n"
+"POT-Creation-Date: 2025-11-28 22:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <LL@li.org>\n"
@@ -93,6 +93,76 @@ msgstr "Berechtigungen"
 msgid "Important Dates"
 msgstr "Wichtige Daten"
 
+#: templates/common/home.html:9
+msgid "Welcome to Mom-To-Be!"
+msgstr "Willkommen bei Mom-To-Be!"
+
+#: templates/common/home.html:11
+msgid ""
+" \"Here I share my personal journey from the moment I realized I was going "
+"to be a mother. \n"
+"      You will find useful information about motherhood, as well as my "
+"experiences as an expat. \n"
+"      I write about life with a small child, about the challenges and small "
+"victories, about the joys, tears, and everything in between. \n"
+"      Many thoughts, poured out on the digital page... and something else.\" "
+msgstr ""
+"Hier teile ich meine persönliche Reise ab dem Moment, in dem mir klar wurde, "
+"dass ich Mutter werden würde. Sie finden hier hilfreiche Informationen rund "
+"um das Thema Mutterschaft sowie meine Erfahrungen als Expat. Ich schreibe "
+"über das Leben mit einem kleinen Kind, über die Herausforderungen und kleinen "
+"Erfolge, über Freuden, Tränen und alles dazwischen. Viele Gedanken, die auf "
+"der digitalen Seite niedergeschrieben wurden ... und noch etwas mehr."
+
+#: templates/common/home.html:17
+#| msgid "Learn more about"
+msgid "Learn more about me"
+msgstr "Erfahren Sie mehr über mich"
+
+#: templates/common/home.html:29
+msgid "What will I find on this site?"
+msgstr "Was finde ich auf dieser Seite?"
+
+#: templates/common/home.html:32
+msgid "Pregnancy & Birth — stories and experience"
+msgstr "Schwangerschaft & Geburt — Geschichten und Erfahrungen"
+
+#: templates/common/home.html:33
+msgid "Raising a young child — tips and personal insights"
+msgstr "Aufziehen eines kleinen Kindes — Tipps und persönliche Einblicke"
+
+#: templates/common/home.html:34
+msgid "Motherhood in Austria — information and practical advice"
+msgstr "Mutterschaft in Österreich — Informationen und praktische Ratschläge"
+
+#: templates/common/home.html:35
+msgid "Informational materials — ideas for children's activities"
+msgstr "Informationsmaterial — Ideen für Kinderaktivitäten"
+
+#: templates/common/home.html:36
+msgid "Nursery & Kindergarten — how to prepare"
+msgstr "Krippe & Kindergarten — wie man sich vorbereitet"
+
+#: templates/common/home.html:37
+msgid "Family Recipes — meals I often prepare for my family"
+msgstr "Familienrezepte — Gerichte, die ich oft für meine Familie zubereite"
+
+#: templates/common/home.html:38
+msgid "Reflections — a digital diary of a mother"
+msgstr "Reflexionen — ein digitales Tagebuch einer Mutter"
+
+#: templates/common/home.html:47
+msgid "See More"
+msgstr "Mehr anzeigen"
+
+#: templates/common/home.html:48
+msgid "Browse the latest articles!"
+msgstr "Durchstöbern Sie die neuesten Artikel!"
+
+#: templates/common/home.html:50
+msgid "View Recent Articles"
+msgstr "Neueste Artikel ansehen"
+
 #: templates/common/navbar.html:6
 msgid "Mom-To-Be"
 msgstr ""
@@ -136,3 +206,15 @@ msgstr ""
 #: templates/common/navbar.html:85
 msgid "Search"
 msgstr ""
+
+#~ msgid ""
+#~ "Here I share my personal journey from the moment I found out I was going "
+#~ "to become a mother..."
+#~ msgstr ""
+#~ "Hier teile ich meine persönliche Reise von dem Moment an, als mir bewusst "
+#~ "wurde, dass ich Mutter werden würde. Sie finden hier nützliche "
+#~ "Informationen zum Thema Mutterschaft sowie meine Erfahrungen als Expat. "
+#~ "Ich schreibe über das Leben mit einem kleinen Kind, über die "
+#~ "Herausforderungen und kleinen Erfolge, über die Freuden, Tränen und alles "
+#~ "dazwischen. Viele Gedanken, niedergeschrieben auf der digitalen Seite ... "
+#~ "und noch etwas anderes."
