@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-15 21:16+0000\n"
+"POT-Creation-Date: 2025-11-28 22:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bulgarian <LL@li.org>\n"
@@ -93,6 +93,74 @@ msgstr "Разрешения"
 msgid "Important Dates"
 msgstr "Важни дати"
 
+#: templates/common/home.html:9
+msgid "Welcome to Mom-To-Be!"
+msgstr "Добре дошли в Mom-To-Be!"
+
+#: templates/common/home.html:11
+msgid ""
+" \"Here I share my personal journey from the moment I realized I was going "
+"to be a mother. \n"
+"      You will find useful information about motherhood, as well as my "
+"experiences as an expat. \n"
+"      I write about life with a small child, about the challenges and small "
+"victories, about the joys, tears, and everything in between. \n"
+"      Many thoughts, poured out on the digital page... and something else.\" "
+msgstr ""
+"Тук споделям личния си път от момента, в който разбрах, че ще ставам майка. "
+"Ще откриете полезна информация за майчинството, както и моите преживявания "
+"извън България. Пиша за живота с малко дете, за предизвикателствата и "
+"малките победи, за радостите, сълзите и всичко между тях. Много размисли, "
+"изляти върху дигиталния лист... и още нещо."
+
+#: templates/common/home.html:17
+msgid "Learn more about me"
+msgstr "Научете повече за мен"
+
+#: templates/common/home.html:29
+msgid "What will I find on this site?"
+msgstr "Какво ще намеря в сайта?"
+
+#: templates/common/home.html:32
+msgid "Pregnancy & Birth — stories and experience"
+msgstr "Бременност и раждане — истории и опит"
+
+#: templates/common/home.html:33
+msgid "Raising a young child — tips and personal insights"
+msgstr "Отглеждане на малко дете — съвети и личен опит"
+
+#: templates/common/home.html:34
+msgid "Motherhood in Austria — information and practical advice"
+msgstr "Майчинство в Австрия — информация и полезни съвети"
+
+#: templates/common/home.html:35
+msgid "Informational materials — ideas for children's activities"
+msgstr "Информативни материали — идеи за активности за деца"
+
+#: templates/common/home.html:36
+msgid "Nursery & Kindergarten — how to prepare"
+msgstr "Ясла и детска градина — как да се подготвите"
+
+#: templates/common/home.html:37
+msgid "Family Recipes — meals I often prepare for my family"
+msgstr "Семейни Рецепти — ястия, които често приготвям за семейството си"
+
+#: templates/common/home.html:38
+msgid "Reflections — a digital diary of a mother"
+msgstr "Размисли — дигитален дневник на една майка"
+
+#: templates/common/home.html:47
+msgid "See More"
+msgstr "Вижте повече"
+
+#: templates/common/home.html:48
+msgid "Browse the latest articles!"
+msgstr "Разгледайте най-новите статии!"
+
+#: templates/common/home.html:50
+msgid "View Recent Articles"
+msgstr "Вижте скорошните статии"
+
 #: templates/common/navbar.html:6
 msgid "Mom-To-Be"
 msgstr ""
@@ -136,3 +204,13 @@ msgstr ""
 #: templates/common/navbar.html:85
 msgid "Search"
 msgstr "Търсене"
+
+#~ msgid ""
+#~ "Here I share my personal journey from the moment I found out I was going "
+#~ "to"
+#~ msgstr ""
+#~ "Тук споделям личния си път от момента, в който разбрах, че ще ставам "
+#~ "майка. Ще откриете полезна информация за майчинството, както и моите "
+#~ "преживявания извън България. Пиша за живота с малко дете, за "
+#~ "предизвикателствата и малките победи, за радостите, сълзите и всичко "
+#~ "между тях. Много размисли, изляти върху дигиталния лист... и още нещо."
