@@ -31,6 +31,5 @@ EXPOSE 10000
 CMD sh -c "\
     python manage.py migrate --noinput && \
     python manage.py compilemessages && \
-    if [ -f seed.json ]; then python manage.py seed || true; fi && \
     python manage.py collectstatic --noinput && \
     gunicorn --bind 0.0.0.0:10000 mama_to_be.wsgi:application"

@@ -16,3 +16,9 @@ class AllergenChoices(models.TextChoices):
     SULPHITES = "O", "Sulphur dioxide / sulphites >10 mg/kg or >10 mg/L"
     LUPIN = "P", "Lupin"
     MOLLUSCS = "R", "Molluscs (mussels, oysters, squid, snails)"
+
+class RecipeType(models.TextChoices):
+    MEAT = "meat", "Meat"
+    FISH = "fish", "Fish"
+    VEGETARIAN = "vegetarian", "Vegetarian"
+    VEGAN = "vegan", "Vegan"
