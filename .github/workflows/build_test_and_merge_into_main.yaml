@@ -11,7 +11,6 @@ jobs:
       postgres:
         image: postgres:13
         env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY_MAMA }}
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test_db
@@ -28,6 +27,7 @@ jobs:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: 127.0.0.1
+      SECRET_KEY: ${{ secrets.SECRET_KEY_MAMA }}
 
 
 
