@@ -7,7 +7,6 @@ from mama_to_be.articles.models import Article
 def navbar_data(request):
     # Check if navbar data is cached
     navbar = cache.get('navbar_data')
-    helpful_articles = cache.get('helpful_articles')
 
     if not navbar:
         # Build the navbar data by checking which categories have articles
@@ -24,16 +23,6 @@ def navbar_data(request):
         # Cache the navbar data
         cache.set('navbar_data', navbar, timeout=3600)  # Cache for 1 hour
 
-    if not helpful_articles:
-        # Fetch articles for the "helpful" category
-        helpful_articles = Article.objects.filter(
-            category=CategoryChoices.HELPFUL, is_published=True
-        ).order_by('-published_at')
-
-        # Cache the helpful articles
-        cache.set('helpful_articles', helpful_articles, timeout=3600)
-
     return {
         'navbar_categories': navbar,
-        'helpful_articles': helpful_articles,
     }

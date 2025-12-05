@@ -15,7 +15,7 @@ class IngredientModelTest(TestCase):
             carbs=2,
             fat=40,
             micros={"salt": 6},
-            allergens=["MI", "TN"],
+            allergens=["A", "G"],
         )
     
     def test_ingredient_creation(self):
@@ -31,7 +31,7 @@ class IngredientModelTest(TestCase):
         self.assertEqual(self.Ingredient.calories, expected)
     # adjust when migrating to postgresql
     def test_allergens_jsonfield(self):
-        self.assertListEqual(self.Ingredient.allergens, ["MI", "TN"])
+        self.assertListEqual(self.Ingredient.allergens, ["A", "G"])
 
     def test_empty_allergen_default(self):
         """Default allergens should be an empty list, not None."""

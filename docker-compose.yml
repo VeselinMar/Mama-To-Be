@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15
+    image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -9,6 +9,8 @@ services:
       POSTGRES_DB: ${DB_NAME}
     networks:
       - mynetwork
+    ports:
+      - "5432:5432"
     restart: always
 
   web:

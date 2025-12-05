@@ -5,14 +5,14 @@ from django.contrib.postgres.search import SearchVectorField
 from django.contrib.postgres.fields import ArrayField
 from django.conf import settings
 from tinymce.models import HTMLField
-from .choices import AllergenChoices
+from .choices import AllergenChoices, RecipeType
 from .managers import RecipeManager
 
 
 
 # Create your models here.
 
-# Ingredients Model consisting of name / macro and micronutrients / allergens / calories
+# Model for Ingredients
 class Ingredient(models.Model):
     name = models.CharField(
         max_length=100,
@@ -28,21 +28,14 @@ class Ingredient(models.Model):
         null=True,
     )
     
-    # SUBSTITUTE 
-
-    allergens = models.JSONField(
+    allergens = ArrayField(
+        base_field=models.CharField(
+            max_length=1,
+            choices=AllergenChoices.choices,
+        ),
         default=list,
         blank=True,
-        null=False,
     )
-    # allergens = ArrayField(
-    #     base_field=models.CharField(
-    #         max_length=1,
-    #         choices=AllergenChoices.choices,
-    #     ),
-    #     default=list,
-    #     blank=True,
-    # )
     
     # calculate calories for 100g when creating a recipe object
     @property
@@ -52,6 +45,7 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+# Model for Recipes
 class Recipe(models.Model):
     name = models.CharField(
         max_length=100,
@@ -70,13 +64,19 @@ class Recipe(models.Model):
     text = HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    recipe_type = models.CharField(
+        max_length=10,
+        choices=RecipeType.choices,
+        blank=True,
+        null=True
+    )
     ingredients = models.ManyToManyField(
         Ingredient,
         through='RecipeIngredient',
         related_name='recipes'
     )
 
-    objects = RecipeManager()  # <-- use the custom manager
+    objects = RecipeManager()  # custom manager in managers.py
 
     class Meta:
         ordering = ['-created_at']
@@ -109,9 +109,19 @@ class Recipe(models.Model):
 
 
 class RecipeIngredient(models.Model):
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.CharField(max_length=50, blank=True, null=True)
+    recipe = models.ForeignKey(
+        Recipe, 
+        on_delete=models.CASCADE
+        )
+    ingredient = models.ForeignKey(
+        Ingredient, 
+        on_delete=models.CASCADE
+        )
+    quantity = models.CharField(
+        max_length=50, 
+        blank=True, 
+        null=True
+        )
 
     class Meta:
         unique_together = ('recipe', 'ingredient')
