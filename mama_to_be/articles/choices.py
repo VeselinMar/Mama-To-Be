@@ -19,4 +19,3 @@ class CategoryChoices(models.TextChoices):
     BABY_GEAR = 'Baby Gear', _('Baby Gear')
     EDUCATION = 'Education', _('Education')
     RELATIONSHIP = 'Relationship', _('Relationship')
-    HELPFUL = 'Helpful', _('Helpful')

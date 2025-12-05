@@ -20,7 +20,7 @@ class ArticleCreateViewTest(TestCase):
             'title': 'Test Article',
             'slug': 'test-article',
             'content': 'This is the content of the test article.',
-            'category': 'Food',  # Ensure this matches your model choices
+            'category': 'Food',
             'is_published': True,
         }
 
