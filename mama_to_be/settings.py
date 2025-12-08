@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'mama_to_be.food',
     'mama_to_be.planner',
     'tinymce',
+    'parler',
 ]
 
 MIDDLEWARE = [
@@ -157,6 +158,18 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [BASE_DIR / 'locale',]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en'},
+        {'code': 'de'},
+        {'code': 'bg'},
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

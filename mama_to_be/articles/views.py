@@ -1,15 +1,18 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.contrib.postgres.search import SearchVector
 from django.http import Http404
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
+
+from django.db.models import Q
+
+from parler.utils.context import switch_language
 
 from mama_to_be.articles.choices import CategoryChoices
 from mama_to_be.articles.forms import ArticleForm
 from mama_to_be.articles.models import Article
 from mama_to_be.profiles.models import Profile
-
 
 # Create your views here.
 
@@ -26,7 +29,8 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-
+        # Set current language
+        form.instance.set_current_language(self.request.LANGUAGE_CODE)
         return super().form_valid(form)
 
 
@@ -39,113 +43,130 @@ class ArticleEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'articles/create_article_form.html'
     context_object_name = 'article'
 
+    def get_object(self, queryset=None):
+        lang = self.request.LANGUAGE_CODE
+        slug = self.kwargs['slug']
+
+        return get_object_or_404(
+            Article.objects.active_translations(lang).filter(
+                translations__slug=slug
+            )
+        )
+
     def test_func(self):
         article = self.get_object()
         return article.author == self.request.user
 
     def get_success_url(self):
-        return reverse_lazy('article-detail', kwargs={'slug': self.object.slug})
+        lang = self.request.LANGUAGE_CODE
+        with switch_language(self.object, lang):
+            slug = self.object.slug
+        return reverse_lazy('article-detail', kwargs={'slug': slug})
 
 
 class ArticleDisplayView(DetailView):
-    """
-    View to display an article. Freely accessible.
-    """
     model = Article
     template_name = 'articles/article_detail.html'
     context_object_name = 'article'
 
+    def get_object(self, queryset=None):
+        lang = self.request.LANGUAGE_CODE
+        slug = self.kwargs['slug']
+
+        return get_object_or_404(
+            Article.objects.active_translations(lang).filter(
+                translations__slug=slug
+            )
+        )
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        article = self.get_object()
+        article = self.object
 
         author_profile = Profile.objects.get(user=article.author)
         context['author_name'] = author_profile.username
         context['author_id'] = author_profile.user_id
         return context
 
-
 class CategoryArticlesView(ListView):
     model = Article
     template_name = 'articles/category_articles.html'
-    context_object_name = 'object_list'  # Default name for the queryset
+    context_object_name = 'object_list'
     paginate_by = 9
 
     def get_queryset(self):
-        # Validate the category from the URL
         category = self.kwargs.get('category')
         if category not in CategoryChoices.values:
-            raise Http404("Invalid category")  # Return 404 for invalid category
+            raise Http404("Invalid category")
 
-        # Use the custom manager's `in_category` method to fetch published articles in this category
-        return Article.objects.in_category(category)
+        lang = self.request.LANGUAGE_CODE
+        return (
+            Article.objects.active_translations(lang)
+            .filter(category=category, is_published=True)
+            .order_by("-published_at")
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Add the category to the context for use in the template
         context['category'] = self.kwargs['category']
-        # Ensure page_obj is explicitly passed to the context
-        context['page_obj'] = context.get('page_obj', context['object_list'])
         return context
 
 class RecentArticlesView(ListView):
     model = Article
     template_name = 'common/recent-articles.html'
-    context_object_name = 'articles'  # For referencing in the template
+    context_object_name = 'articles'
 
     def get_queryset(self):
-        # Fetch all published articles and order by publication date
-        return Article.objects.filter(is_published=True).order_by('-published_at')
+        lang = self.request.LANGUAGE_CODE
+        return (
+            Article.objects.active_translations(lang)
+            .filter(is_published=True)
+            .order_by('-published_at')
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        lang = self.request.LANGUAGE_CODE
 
-        # Categorize articles by category, limiting to the last 3 articles per category
         articles_by_category = {}
-        helpful_articles = {}
-        articles = {}
 
-        # Get the last 3 articles for each category
-        categories = Article.objects.filter(is_published=True).values('category').distinct()
+        categories = (
+            Article.objects.active_translations(lang)
+            .values_list('category', flat=True)
+            .distinct()
+        )
 
         for category in categories:
-            category_name = category['category']
-
-            if category_name == CategoryChoices.HELPFUL:
-                helpful_articles = (
-                    Article.objects.filter(category=category_name, is_published=True)
-                )
-            else:
-                articles = (
-                    Article.objects.filter(category=category['category'], is_published=True)
-                    .order_by('-published_at')[:3]  # Limit to 3 articles per category
-                )
-                articles_by_category[category['category']] = articles
+            articles_by_category[category] = (
+                Article.objects.active_translations(lang)
+                .filter(category=category, is_published=True)
+                .order_by('-published_at')[:3]
+            )
 
         context['articles_by_category'] = articles_by_category
-        context['helpful_articles'] = helpful_articles
-        context['articles'] = articles
-
         return context
 
 
-def update_search_vector():
-    articles = Article.objects.all()
-    for article in articles:
-        article.search_vector = (
-            SearchVector('title', weight='A') + SearchVector('content', weight='B')
-        )
-        article.save()
+def search_view(request, lang=None):
+    query = request.GET.get("q", "").strip()
+    if not query:
+        return render(request, "articles/search_results.html", {"articles": [], "query": ""})
 
+    # Ensure we have a language (fallback to request.LANGUAGE_CODE)
+    lang = lang or request.LANGUAGE_CODE
 
-def search_view(request):
-    query = request.GET.get('q')
-    results = Article.objects.filter(title__icontains=query, is_published=True) if query else []
+    # Annotate search vector for translations in the current language
+    articles = (
+        Article.objects.translated(lang)  # Parler-aware queryset
+        .annotate(search=SearchVector('translations__title', weight='A') +
+                              SearchVector('translations__content', weight='B'))
+        .filter(search__icontains=query, is_published=True)
+        .distinct()
+        .order_by('-published_at')
+    )
 
-    context = {
-        'query': query,
-        'results': results,
-        'no_results': not results,
-    }
-
-    return render(request, 'articles/search_results.html', {'query': query, 'results': results})
+    return render(
+        request,
+        "articles/search_results.html",
+        {"articles": articles, "query": query}
+    )
