@@ -1,29 +1,14 @@
 from django.contrib import admin
-from modeltranslation.admin import TranslationAdmin
-
-from mama_to_be.articles.models import Article
-
-
-# Register your models here.
-
+from parler.admin import TranslatableAdmin
+from .models import Article
 
 @admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'category', 'is_published', 'published_at', 'created_at')
-    list_filter = ('is_published', 'category', 'created_at', 'published_at')
-    search_fields = ('title', 'content', 'author__username')
-    prepopulated_fields = {'slug': ('title',)}
-    ordering = ('-published_at',)
-    readonly_fields = ('created_at', 'updated_at', 'author')
-
+class ArticleAdmin(TranslatableAdmin):
+    list_display = ('title', 'author', 'published_at', 'category', 'is_published')
+    list_filter = ('category', 'is_published')
+    search_fields = ('translations__title', 'translations__content')
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'content', 'category', 'thumbnail_url', 'media_urls')
-        }),
-        ('Publishing', {
-            'fields': ('is_published', 'published_at')
-        }),
-        ('Timestamps', {
-            'fields': ('created_at', 'updated_at'),
+            'fields': ('title', 'slug', 'content', 'author', 'category', 'is_published', 'thumbnail_url', 'media_urls')
         }),
     )

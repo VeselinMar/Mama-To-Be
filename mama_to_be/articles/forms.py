@@ -2,9 +2,11 @@ from django.core.exceptions import ValidationError
 from urllib.parse import urlparse
 from django import forms
 from .models import Article
+from parler.forms import TranslatableModelForm
 
 
-class ArticleForm(forms.ModelForm):
+
+class ArticleForm(TranslatableModelForm):
     MAX_URLS = 10
     MAX_URL_LENGTH = 500  # Limit URL length
 
