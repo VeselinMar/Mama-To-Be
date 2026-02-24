@@ -8,10 +8,6 @@
             {% csrf_token %}
             {{ form.as_p }}
 
-            <div class="article-content">
-                {{ article.content|safe }}
-            </div>
-
             <button type="submit" class="btn btn-primary">Publish Article</button>
 
             <!-- Include TinyMCE -->
