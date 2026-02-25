@@ -7,8 +7,8 @@
         {% for category, articles in articles_by_category.items %}
             <div class="col-12 mb-4">
                 <h3 class="h4">
-                    <a href="{% url 'category-articles' category %}" style="text-decoration: none; color: black;">
-                        {{ category }}
+                    <a href="{% url 'category-articles' category.value %}" style="text-decoration: none; color: black;">
+                        {{ category.label }}
                     </a>
                 </h3>  <!-- Category Name, Linked to category articles page -->
             </div>
@@ -34,7 +34,7 @@
                         </h5>
                     </div>
                     {% if forloop.counter == 3 %}
-                        <div class="w-100"></div>  <!-- Force break after 3 articles per category -->
+                        <div class="w-100"></div>
                     {% endif %}
                 {% endfor %}
             </div>

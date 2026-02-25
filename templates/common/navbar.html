@@ -73,12 +73,6 @@
               </button>
             </form>
           </li>
-        {% comment %}
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
-          </li>
-        {% endcomment %}
         {% endif %}
       </ul>
 
@@ -93,21 +87,44 @@
       <!-- Language switcher -->
 
       <div class="dropdown language-switcher ms-3">
-        <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{% static 'icons/'|add:CURRENT_LANGUAGE|add:'.svg' %}" alt="{{ CURRENT_LANGUAGE }}" class="flag-icon me-1">
-          {{ CURRENT_LANGUAGE|upper }}
+        <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center px-3 py-2"
+                type="button"
+                id="languageDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+
+          <img src="{% static 'icons/'|add:CURRENT_LANGUAGE|add:'.svg' %}"
+              alt="{{ CURRENT_LANGUAGE }}"
+              class="flag-icon me-2">
+
+          <span class="fw-semibold">{{ CURRENT_LANGUAGE|upper }}</span>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2"
+            aria-labelledby="languageDropdown">
+
           {% get_available_languages as LANGUAGES %}
+
           {% for lang in LANGUAGES %}
             <li>
               <form action="{% url 'set_language' %}" method="post" class="m-0">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ request.path }}">
                 <input type="hidden" name="language" value="{{ lang.0 }}">
-                <button type="submit" class="dropdown-item d-flex align-items-center">
-                  <img src="{% static 'icons/'|add:lang.0|add:'.svg' %}" alt="{{ lang.0 }}" class="flag-icon me-2">
-                  {{ lang.1 }}
+
+                <button type="submit"
+                        class="dropdown-item d-flex align-items-center py-2
+                              {% if lang.0 == CURRENT_LANGUAGE %} active {% endif %}">
+
+                  <img src="{% static 'icons/'|add:lang.0|add:'.svg' %}"
+                      alt="{{ lang.0 }}"
+                      class="flag-icon me-3">
+
+                  <span class="flex-grow-1">{{ lang.1 }}</span>
+
+                  {% if lang.0 == CURRENT_LANGUAGE %}
+                    <i class="bi bi-check2"></i>
+                  {% endif %}
                 </button>
               </form>
             </li>
