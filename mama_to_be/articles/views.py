@@ -152,12 +152,10 @@ def search_view(request, lang=None):
     if not query:
         return render(request, "articles/search_results.html", {"articles": [], "query": ""})
 
-    # Ensure we have a language (fallback to request.LANGUAGE_CODE)
     lang = lang or request.LANGUAGE_CODE
 
-    # Annotate search vector for translations in the current language
     articles = (
-        Article.objects.translated(lang)  # Parler-aware queryset
+        Article.objects.translated(lang)
         .annotate(search=SearchVector('translations__title', weight='A') +
                               SearchVector('translations__content', weight='B'))
         .filter(search__icontains=query, is_published=True)
@@ -168,5 +166,8 @@ def search_view(request, lang=None):
     return render(
         request,
         "articles/search_results.html",
-        {"articles": articles, "query": query}
+        {
+            "articles": articles, 
+            "query": query
+        }
     )
