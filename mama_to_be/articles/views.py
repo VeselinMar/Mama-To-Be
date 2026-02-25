@@ -4,6 +4,8 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from collections import defaultdict
+from django.utils.translation import get_language
 
 from django.db.models import Q
 
@@ -108,12 +110,12 @@ class CategoryArticlesView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = self.kwargs['category']
+        context['category'] = CategoryChoices(self.kwargs['category'])
         return context
 
 class RecentArticlesView(ListView):
     model = Article
-    template_name = 'common/recent-articles.html'
+    template_name = 'articles/recent-articles.html'
     context_object_name = 'articles'
 
     def get_queryset(self):
@@ -128,22 +130,21 @@ class RecentArticlesView(ListView):
         context = super().get_context_data(**kwargs)
         lang = self.request.LANGUAGE_CODE
 
-        articles_by_category = {}
-
-        categories = (
+        articles = (
             Article.objects.active_translations(lang)
-            .values_list('category', flat=True)
-            .distinct()
+            .filter(is_published=True)
+            .order_by('-published_at')
         )
 
-        for category in categories:
-            articles_by_category[category] = (
-                Article.objects.active_translations(lang)
-                .filter(category=category, is_published=True)
-                .order_by('-published_at')[:3]
-            )
+        articles_by_category = defaultdict(list)
 
-        context['articles_by_category'] = articles_by_category
+        for article in articles:
+            category_enum = CategoryChoices(article.category)  # 🔥 convert string → enum
+
+            if len(articles_by_category[category_enum]) < 3:
+                articles_by_category[category_enum].append(article)
+
+        context['articles_by_category'] = dict(articles_by_category)
         return context
 
 
