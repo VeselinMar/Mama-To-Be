@@ -1,3 +1,18 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     tinymce.init({
         selector: 'textarea',
@@ -15,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
         automatic_uploads: true,
         images_reuse_filename: false,
         file_picker_types: 'image',
-        images_upload_url: '/upload-image/',
         file_picker_callback: function(callback, value, meta) {
             window.open('/file-picker/', '_blank');
         },
@@ -28,5 +42,32 @@ document.addEventListener("DOMContentLoaded", function() {
             'Roboto=Roboto,sans-serif;' +
             'Open Sans=Open Sans,sans-serif',
         font_size_formats: '10px 12px 14px 16px 18px 24px 36px',
+
+        images_upload_handler: function (blobInfo, progress) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', uploadUrl);
+                xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+                xhr.upload.onprogress = function(e) {
+                    progress(e.loaded / e.total * 100);
+                };
+                xhr.onload = function() {
+                    if (xhr.status < 200 || xhr.status >= 300) {
+                        reject('HTTP Error: ' + xhr.status);
+                        return;
+                    }
+                    const json = JSON.parse(xhr.responseText);
+                    if (!json.location) {
+                        reject('Invalid JSON: ' + xhr.responseText);
+                        return;
+                    }
+                    resolve(json.location);
+                };
+                xhr.onerror = function() { reject('Image upload failed'); };
+                const formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+                xhr.send(formData);
+            });
+        }
     });
 });

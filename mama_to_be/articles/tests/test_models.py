@@ -20,7 +20,6 @@ class ArticleModelTest(TestCase):
             'title': 'Test Article',
             'content': '<p>This is a test article.</p>',
             'author': self.user,
-            'media_urls': '',
             'thumbnail_url': 'http://example.com/thumbnail.jpg',
             'category': 'TECH',
             'is_published': True,

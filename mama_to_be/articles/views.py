@@ -8,6 +8,7 @@ from django.core.files.storage import default_storage
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 
+from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
 
@@ -183,8 +184,9 @@ def search_view(request, lang=None):
         }
     )
 
-@csrf_exempt
+@require_POST
 def upload_image(request):
+    print("METHOD:", request.method)
 
     uploaded_file = request.FILES.get("file")
     if not uploaded_file:

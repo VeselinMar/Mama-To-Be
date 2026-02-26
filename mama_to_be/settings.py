@@ -209,6 +209,13 @@ TINYMCE_DEFAULT_CONFIG = {
     "images_reuse_filename": False,
 }
 
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # AZURE STORAGE CONFIG
 if DEBUG:
     STORAGES = {
@@ -220,12 +227,6 @@ if DEBUG:
         },
     }
 
-    STATIC_URL = "/static/"
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_DIRS = [BASE_DIR / "static"]
-
-    MEDIA_URL = "/media/"
-    MEDIA_ROOT = BASE_DIR / "media"
 
 else:
     AZURE_CONNECTION_STRING = config("AZURE_CONNECTION_STRING", default="")
@@ -246,7 +247,7 @@ else:
         "staticfiles": {
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
             "OPTIONS": {
-                "azure_container": AZURE_CONTAINER_STATIC,
+                "azure_container": AZURE_CONTAINER,
                 "connection_string": AZURE_CONNECTION_STRING,
                 "cache_control": AZURE_BLOB_CACHE_CONTROL,
             }

@@ -34,7 +34,7 @@
         <div class="row">
             {% for article in published_articles %}
                 <div class="col-md-4 mb-4">
-                    <a href="{% url 'article-detail' article.slug %}" class="text-decoration-none">
+                    <a href="{% url 'articles:article-detail' article.slug %}" class="text-decoration-none">
                         <div class="card h-100">
                             <img src="{% if article.thumbnail_url %}{{ article.thumbnail_url }}{% else %}{% static 'icons/default-thumbnail.jpg' %}{% endif %}"
                                  class="card-img-top"
@@ -58,7 +58,7 @@
         <h3 class="mt-5">Unpublished Articles (Edit or Publish)</h3>
         <div class="list-group">
             {% for article in unpublished_articles %}
-                <a href="{% url 'article-edit' article.slug %}" class="list-group-item list-group-item-action">
+                <a href="{% url 'articles:article-edit' article.slug %}" class="list-group-item list-group-item-action">
                     <h5 class="mb-1">{{ article.title }}</h5>
                     <small>Last edited on {{ article.updated_at|date:"F j, Y" }}</small>
                 </a>

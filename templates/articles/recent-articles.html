@@ -7,7 +7,7 @@
         {% for category, articles in articles_by_category.items %}
             <div class="col-12 mb-4">
                 <h3 class="h4">
-                    <a href="{% url 'category-articles' category.value %}" style="text-decoration: none; color: black;">
+                    <a href="{% url 'articles:category-articles' category.value %}" style="text-decoration: none; color: black;">
                         {{ category.label }}
                     </a>
                 </h3>  <!-- Category Name, Linked to category articles page -->
@@ -17,7 +17,7 @@
                 {% for article in articles %}
                     <div class="col-md-4 mb-5 text-center">
                         <div class="card border-2 shadow-sm" style="cursor: pointer;">
-                            <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none;">
+                            <a href="{% url 'articles:article-detail' article.slug %}" style="text-decoration: none;">
                                 {% if article.thumbnail_url %}
                                     <img src="{{ article.thumbnail_url }}" class="card-img-top img-fluid" alt="{{ article.title }}"
                                          style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
@@ -31,7 +31,7 @@
                             </a>
                         </div>
                         <h5 class="mt-3 mb-1">
-                            <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none; color: black;">
+                            <a href="{% url 'articles:article-detail' article.slug %}" style="text-decoration: none; color: black;">
                                 {{ article.title }}
                             </a>
                         </h5>

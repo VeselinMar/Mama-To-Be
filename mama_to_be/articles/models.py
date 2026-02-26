@@ -35,7 +35,7 @@ class Article(TranslatableModel):
     )
     thumbnail_url = models.URLField(max_length=500, blank=True, null=True)
     thumbnail = models.ImageField(
-        upload_to="articles/thumbnails/",
+        upload_to="thumbnails/",
         blank=True,
         null=True,
         help_text="Upload a thumbnail image for the article"

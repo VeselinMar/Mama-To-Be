@@ -47,7 +47,7 @@
             <li class="dropdown-header">{% trans "Learn more about" %}</li>
             {% for category in navbar_categories %}
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="{% url 'category-articles' category=category.value %}">
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'articles:category-articles' category=category.value %}">
                   <i class="bi bi-book-half me-2"></i> {{ category.name }}
                 </a>
               </li>
@@ -63,7 +63,7 @@
             <a class="nav-link" href="{% url 'profile-display' user_id=user.id %}">{% trans "My Profile" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'create-article' %}">{% trans "Create" %}</a>
+            <a class="nav-link" href="{% url 'articles:create-article' %}">{% trans "Create" %}</a>
           </li>
           <li class="nav-item">
             <form method="POST" action="{% url 'logout' %}" style="display:inline;">
@@ -77,7 +77,7 @@
       </ul>
 
       <!-- Search form -->
-      <form class="d-flex search-form ms-3" action="{% url 'search' %}" method="get">
+      <form class="d-flex search-form ms-3" action="{% url 'articles:search' %}" method="get">
           <input class="form-control search-input" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Search' %}" aria-label="{% trans 'Search' %}">
           <button class="btn btn-outline-success" type="submit">
               <i class="bi bi-search"></i> 
