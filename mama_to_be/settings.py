@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'mama_to_be.articles',
     'mama_to_be.forum',
     'mama_to_be.food',
+
+    'storages',
     'tinymce',
     'parler',
 ]
@@ -91,7 +93,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mama_to_be.wsgi.application'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -170,19 +171,6 @@ PARLER_LANGUAGES = {
     }
 }
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = '/mediafiles/'
-
-MEDIA_ROOT = BASE_DIR / 'mediafiles/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -198,16 +186,69 @@ ADMIN_GROUPS = ['Restricted Admin', 'Unrestricted Admin']
 TINYMCE_DEFAULT_CONFIG = {
     "height": 500,
     "width": "100%",
-    "plugins": "advlist autolink lists link image charmap print preview hr anchor pagebreak "
-               "searchreplace wordcount visualblocks visualchars code fullscreen "
-               "insertdatetime media nonbreaking save table directionality "
-               "emoticons template paste textpattern imagetools",
-    "toolbar": "insertfile undo redo | styleselect | bold italic | "
-               "alignleft aligncenter alignright alignjustify | "
-               "bullist numlist outdent indent | link image media",
+    "plugins": (
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak "
+        "searchreplace wordcount visualblocks visualchars code fullscreen "
+        "insertdatetime media nonbreaking save table directionality "
+        "emoticons template paste textpattern imagetools autoresize"
+    ),
+    "toolbar": (
+        "insertfile undo redo | styleselect | bold italic underline strikethrough | "
+        "alignleft aligncenter alignright alignjustify | "
+        "bullist numlist outdent indent | link image media table | "
+        "preview fullscreen | emoticons charmap"
+    ),
     "image_advtab": True,
     "file_picker_types": "image",
     "images_upload_url": "/upload-image/",
-    "file_picker_callback": "function(callback, value, meta) { window.open('/file-picker/', '_blank'); }",
+    "file_picker_callback": (
+        "function(callback, value, meta) { window.open('/file-picker/', '_blank'); }"
+    ),
     "content_style": "body { font-family: Arial, Helvetica, sans-serif; font-size: 14px; }",
+    "automatic_uploads": True,
+    "images_reuse_filename": False,
 }
+
+# AZURE STORAGE CONFIG
+if DEBUG:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+
+    STATIC_URL = "/static/"
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
+
+else:
+    AZURE_CONNECTION_STRING = config("AZURE_CONNECTION_STRING", default="")
+    AZURE_CONTAINER = config("AZURE_CONTAINER", default="")
+
+    AZURE_BLOB_CACHE_CONTROL = "public, max-age=31536000, immutable"
+
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.azure_storage.AzureStorage",
+            "OPTIONS": {
+                "connection_string": AZURE_CONNECTION_STRING,
+                "azure_container": AZURE_CONTAINER,
+                "cache_control": AZURE_BLOB_CACHE_CONTROL,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "storages.backends.azure_storage.AzureStorage",
+            "OPTIONS": {
+                "azure_container": AZURE_CONTAINER_STATIC,
+                "connection_string": AZURE_CONNECTION_STRING,
+                "cache_control": AZURE_BLOB_CACHE_CONTROL,
+            }
+        }
+    }

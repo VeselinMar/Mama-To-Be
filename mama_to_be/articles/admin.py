@@ -9,6 +9,6 @@ class ArticleAdmin(TranslatableAdmin):
     search_fields = ('translations__title', 'translations__content')
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'content', 'author', 'category', 'is_published', 'thumbnail_url', 'media_urls')
+            'fields': ('title', 'slug', 'content', 'author', 'category', 'is_published', 'thumbnail_url', 'thumbnail')
         }),
     )

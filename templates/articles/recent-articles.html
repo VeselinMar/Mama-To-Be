@@ -21,6 +21,9 @@
                                 {% if article.thumbnail_url %}
                                     <img src="{{ article.thumbnail_url }}" class="card-img-top img-fluid" alt="{{ article.title }}"
                                          style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
+                                {% elif article.thumbnail %}
+                                    <img src="{{ article.thumbnail }}" class="card-img-top img-fluid" alt="{{ article.title }}"
+                                         style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
                                 {% else %}
                                     <img src="{% static 'icons/default-thumbnail.jpg' %}" class="card-img-top img-fluid" alt="Default thumbnail"
                                          style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">

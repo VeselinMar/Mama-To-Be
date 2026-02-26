@@ -14,12 +14,12 @@ from parler.utils.context import switch_language
 from mama_to_be import settings
 from mama_to_be.articles.choices import CategoryChoices
 from mama_to_be.articles.managers import ArticleQuerySet
+from mama_to_be.common.utility import process_image_to_webp
 
 
 # Create your models here.
 
 LANGUAGES = [lang[0] for lang in settings.LANGUAGES]
-
 
 class Article(TranslatableModel):
     translations = TranslatedFields(
@@ -33,8 +33,13 @@ class Article(TranslatableModel):
         null=True,
         blank=True,
     )
-    media_urls = models.TextField(blank=True, null=True)
     thumbnail_url = models.URLField(max_length=500, blank=True, null=True)
+    thumbnail = models.ImageField(
+        upload_to="articles/thumbnails/",
+        blank=True,
+        null=True,
+        help_text="Upload a thumbnail image for the article"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(null=True, blank=True)
@@ -96,6 +101,9 @@ class Article(TranslatableModel):
                         self.generate_unique_slug()
         
         self.set_current_language(current_lang)
+
+        if self.thumbnail and not self.thumbnail.name.lower().endswith(".webp"):
+            self.thumbnail = process_image_to_webp(self.thumbnail)
         
         super().save(*args, **kwargs)
 

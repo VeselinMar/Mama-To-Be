@@ -2,37 +2,17 @@
 {% load static %}
 
 {% block content %}
-    <div class="container mt-5">
-        <h1 class="mb-4">Modify Article</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
+<div class="container mt-5">
+    <h1 class="mb-4">Modify Article</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-            <button type="submit" class="btn btn-primary">Publish Article</button>
+        <button type="submit" class="btn btn-primary">Publish Article</button>
+    </form>
+</div>
 
-            <!-- Include TinyMCE -->
-            <script type="text/javascript" src="{% static 'tinymce/tinymce.min.js' %}"></script>
-            <script type="text/javascript">
-                tinymce.init({
-        selector: 'textarea',
-        plugins: 'link image media',
-        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image media',
-        media_live_embeds: true,
-        image_advtab: true,
-
-        font_family_formats: 
-        'Arial=arial,helvetica,sans-serif;' +
-        'Arial Black=arial black,avant garde;' +
-        'Times New Roman=times new roman,times;' +
-        'Courier New=courier new,courier;' +
-        'Roboto=Roboto,sans-serif;' +
-        'Open Sans=Open Sans,sans-serif',
-
-        font_size_formats: '10px 12px 14px 16px 18px 24px 36px',
-    });
-</script>
-        </form>
-    </div>
+<!-- Include TinyMCE -->
+<script type="text/javascript" src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascript/tinymce.js' %}"></script>
 {% endblock %}
-
-
