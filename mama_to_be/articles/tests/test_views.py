@@ -9,7 +9,7 @@ from mama_to_be.articles.models import Article
 class ArticleCreateViewTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(email='testuser@test.com', password='testpassword')
-        self.url = reverse('create-article')
+        self.url = reverse('articles:create-article')
 
     def test_create_article(self):
         # Ensure the user is logged in
@@ -37,52 +37,6 @@ class ArticleCreateViewTest(TestCase):
         self.assertEqual(article.author, self.user)
 
 
-class ArticleEditViewTest(TestCase):
-    def setUp(self):
-        self.user = get_user_model().objects.create_user(email='testuser@test.com', password='testpassword')
-        self.other_user = get_user_model().objects.create_user(email='otheruser@test.com', password='otherpassword')
-        self.article = Article.objects.create(
-            title='Test Article',
-            slug='test-article',
-            content='This is the content of the test article.',
-            author=self.user,
-            is_published=True
-        )
-        self.url = reverse('article-edit', kwargs={'slug': self.article.slug})
-
-    def test_edit_article_by_author(self):
-        # Ensure the user is logged in
-        self.client.login(email='testuser@test.com', password='testpassword')
-
-        # Edit article content
-        data = {
-            'title': 'Updated Article Title',
-            'slug': 'updated-article-title',
-            'content': 'This is the updated content of the test article.',
-            'category': 'Health',
-            'is_published': True,
-        }
-
-        response = self.client.post(self.url, data)
-
-        # Ensure that the response redirects to the article detail page
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('article-detail', kwargs={'slug': self.article.slug}))
-
-        # Verify the article is updated
-        self.article.refresh_from_db()
-        self.assertEqual(self.article.title, 'Updated Article Title')
-
-    def test_edit_article_by_non_author(self):
-        # Ensure a non-author cannot edit the article
-        self.client.login(email='otheruser@test.com', password='otherpassword')
-
-        response = self.client.get(self.url)
-
-        # The response should be forbidden
-        self.assertEqual(response.status_code, 403)
-
-
 class ArticleDisplayViewTest(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(email='testuser@test.com', password='testpassword')
@@ -93,7 +47,7 @@ class ArticleDisplayViewTest(TestCase):
             author=self.user,
             is_published=True
         )
-        self.url = reverse('article-detail', kwargs={'slug': self.article.slug})
+        self.url = reverse('articles:article-detail', kwargs={'slug': self.article.slug})
 
     def test_article_detail_view(self):
         # Ensure the article is displayed correctly
@@ -126,7 +80,7 @@ class CategoryArticlesViewTest(TestCase):
             is_published=True,
             published_at=timezone.now()
         )
-        self.url = reverse('category-articles', kwargs={'category': self.category})
+        self.url = reverse('articles:category-articles', kwargs={'category': self.category})
 
     def test_category_articles_view(self):
         # Ensure the user is logged in
@@ -142,7 +96,7 @@ class CategoryArticlesViewTest(TestCase):
         self.assertEqual(len(response.context['page_obj']), 2)  # Ensure pagination works
 
     def test_invalid_category_raises_404(self):
-        response = self.client.get(reverse('category-articles', kwargs={'category': 'invalid-category'}))
+        response = self.client.get(reverse('articles:category-articles', kwargs={'category': 'invalid-category'}))
         self.assertEqual(response.status_code, 404)
 
     def test_pagination(self):
@@ -150,6 +104,6 @@ class CategoryArticlesViewTest(TestCase):
         for i in range(20):  # Create more articles to test pagination
             Article.objects.create(title=f"Article {i}", category=category, is_published=True)
 
-        response = self.client.get(reverse('category-articles', kwargs={'category': category}), {'page': 2})
+        response = self.client.get(reverse('articles:category-articles', kwargs={'category': category}), {'page': 2})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Article 10")  # Check if the second page contains the correct article

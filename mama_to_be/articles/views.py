@@ -1,15 +1,26 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.postgres.search import SearchVector
-from django.http import Http404
+
+from django.http import Http404, JsonResponse
+
+from django.core.files.storage import default_storage
+
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
+
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
-from collections import defaultdict
+
 from django.utils.translation import get_language
 
 from django.db.models import Q
 
+from collections import defaultdict
+
 from parler.utils.context import switch_language
+
+from mama_to_be.common.utility import process_image_to_webp
 
 from mama_to_be.articles.choices import CategoryChoices
 from mama_to_be.articles.forms import ArticleForm
@@ -172,3 +183,21 @@ def search_view(request, lang=None):
             "query": query
         }
     )
+
+@require_POST
+def upload_image(request):
+    print("METHOD:", request.method)
+
+    uploaded_file = request.FILES.get("file")
+    if not uploaded_file:
+        return JsonResponse({"error": "No file uploaded"}, status=400)
+
+    try:
+        content_file = process_image_to_webp(uploaded_file)
+        path = default_storage.save(content_file.name, content_file)
+        url = default_storage.url(path)
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
+
+    return JsonResponse({"location": url})

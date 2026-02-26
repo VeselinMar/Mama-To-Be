@@ -11,12 +11,15 @@
     {% for article in page_obj %}
         <div class="col-md-4 mb-4 text-center">
             <div class="card border-2 shadow-sm">
-                <a href="{% url 'article-detail' article.slug %}" style="text-decoration: none;">
+                <a href="{% url 'articles:article-detail' article.slug %}" style="text-decoration: none;">
                     <div class="ratio ratio-4x3">
                         {% if article.thumbnail_url %}
                             <img src="{{ article.thumbnail_url }}" 
                                  class="card-img-top img-fluid object-fit-cover" 
                                  alt="{{ article.title }}">
+                        {% elif article.thumbnail %}
+                                <img src="{{ article.thumbnail.url }}" class="card-img-top img-fluid" alt="{{ article.title }}"
+                                style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
                         {% else %}
                             <img src="{% static 'icons/default-thumbnail.jpg' %}" 
                                  class="card-img-top img-fluid object-fit-cover" 
@@ -26,7 +29,7 @@
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{% url 'article-detail' article.slug %}" 
+                        <a href="{% url 'articles:article-detail' article.slug %}" 
                            style="text-decoration: none; color: black;">
                             {{ article.title }}
                         </a>
