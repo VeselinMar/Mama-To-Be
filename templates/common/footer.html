@@ -1,15 +1,22 @@
-<footer class="site-footer" style="background-color: #FFB4A2; margin-top 0px margin-bottom: 5px;">
-  <div class="footer">
+{% load static i18n %}
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Navigation Links -->
     <div class="footer-section nav-section">
       <ul>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+        <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
       </ul>
-      <a href="{% url 'impressum' %}">Impressum</a>
-      <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
+      <div class="legal-links">
+        <a href="{% url 'impressum' %}">{% trans "Impressum" %}</a> |
+        <a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a>
+      </div>
     </div>
+
+    <!-- Copyright -->
     <div class="copyright">
-      &copy; {{ now|date:"Y" }} MamaToBe. All rights reserved.
+      &copy; {{ now|date:"Y" }} Mama-To-Be. {% trans "All rights reserved." %}
     </div>
   </div>
 </footer>
