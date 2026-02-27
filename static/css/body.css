@@ -1,9 +1,40 @@
 body {
-    background-color: #FFF4EC; /* soft warm cream */
+    background-color: #FFF4EC;
+    color: #2F2F2F;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
     padding: 20px;
-
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
+    color: #2F2F2F;
+    line-height: 1.2;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #E08C78;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #D2959D;
+}
+
+button, .btn {
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+section, .main-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    background-color: #FFF9F6;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
 }

@@ -6,35 +6,34 @@
     <div class="row">
         {% for category, articles in articles_by_category.items %}
             <div class="col-12 mb-4">
-                <h3 class="h4">
-                    <a href="{% url 'articles:category-articles' category.value %}" style="text-decoration: none; color: black;">
+                <h2 class="h2">
+                    <a href="{% url 'articles:category-articles' category.value %}" class="category-link">
                         {{ category.label }}
                     </a>
-                </h3>  <!-- Category Name, Linked to category articles page -->
+                </h3>
             </div>
             
             <div class="row">
                 {% for article in articles %}
-                    <div class="col-md-4 mb-5 text-center">
-                        <div class="card border-2 shadow-sm" style="cursor: pointer;">
-                            <a href="{% url 'articles:article-detail' article.slug %}" style="text-decoration: none;">
+                    <div class="col-md-4 mb-4 text-center">
+                    <div class="card article-card">
+                            <a href="{% url 'articles:article-detail' article.slug %}">
                                 {% if article.thumbnail_url %}
-                                    <img src="{{ article.thumbnail_url }}" class="card-img-top img-fluid" alt="{{ article.title }}"
-                                         style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
+                                    <img src="{{ article.thumbnail_url }}" class="article-card-img" alt="{{ article.title }}">
                                 {% elif article.thumbnail %}
-                                    <img src="{{ article.thumbnail }}" class="card-img-top img-fluid" alt="{{ article.title }}"
-                                         style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
+                                    <img src="{{ article.thumbnail }}" class="article-card-img" alt="{{ article.title }}">
                                 {% else %}
-                                    <img src="{% static 'icons/default-thumbnail.jpg' %}" class="card-img-top img-fluid" alt="Default thumbnail"
-                                         style="border: 1px solid #ddd; border-radius: 5px; height: 200px; object-fit: contain;">
+                                    <img src="{% static 'icons/default-thumbnail.jpg' %}" class="article-card-img" alt="Default thumbnail">
                                 {% endif %}
                             </a>
+                            <div class="article-card-body">
+                                <h5 class="card-title">
+                                    <a href="{% url 'articles:article-detail' article.slug %}" class="article-title-link">
+                                        {{ article.title }}
+                                    </a>
+                                </h5>
+                            </div>
                         </div>
-                        <h5 class="mt-3 mb-1">
-                            <a href="{% url 'articles:article-detail' article.slug %}" style="text-decoration: none; color: black;">
-                                {{ article.title }}
-                            </a>
-                        </h5>
                     </div>
                     {% if forloop.counter == 3 %}
                         <div class="w-100"></div>
