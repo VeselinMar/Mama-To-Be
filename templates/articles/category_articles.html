@@ -10,8 +10,8 @@
     <div class="row">
     {% for article in page_obj %}
     <div class="col-md-4 mb-4 text-center">
-        <div class="card article-card">
-            <a href="{% url 'articles:article-detail' article.slug %}">
+        <a href="{% url 'articles:article-detail' article.slug %}" class="article-card-link">
+            <div class="card article-card">
                 {% if article.thumbnail_url %}
                     <img src="{{ article.thumbnail_url }}" class="article-card-img" alt="{{ article.title }}">
                 {% elif article.thumbnail %}
@@ -19,15 +19,13 @@
                 {% else %}
                     <img src="{% static 'icons/default-thumbnail.jpg' %}" class="article-card-img" alt="Default thumbnail">
                 {% endif %}
-            </a>
-            <div class="article-card-body">
-                <h5 class="card-title">
-                    <a href="{% url 'articles:article-detail' article.slug %}" class="article-title-link">
+                <div class="article-card-body">
+                    <h5 class="card-title">
                         {{ article.title }}
-                    </a>
-                </h5>
+                    </h5>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
     {% empty %}
         <p>No articles in this category yet.</p>
