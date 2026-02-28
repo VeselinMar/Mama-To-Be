@@ -47,12 +47,12 @@
              data-bs-toggle="dropdown" aria-expanded="false">
             {% trans "Articles" %}
           </a>
-          <ul class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="articlesDropdown">
-            <li class="dropdown-header">{% trans "Learn more about" %}</li>
+          <ul class="dropdown-menu custom-dropdown dropdown-menu-end" aria-labelledby="articlesDropdown">
+            <li class="dropdown-title">{% trans "Learn more about" %}</li>
             {% for category in navbar_categories %}
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="{% url 'articles:category-articles' category=category.value %}">
-                  <i class="bi bi-book-half me-2"></i> {{ category.name }}
+                <a class="dropdown-item custom-dropdown-item" href="{% url 'articles:category-articles' category=category.value %}">
+                  {{ category.name }}
                 </a>
               </li>
             {% endfor %}
