@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import environ
 import os
+import sys
 import dj_database_url
 
 from pathlib import Path
@@ -19,6 +20,7 @@ from decouple import config
 
 from django.utils.translation import gettext_lazy as _
 
+TESTING = "test" in sys.argv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +42,7 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
-if not DEBUG:
+if not DEBUG and not TESTING:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -53,6 +55,9 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+
+else:
+    SECURE_SSL_REDIRECT = False
 
 # Application definition
 
