@@ -35,8 +35,17 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'mom-to-be.at',
+    'mom-to-be.onrender.com',
+    ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://mom-to-be.at',
+    'https://mom-to-be.onrender.com',
+    ]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
