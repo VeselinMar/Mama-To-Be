@@ -260,9 +260,11 @@ else:
     AZURE_CUSTOM_DOMAIN = env('AZURE_CUSTOM_DOMAIN', default='assets.yourdomain.com')
     STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/static/'
     MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/media/'
+    
 
     AZURE_CONNECTION_STRING = config("AZURE_CONNECTION_STRING", default="")
-    AZURE_CONTAINER = config("AZURE_CONTAINER", default="")
+    AZURE_STATIC_CONTAINER = config("AZURE_STATIC_CONTAINER", default="")
+    AZURE_MEDIA_CONTAINER = config("AZURE_MEDIA_CONTAINER", default="")
 
     AZURE_BLOB_CACHE_CONTROL = "public, max-age=2592000, immutable"
 
@@ -272,14 +274,14 @@ else:
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
             "OPTIONS": {
                 "connection_string": AZURE_CONNECTION_STRING,
-                "azure_container": AZURE_CONTAINER,
+                "azure_container": AZURE_MEDIA_CONTAINER,
                 "cache_control": AZURE_BLOB_CACHE_CONTROL,
             },
         },
         "staticfiles": {
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
             "OPTIONS": {
-                "azure_container": AZURE_CONTAINER,
+                "azure_container": AZURE_STATIC_ONTAINER,
                 "connection_string": AZURE_CONNECTION_STRING,
                 "cache_control": AZURE_BLOB_CACHE_CONTROL,
             }
