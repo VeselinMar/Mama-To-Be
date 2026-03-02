@@ -40,18 +40,25 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 if DEBUG:
     ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 else:
-    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+    ALLOWED_HOSTS = [
+        host.strip()
+        for host in os.getenv("ALLOWED_HOSTS", "").split(",")
+        if host.strip()
+    ]
 
 if not DEBUG and not TESTING:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    USE_X_FORWARDED_HOST = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
 
     CSRF_TRUSTED_ORIGINS = [
-        f"https://{host}" for host in ALLOWED_HOSTS
+        f"https://{host}" for host in ALLOWED_HOSTS if host
     ]
 
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
@@ -83,9 +90,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.locale.LocaleMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -250,10 +257,14 @@ if DEBUG:
 
 
 else:
+    AZURE_CUSTOM_DOMAIN = env('AZURE_CUSTOM_DOMAIN', default='assets.yourdomain.com')
+    STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/static/'
+    MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/media/'
+
     AZURE_CONNECTION_STRING = config("AZURE_CONNECTION_STRING", default="")
     AZURE_CONTAINER = config("AZURE_CONTAINER", default="")
 
-    AZURE_BLOB_CACHE_CONTROL = "public, max-age=31536000, immutable"
+    AZURE_BLOB_CACHE_CONTROL = "public, max-age=2592000, immutable"
 
 
     STORAGES = {
@@ -273,4 +284,7 @@ else:
                 "cache_control": AZURE_BLOB_CACHE_CONTROL,
             }
         }
+    }
+    AZURE_BLOB_SERVICE_KWARGS = {
+    "max_block_size": 4 * 1024 * 1024,
     }
