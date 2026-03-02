@@ -281,7 +281,7 @@ else:
         "staticfiles": {
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
             "OPTIONS": {
-                "azure_container": AZURE_STATIC_ONTAINER,
+                "azure_container": AZURE_STATIC_CONTAINER,
                 "connection_string": AZURE_CONNECTION_STRING,
                 "cache_control": AZURE_BLOB_CACHE_CONTROL,
             }
