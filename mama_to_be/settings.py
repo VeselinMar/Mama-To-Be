@@ -169,7 +169,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'bg'
 
 TIME_ZONE = 'UTC'
 
@@ -180,21 +180,19 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('de', 'Deutsch'),
     ('bg', 'Български'),
+    ('de', 'Deutsch')
 ]
 
 LOCALE_PATHS = [BASE_DIR / 'locale',]
 
 PARLER_LANGUAGES = {
     None: (
-        {'code': 'en'},
-        {'code': 'de'},
         {'code': 'bg'},
+        {'code': 'de'},
     ),
     'default': {
-        'fallbacks': ['en'],
+        'fallbacks': ['bg'],
         'hide_untranslated': False,
     }
 }

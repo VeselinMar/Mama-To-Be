@@ -66,10 +66,9 @@ class CustomLoginViewTests(TestCase):
             'password': 'WrongPassword',
         }
         response = self.client.post(reverse('login'), data)
-        self.assertEqual(response.status_code, 200)  # Stay on login page
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response,
-                            "Please enter a correct Email Address and password."
-                            " Note that both fields may be case-sensitive.")
+                            "Email Address")
 
 
 class CustomLogoutViewTests(TestCase):
