@@ -22,3 +22,8 @@ class RecipeType(models.TextChoices):
     FISH = "fish", "Fish"
     VEGETARIAN = "vegetarian", "Vegetarian"
     VEGAN = "vegan", "Vegan"
+
+class DifficultyChoices(models.TextChoices):
+    EASY = "easy", "Easy"
+    MEDIUM = "medium", "Medium"
+    HARD  = "hard", "Hard"

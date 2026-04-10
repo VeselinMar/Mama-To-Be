@@ -1,0 +1,19 @@
+{% extends 'food/_recipe_form_base.html' %}
+{% load i18n %}
+
+{% block form_title %}
+    {% trans "Edit Recipe" %}: {{ object.name }}
+{% endblock %}
+
+{% block existing_ingredients %}
+    window.EXISTING_INGREDIENTS = {{ ingredients_json|default:"[]"|safe }};
+{% endblock %}
+
+{% block form_actions %}
+    <button type="submit" class="btn btn-primary">
+        {% trans "Save Changes" %}
+    </button>
+    <a href="{% url 'food:recipe-detail' object.slug %}" class="btn btn-outline-secondary">
+        {% trans "Cancel" %}
+    </a>
+{% endblock %}

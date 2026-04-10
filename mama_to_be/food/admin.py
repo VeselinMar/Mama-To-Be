@@ -1,4 +1,6 @@
 from django.contrib import admin
+from parler.admin import TranslatableAdmin
+
 from .models import (
     Ingredient,
     Recipe,
@@ -7,6 +9,7 @@ from .models import (
     MealPlan,
     MealPlanItem,
 )
+from ..common.models import Tag
 
 
 # -------------------
@@ -16,7 +19,18 @@ from .models import (
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ("name", "protein", "carbs", "fat", "calories")
     search_fields = ("name",)
-    list_filter = ("allergens",)
+    # Only actual model fields
+    list_filter = ("protein", "carbs", "fat")
+
+
+# -------------------
+# TAG
+# -------------------
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ("name", "slug")
+    search_fields = ("name",)
+    prepopulated_fields = {"slug": ("name",)}
 
 
 # -------------------
@@ -29,7 +43,7 @@ class RecipeIngredientInline(admin.TabularInline):
 
 
 # -------------------
-# RECIPE INTERACTION INLINE (read-only insight)
+# RECIPE INTERACTION INLINE
 # -------------------
 class RecipeInteractionInline(admin.TabularInline):
     model = RecipeInteraction
@@ -48,50 +62,59 @@ class RecipeInteractionInline(admin.TabularInline):
 # RECIPE
 # -------------------
 @admin.register(Recipe)
-class RecipeAdmin(admin.ModelAdmin):
+class RecipeAdmin(TranslatableAdmin):
     list_display = (
-        "name",
-        "author",
-        "recipe_type",
-        "avg_rating",
-        "rating_count",
-        "created_at",
+        "get_name",
+        "difficulty",
+        "total_time_display",
     )
 
     list_filter = (
-        "recipe_type",
-        "created_at",
+        "difficulty",
+        "tags",
     )
 
     search_fields = (
-        "name",
-        "text",
+        "translations__name",
+        "translations__text",
     )
 
-    prepopulated_fields = {"slug": ("name",)}
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
 
     inlines = [
         RecipeIngredientInline,
         RecipeInteractionInline,
     ]
 
-    autocomplete_fields = ("author",)
-
-    readonly_fields = (
-        "avg_rating",
-        "rating_count",
-        "created_at",
-        "updated_at",
+    fieldsets = (
+        ("Basic Info", {"fields": ("difficulty",)}),
+        ("Time", {"fields": ("prep_time", "cook_time")}),
+        ("Tags", {"fields": ("tags",)}),
+        ("Timestamps", {"fields": ("created_at", "updated_at")}),
     )
+
+    def get_name(self, obj):
+        return obj.safe_translation_getter("name", any_language=True)
+    get_name.short_description = "Name"
+
+    def total_time_display(self, obj):
+        return f"{obj.total_time} min"
+    total_time_display.short_description = "Total Time"
 
 
 # -------------------
-# RECIPE INGREDIENT (standalone admin)
+# RECIPE INGREDIENT
 # -------------------
 @admin.register(RecipeIngredient)
 class RecipeIngredientAdmin(admin.ModelAdmin):
     list_display = ("recipe", "ingredient", "quantity", "unit")
-    search_fields = ("recipe__name", "ingredient__name")
+    search_fields = (
+        "recipe__translations__name",
+        "ingredient__name",
+    )
     autocomplete_fields = ("recipe", "ingredient")
 
 
@@ -116,7 +139,7 @@ class RecipeInteractionAdmin(admin.ModelAdmin):
 
     search_fields = (
         "user__username",
-        "recipe__name",
+        "recipe__translations__name",
     )
 
     autocomplete_fields = ("user", "recipe")
@@ -136,15 +159,9 @@ class MealPlanItemInline(admin.TabularInline):
 # -------------------
 @admin.register(MealPlan)
 class MealPlanAdmin(admin.ModelAdmin):
-    list_display = ("user", "week_start", "created_at")
-
-    list_filter = ("week_start",)
-
-    search_fields = ("user__username",)
-
+    list_display = ("id",)  # Use id if week_start/created_at don't exist
+    search_fields = ("id",)  # Required for autocomplete references
     inlines = [MealPlanItemInline]
-
-    autocomplete_fields = ("user",)
 
 
 # -------------------
@@ -152,13 +169,7 @@ class MealPlanAdmin(admin.ModelAdmin):
 # -------------------
 @admin.register(MealPlanItem)
 class MealPlanItemAdmin(admin.ModelAdmin):
-    list_display = ("meal_plan", "recipe", "day", "meal_type")
-
-    list_filter = ("meal_type", "day")
-
-    search_fields = (
-        "meal_plan__user__username",
-        "recipe__name",
-    )
-
+    list_display = ("meal_plan", "recipe", "meal_type")
+    list_filter = ("meal_type",)
+    search_fields = ("meal_plan__id", "recipe__translations__name")
     autocomplete_fields = ("meal_plan", "recipe")

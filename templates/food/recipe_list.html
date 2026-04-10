@@ -1,0 +1,91 @@
+{% extends 'common/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">{% trans "Recipes" %}</h2>
+
+    <div class="row">
+        {% for recipe in page_obj %}
+            <div class="col-md-4 mb-4 text-center">
+                <a href="{% url 'food:recipe-detail' recipe.slug %}" class="article-card-link">
+                    <div class="card article-card">
+
+                        {% if recipe.thumbnail %}
+                            <img src="{{ recipe.thumbnail.url }}"
+                                class="article-card-img"
+                                alt="{{ recipe.name }}">
+                        {% else %}
+                            <img src="{% static 'icons/default-thumbnail.jpg' %}"
+                                class="article-card-img"
+                                alt="{{ recipe.name }}">
+                        {% endif %}
+
+                        <div class="article-card-body">
+                            <h5 class="card-title">
+                                {{ recipe.name }}
+                            </h5>
+
+                            <p class="text-muted small mb-0">
+                                {{ recipe.get_difficulty_display }}
+                                {% if recipe.total_time %}
+                                    • {{ recipe.total_time }} min
+                                {% endif %}
+                            </p>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p>{% trans "No recipes yet." %}</p>
+        {% endfor %}
+    </div>
+
+
+    <!-- Pagination (unchanged) -->
+    <div class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+
+            {% if page_obj.number > 3 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">1</a>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+                    {% if num == page_obj.number %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                        {{ page_obj.paginator.num_pages }}
+                    </a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}
