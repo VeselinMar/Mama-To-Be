@@ -1,0 +1,68 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <h1 class="mb-4">{{ recipe.name }}</h1>
+
+            {% if user.is_authenticated and user == recipe.author %}
+                <a href="{% url 'food:recipe-update' recipe.slug %}" class="btn btn-warning mb-3">
+                    Edit Recipe
+                </a>
+            {% endif %}
+
+            {% if recipe.thumbnail %}
+            <div class="mb-3">
+                <img src="{{ recipe.thumbnail.url }}"
+                    class="img-fluid rounded"
+                    alt="{{ recipe.name }}">
+            </div>
+            {% endif %}
+
+            <p class="text-muted mb-2">
+                {{ recipe.created_at|date:"F j, Y, g:i a" }}
+            </p>
+
+            <!-- Recipe meta -->
+            <div class="mb-3">
+                {% if recipe.recipe_type %}
+                    <span class="badge bg-secondary">{{ recipe.get_recipe_type_display }}</span>
+                {% endif %}
+                <span class="badge bg-info text-dark">{{ recipe.get_difficulty_display }}</span>
+
+                {% if recipe.total_time %}
+                    <span class="badge bg-light text-dark">
+                        ⏱ {{ recipe.total_time }} min
+                    </span>
+                {% endif %}
+                            <!-- Ingredients -->
+            {% if recipe.recipeingredient %}
+            <div class="mt-4">
+                <h4>Ingredients</h4>
+                <ul class="list-group">
+                    {% for ri in recipe.recipeingredient_set.all %}
+                        <li class="list-group-item">
+                            {{ ri.quantity }} {{ ri.unit }} {{ ri.ingredient.name }}
+                            {% if ri.note %}
+                                ({{ ri.note }})
+                            {% endif %}
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No ingredients listed.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            </div>
+
+            <!-- Recipe content -->
+            <div class="recipe-content">
+                {{ recipe.text|safe }}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -16,6 +16,7 @@ urlpatterns += i18n_patterns(
     path('profile/', include('mama_to_be.profiles.urls')),
     path('article/', include('mama_to_be.articles.urls')),
     path('forum/', include('mama_to_be.forum.urls')),
+    path('food/', include('mama_to_be.food.urls')),
 )
 
 if settings.DEBUG:

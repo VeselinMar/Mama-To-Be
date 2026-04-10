@@ -1,0 +1,212 @@
+{% extends 'common/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">{% block form_title %}{% endblock %}</h1>
+
+    <!-- RECIPE FORM -->
+<form id="recipe-form" method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <div class="mb-3">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="text-danger">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.text.label_tag }}
+                {{ form.text }}
+                {% if form.text.errors %}
+                    <div class="text-danger">{{ form.text.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    {{ form.recipe_type.label_tag }}
+                    {{ form.recipe_type }}
+                    {% if form.recipe_type.errors %}
+                        <div class="text-danger">{{ form.recipe_type.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    {{ form.difficulty.label_tag }}
+                    {{ form.difficulty }}
+                    {% if form.difficulty.errors %}
+                        <div class="text-danger">{{ form.difficulty.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    {{ form.tags.label_tag }}
+                    {{ form.tags }}
+                    {% if form.tags.errors %}
+                        <div class="text-danger">{{ form.tags.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form.prep_time.label_tag }}
+                    {{ form.prep_time }}
+                    {% if form.prep_time.errors %}
+                        <div class="text-danger">{{ form.prep_time.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.cook_time.label_tag }}
+                    {{ form.cook_time }}
+                    {% if form.cook_time.errors %}
+                        <div class="text-danger">{{ form.cook_time.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form.thumbnail.label_tag }}
+                {{ form.thumbnail }}
+                {% if form.thumbnail.errors %}
+                    <div class="text-danger">{{ form.thumbnail.errors }}</div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <!-- INGREDIENTS SECTION -->
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <h4 class="mb-3">Ingredients</h4>
+
+            <div id="ingredient-list" class="position-relative"></div>
+
+            <button type="button" class="btn btn-outline-primary mt-2" id="add-ingredient">
+                + Add ingredient
+            </button>
+
+            <!-- CRITICAL HIDDEN FIELD -->
+            <input type="hidden" name="ingredients_json" id="ingredients-json">
+
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="d-flex gap-2 mt-3">
+        {% block form_actions %}{% endblock %}
+    </div>
+
+    <!-- INGREDIENT TEMPLATE -->
+    <template id="ingredient-row-template">
+        <div class="ingredient-row border p-2 mb-2 d-flex gap-2 align-items-center position-relative">
+
+            <input type="text"
+                   class="form-control ingredient-search"
+                   placeholder="{% trans 'Search ingredient...' %}">
+
+            <input type="hidden" class="ingredient-id">
+
+            <input type="number"
+                   step="0.01"
+                   class="form-control quantity"
+                   placeholder="{% trans 'Qty' %}"
+                   style="max-width: 100px;">
+
+            <input type="text"
+                   class="form-control unit"
+                   placeholder="{% trans 'Unit' %}"
+                   style="max-width: 100px;">
+
+            <input type="text"
+                   class="form-control note"
+                   placeholder="{% trans 'Note' %}">
+
+            <button type="button"
+                    class="btn btn-sm btn-success create-ingredient"
+                    title="{% trans 'Create new ingredient' %}">+</button>
+
+            <button type="button"
+                    class="btn btn-sm btn-danger remove-row"
+                    title="{% trans 'Remove' %}">×</button>
+
+        </div>
+    </template>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="ingredientModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans "Create Ingredient" %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="modal-ingredient-name" class="form-label">{% trans "Name" %}</label>
+                        <input type="text" id="modal-ingredient-name" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="modal-protein" class="form-label">{% trans "Protein (per 100g)" %}</label>
+                        <input type="number" step="0.1" id="modal-protein" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="modal-carbs" class="form-label">{% trans "Carbs (per 100g)" %}</label>
+                        <input type="number" step="0.1" id="modal-carbs" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="modal-fat" class="form-label">{% trans "Fat (per 100g)" %}</label>
+                        <input type="number" step="0.1" id="modal-fat" class="form-control">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        {% trans "Cancel" %}
+                    </button>
+                    <button type="button" class="btn btn-primary" id="save-ingredient">
+                        {% trans "Create" %}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+
+<!-- TinyMCE -->
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'javascript/tinymce.js' %}"></script>
+
+<!-- Recipe Form Config -->
+<script>
+    const csrfToken = "{{ csrf_token }}";
+    const autocompleteUrl = "{% url 'food:ingredient-autocomplete' %}";
+    const createIngredientUrl = "{% url 'food:ingredient-create' %}";
+    
+    {% block existing_ingredients %}
+    // Default: no existing ingredients
+    window.EXISTING_INGREDIENTS = [];
+    {% endblock %}
+</script>
+
+<!-- Recipe Form Logic -->
+<script src="{% static 'javascript/recipe_form.js' %}"></script>
+
+{% endblock %}

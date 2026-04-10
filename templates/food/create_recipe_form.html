@@ -1,0 +1,15 @@
+{% extends 'food/_recipe_form_base.html' %}
+{% load i18n %}
+
+{% block form_title %}
+    {% trans "Create Recipe" %}
+{% endblock %}
+
+{% block form_actions %}
+    <button type="submit" class="btn btn-primary">
+        {% trans "Create Recipe" %}
+    </button>
+    <a href="{% url 'food:recipe-list' %}" class="btn btn-outline-secondary">
+        {% trans "Cancel" %}
+    </a>
+{% endblock %}

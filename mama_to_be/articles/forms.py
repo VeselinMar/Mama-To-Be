@@ -8,7 +8,7 @@ from parler.forms import TranslatableModelForm
 
 class ArticleForm(TranslatableModelForm):
     MAX_URLS = 10
-    MAX_URL_LENGTH = 500  # Limit URL length
+    MAX_URL_LENGTH = 500
 
     class Meta:
         model = Article
