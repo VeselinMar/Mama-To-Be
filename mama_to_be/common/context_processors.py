@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from django.conf import settings
 
 from mama_to_be.articles.choices import CategoryChoices
 from mama_to_be.articles.models import Article
@@ -25,4 +26,9 @@ def navbar_data(request):
 
     return {
         'navbar_categories': navbar,
+    }
+
+def public_languages(request):
+    return {
+        'PUBLIC_LANGUAGES': settings.PUBLIC_LANGUAGES
     }

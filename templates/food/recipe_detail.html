@@ -5,8 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
 
-            <h1 class="mb-4">{{ recipe.name }}</h1>
-
             {% if user.is_authenticated and user == recipe.author %}
                 <a href="{% url 'food:recipe-update' recipe.slug %}" class="btn btn-warning mb-3">
                     Edit Recipe
@@ -14,12 +12,15 @@
             {% endif %}
 
             {% if recipe.thumbnail %}
-            <div class="mb-3">
+            <div class="mb-4 position-relative">
                 <img src="{{ recipe.thumbnail.url }}"
-                    class="img-fluid rounded"
+                    class="w-100 rounded shadow-sm"
+                    style="max-height: 320px; object-fit: cover;"
                     alt="{{ recipe.name }}">
             </div>
             {% endif %}
+
+            <h1 class="mb-3">{{ recipe.name }}</h1>
 
             <p class="text-muted mb-2">
                 {{ recipe.created_at|date:"F j, Y, g:i a" }}

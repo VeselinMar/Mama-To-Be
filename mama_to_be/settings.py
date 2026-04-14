@@ -115,6 +115,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'mama_to_be.common.context_processors.navbar_data',
+                'mama_to_be.common.context_processors.public_languages',
             ],
         },
     },
@@ -199,6 +200,11 @@ PARLER_LANGUAGES = {
     }
 }
 
+PUBLIC_LANGUAGES = [
+    ('bg', 'Български'),
+    ('de', 'Deutsch'),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -229,10 +235,17 @@ TINYMCE_DEFAULT_CONFIG = {
     "image_advtab": True,
     "file_picker_types": "image",
     "images_upload_url": "/upload-image/",
-    "file_picker_callback": (
-        "function(callback, value, meta) { window.open('/file-picker/', '_blank'); }"
-    ),
-    "content_style": "body { font-family: Arial, Helvetica, sans-serif; font-size: 14px; }",
+    "image_class_list": [
+        {"title": "Float left", "value": "float-left"},
+        {"title": "Float right", "value": "float-right"},
+        {"title": "Centered", "value": "center-image"},
+    ],
+    "content_style": """
+        body { font-family: Arial, Helvetica, sans-serif; font-size: 14px; }
+        img.float-left { float: left; margin: 0 15px 10px 0; }
+        img.float-right { float: right; margin: 0 0 10px 15px; }
+        img.center-image { display: block; margin: 0 auto; }
+        """,
     "automatic_uploads": True,
     "images_reuse_filename": False,
 }
