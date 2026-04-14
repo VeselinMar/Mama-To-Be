@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.postgres.search import SearchVector
 
-from django.http import Http404, JsonResponse
+from django.http import Http404
 
 from django.core.files.storage import default_storage
 

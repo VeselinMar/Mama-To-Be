@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from django.views.decorators.http import require_POST
+from django.http import Http404, JsonResponse
 
 
 # Create your views here.
