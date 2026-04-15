@@ -1,7 +1,13 @@
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    padding: 20px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+
+  font-family: var(--font-base);
+  font-size: 16px;
+  line-height: 1.6;
+
+  padding: var(--space-lg);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
