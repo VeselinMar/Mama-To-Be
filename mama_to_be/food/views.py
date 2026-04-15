@@ -41,10 +41,8 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         
         with transaction.atomic():
-            # Save recipe
             self.object = form.save()
             
-            # Save ingredients
             for item in ingredients_data:
                 ingredient_id = item.get('ingredient_id')
                 if not ingredient_id:
@@ -94,7 +92,7 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
         with switch_language(self.object, self.request.LANGUAGE_CODE):
             context["slug"] = self.object.slug
 
-        # preload existing ingredients as JSON for frontend
+        # preload existing ingredients as JSON
         context["ingredients_json"] = json.dumps([
             {
                 "ingredient_id": ri.ingredient.id,

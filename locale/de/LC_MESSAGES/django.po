@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:35+0100\n"
+"POT-Creation-Date: 2026-04-15 09:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <LL@li.org>\n"
@@ -81,10 +81,6 @@ msgstr "Bildung"
 msgid "Relationship"
 msgstr "Beziehungen"
 
-#: mama_to_be/articles/choices.py:22 templates/common/navbar.html:26
-msgid "Helpful"
-msgstr "Hilfreich"
-
 #: mama_to_be/profiles/admin.py:21
 msgid "Permissions"
 msgstr "Berechtigungen"
@@ -92,6 +88,26 @@ msgstr "Berechtigungen"
 #: mama_to_be/profiles/admin.py:22
 msgid "Important Dates"
 msgstr "Wichtige Daten"
+
+#: templates/common/footer.html:8
+msgid "About"
+msgstr ""
+
+#: templates/common/footer.html:9
+msgid "Contact"
+msgstr ""
+
+#: templates/common/footer.html:12
+msgid "Impressum"
+msgstr ""
+
+#: templates/common/footer.html:13
+msgid "Privacy Policy"
+msgstr ""
+
+#: templates/common/footer.html:19
+msgid "All rights reserved."
+msgstr ""
 
 #: templates/common/home.html:9
 msgid "Welcome to Mom-To-Be!"
@@ -110,12 +126,11 @@ msgstr ""
 "Hier teile ich meine persönliche Reise ab dem Moment, in dem mir klar wurde, "
 "dass ich Mutter werden würde. Sie finden hier hilfreiche Informationen rund "
 "um das Thema Mutterschaft sowie meine Erfahrungen als Expat. Ich schreibe "
-"über das Leben mit einem kleinen Kind, über die Herausforderungen und kleinen "
-"Erfolge, über Freuden, Tränen und alles dazwischen. Viele Gedanken, die auf "
-"der digitalen Seite niedergeschrieben wurden ... und noch etwas mehr."
+"über das Leben mit einem kleinen Kind, über die Herausforderungen und "
+"kleinen Erfolge, über Freuden, Tränen und alles dazwischen. Viele Gedanken, "
+"die auf der digitalen Seite niedergeschrieben wurden ... und noch etwas mehr."
 
 #: templates/common/home.html:17
-#| msgid "Learn more about"
 msgid "Learn more about me"
 msgstr "Erfahren Sie mehr über mich"
 
@@ -163,49 +178,126 @@ msgstr "Durchstöbern Sie die neuesten Artikel!"
 msgid "View Recent Articles"
 msgstr "Neueste Artikel ansehen"
 
-#: templates/common/navbar.html:6
-msgid "Mom-To-Be"
-msgstr ""
-
-#: templates/common/navbar.html:10
+#: templates/common/navbar.html:14
 msgid "Toggle navigation"
 msgstr ""
 
-#: templates/common/navbar.html:19
+#: templates/common/navbar.html:23
 msgid "Home"
 msgstr "Start"
 
-#: templates/common/navbar.html:29
-msgid "Essential Information about"
-msgstr "Wichtige Informationen über"
-
-#: templates/common/navbar.html:44
+#: templates/common/navbar.html:49
 msgid "Articles"
-msgstr "Artikel"
+msgstr "Tagebuch"
 
-#: templates/common/navbar.html:47
+#: templates/common/navbar.html:52
 msgid "Learn more about"
 msgstr "Erfahren Sie mehr über"
 
-#: templates/common/navbar.html:63
-msgid "My Profile"
-msgstr ""
+#: templates/common/navbar.html:65 templates/food/recipe_list.html:8
+msgid "Recipes"
+msgstr "Rezepten"
 
-#: templates/common/navbar.html:66
-msgid "Create Article"
-msgstr ""
+#: templates/common/navbar.html:70
+msgid "Explore recipes"
+msgstr "Durchstöbern Sie die Rezepten!"
 
-#: templates/common/navbar.html:72
-msgid "Logout"
-msgstr ""
-
-#: templates/common/navbar.html:78
-msgid "Login"
-msgstr ""
+#: templates/common/navbar.html:74
+msgid "All Recipes"
+msgstr "Alle Rezepten"
 
 #: templates/common/navbar.html:85
+msgid "My Profile"
+msgstr "Mein Profil"
+
+#: templates/common/navbar.html:90 templates/food/_recipe_form_base.html:182
+msgid "Create"
+msgstr "Erstellen"
+
+#: templates/common/navbar.html:96
+msgid "Create Article"
+msgstr "Erstelle einen Artikel"
+
+#: templates/common/navbar.html:102 templates/food/create_recipe_form.html:5
+#: templates/food/create_recipe_form.html:10
+msgid "Create Recipe"
+msgstr "Erstellen einen Rezept"
+
+#: templates/common/navbar.html:112
+msgid "Logout"
+msgstr "Auslogen"
+
+#: templates/common/navbar.html:121
 msgid "Search"
+msgstr "Suchen"
+
+#: templates/food/_recipe_form_base.html:115
+msgid "Search ingredient..."
 msgstr ""
+
+#: templates/food/_recipe_form_base.html:122
+msgid "Qty"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:127
+msgid "Unit"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:132
+msgid "Note"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:136
+msgid "Create new ingredient"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:140
+msgid "Remove"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:151
+msgid "Create Ingredient"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:157
+msgid "Name"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:162
+msgid "Protein (per 100g)"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:167
+msgid "Carbs (per 100g)"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:172
+msgid "Fat (per 100g)"
+msgstr ""
+
+#: templates/food/_recipe_form_base.html:179
+#: templates/food/create_recipe_form.html:13
+#: templates/food/update_recipe_form.html:17
+msgid "Cancel"
+msgstr ""
+
+#: templates/food/recipe_list.html:43
+msgid "No recipes yet."
+msgstr ""
+
+#: templates/food/update_recipe_form.html:5
+msgid "Edit Recipe"
+msgstr ""
+
+#: templates/food/update_recipe_form.html:14
+msgid "Save Changes"
+msgstr ""
+
+#~ msgid "Helpful"
+#~ msgstr "Hilfreich"
+
+#~ msgid "Essential Information about"
+#~ msgstr "Wichtige Informationen über"
 
 #~ msgid ""
 #~ "Here I share my personal journey from the moment I found out I was going "
