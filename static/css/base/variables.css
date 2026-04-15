@@ -1,8 +1,68 @@
 :root {
-    --color-bg: #FFF4EC;
-    --color-text: #2F2F2F;
-    --color-primary: #E08C78;
-    --color-primary-hover: #D2959D;
+  /* ============================= */
+  /* COLOR SYSTEM */
+  /* ============================= */
 
-    --radius: 12px;
+  /* Base */
+  --color-bg: #FFF4EC;
+  --color-text: #2F2F2F;
+
+  /* Brand */
+  --color-primary: #FFB4A2;
+  --color-primary-hover: #D2959D;
+  --color-primary-soft: #ffe5dd;
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-light: #fffaf5;
+  --color-surface: #FFFDFB;
+
+  /* UI states / soft backgrounds */
+  --color-bg-soft: #FFF4EC;
+
+  /* Footer (semantic aliasing of base tokens) */
+  --color-footer-bg-start: var(--color-primary);
+  --color-footer-bg-end: #E08C78;
+  --color-footer-text: var(--color-light);
+  --color-footer-muted: rgba(255, 248, 240, 0.8);
+  --color-footer-border: rgba(255, 248, 240, 0.3);
+
+  /* ============================= */
+  /* TYPOGRAPHY */
+  /* ============================= */
+
+  --font-base: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Playfair Display', serif;
+
+  /* ============================= */
+  /* SHADOWS */
+  /* ============================= */
+
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-md: 0 8px 25px rgba(0,0,0,0.08);
+
+  /* ============================= */
+  /* BORDER RADIUS */
+  /* ============================= */
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-full: 30px;
+
+  /* ============================= */
+  /* SPACING SCALE */
+  /* ============================= */
+
+  --space-xs: 0.4rem;
+  --space-sm: 0.6rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+
+  /* ============================= */
+  /* ANIMATION */
+  /* ============================= */
+
+  --transition-fast: 0.3s ease;
+  --transition-base: 0.4s ease;
 }
