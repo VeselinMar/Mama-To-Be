@@ -85,7 +85,6 @@ class Recipe(TranslatableModel):
         null=True
     )
 
-    # Difficulty
     difficulty = models.CharField(
         max_length=10,
         choices=DifficultyChoices.choices,
