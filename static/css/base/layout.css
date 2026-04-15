@@ -1,0 +1,7 @@
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+}

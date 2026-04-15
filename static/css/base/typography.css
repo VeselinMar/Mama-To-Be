@@ -1,0 +1,17 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: #2F2F2F;
+    line-height: 1.2;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #E08C78;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #D2959D;
+}
