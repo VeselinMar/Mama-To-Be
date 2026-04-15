@@ -1,22 +1,27 @@
 {% load static i18n %}
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <!-- Navigation Links -->
-    <div class="footer-section nav-section">
-      <ul>
-        <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
-        <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
-      </ul>
-      <div class="legal-links">
-        <a href="{% url 'impressum' %}">{% trans "Impressum" %}</a> |
-        <a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a>
-      </div>
-    </div>
+  <footer class="site-footer">
+    <div class="footer-container">
 
-    <!-- Copyright -->
-    <div class="copyright">
-      &copy; {{ now|date:"Y" }} Mama-To-Be. {% trans "All rights reserved." %}
-    </div>
+  <!-- Navigation -->
+  <div class="footer__links">
+    <ul>
+      <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+      <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+    </ul>
+  </div>
+
+  <!-- Legal -->
+  <div class="footer__legal">
+    <a href="{% url 'impressum' %}">{% trans "Impressum" %}</a>
+    <span>|</span>
+    <a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer__copyright">
+    &copy; {{ now|date:"Y" }} Mama-To-Be. {% trans "All rights reserved." %}
+  </div>
+
   </div>
 </footer>
