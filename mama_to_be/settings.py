@@ -80,7 +80,6 @@ INSTALLED_APPS = [
     'mama_to_be.common',
     'mama_to_be.profiles',
     'mama_to_be.articles',
-    'mama_to_be.forum',
     'mama_to_be.food',
 
     'storages',
@@ -195,7 +194,7 @@ PARLER_LANGUAGES = {
         {'code': 'de'},
     ),
     'default': {
-        'fallbacks': ['en'],
+        'fallbacks': ['de'],
         'hide_untranslated': False,
     }
 }

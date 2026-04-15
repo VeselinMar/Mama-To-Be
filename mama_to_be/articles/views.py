@@ -150,7 +150,7 @@ class RecentArticlesView(ListView):
         articles_by_category = defaultdict(list)
 
         for article in articles:
-            category_enum = CategoryChoices(article.category)  # 🔥 convert string → enum
+            category_enum = CategoryChoices(article.category)
 
             if len(articles_by_category[category_enum]) < 3:
                 articles_by_category[category_enum].append(article)
