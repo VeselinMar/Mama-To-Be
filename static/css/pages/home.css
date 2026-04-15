@@ -1,7 +1,6 @@
 .main-content-wrapper {
     background: #FFF9F6;
     border-radius: 14px;
-    padding: 25px 15px;
     max-width: 1200px;
     margin: 20px auto;
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.05);
@@ -132,8 +131,6 @@
     }
 
     .main-content-wrapper {
-        padding: 20px 15px;
-        margin: 10px;
         border-radius: 10px;
     }
 

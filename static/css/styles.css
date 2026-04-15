@@ -1,7 +1,20 @@
-@import "./body.css";
-@import "./navbar.css";
-@import "./footer.css";
-@import "./article.css";
-@import "./list-article.css";
-@import "./home.css";
-@import "./recipe.css";
+/* Base */
+@import "./base/layout.css";
+@import "./base/typography.css";
+@import "./base/utilities.css";
+@import "./base/variables.css";
+
+/* Components */
+@import "./components/navbar.css";
+@import "./components/footer.css";
+@import "./components/button.css";
+@import "./components/card.css";
+
+
+/* Features */
+@import "./features/article.css";
+@import "./features/list-article.css";
+@import "./features/recipe.css";
+
+/* Pages */
+@import "./pages/home.css";
