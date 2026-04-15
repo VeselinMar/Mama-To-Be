@@ -1,17 +1,86 @@
+/* ============================= */
+/* HEADINGS */
+/* ============================= */
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    color: #2F2F2F;
-    line-height: 1.2;
-    margin-top: 1.2em;
-    margin-bottom: 0.5em;
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  line-height: 1.25;
+
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
 }
 
+/* Type scale (balanced & editorial) */
+
+h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* ============================= */
+/* PARAGRAPHS */
+/* ============================= */
+
+p {
+  margin-bottom: var(--space-md);
+  max-width: 65ch; /* improves readability */
+}
+
+/* ============================= */
+/* LINKS */
+/* ============================= */
+
 a {
-    color: #E08C78;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: var(--color-primary-hover);
+  text-decoration: none;
+
+  transition: 
+    color var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
 a:hover {
-    color: #D2959D;
+  color: var(--color-primary);
+  opacity: 0.9;
+}
+
+/* Optional: nicer inline link style */
+p a {
+  text-decoration: underline;
+  text-decoration-color: rgba(0,0,0,0.1);
+}
+
+p a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ============================= */
+/* SMALL TEXT */
+/* ============================= */
+
+small {
+  font-size: 0.85rem;
+  color: rgba(0,0,0,0.6);
 }

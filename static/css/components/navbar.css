@@ -6,7 +6,7 @@
   background: rgba(255, 180, 162, 0.9);
   backdrop-filter: blur(8px);
 
-  padding: var(--space-sm) 0;
+  padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-lg);
   margin: var(--space-sm);
 
@@ -46,10 +46,13 @@
 
 .navbar-nav .nav-link {
   color: var(--color-light) !important;
-  font-size: 1.35rem;
+
+  font-size: 1rem;
   font-weight: 500;
+
   margin: 0 var(--space-sm);
   position: relative;
+
   transition: color var(--transition-fast);
 }
 
@@ -102,22 +105,19 @@
 }
 
 .search-form button {
+  width: 40px;
+  height: 40px;
+
+  border-radius: var(--radius-full);
   background-color: var(--color-white);
   color: var(--color-primary);
-
-  border: none;
-  border-radius: var(--radius-full);
-
-  margin-left: var(--space-xs);
-  width: 38px;
-  height: 38px;
 
   transition: all var(--transition-fast);
 }
 
 .search-form button:hover {
   background-color: var(--color-primary-soft);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 /* ============================= */
@@ -137,11 +137,11 @@
 
 .custom-dropdown .dropdown-title {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 
-  color: #9C7B6E; /* could become token later */
+  color: var(--color-muted-text);
+
   margin-bottom: var(--space-sm);
-
   letter-spacing: 0.08rem;
 }
 
@@ -180,6 +180,8 @@
 
 .language-switcher .btn {
   background-color: var(--color-primary);
+  color: var(--color-white);
+
   border-radius: var(--radius-full);
   border: none;
 
@@ -190,7 +192,7 @@
 }
 
 .language-switcher .btn:hover {
-  background-color: var(--color-primary-soft);
+  background-color: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 
@@ -215,23 +217,25 @@
 
 @media (max-width: 991px) {
 
-  .navbar-collapse {
-    background-color: var(--color-primary);
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  padding: var(--space-sm) 0;
+}
 
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
+.navbar-collapse {
+  background-color: var(--color-primary);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+}
 
-    margin-top: var(--space-sm);
-  }
+.search-form {
+  margin-top: var(--space-md);
+  justify-content: center;
+}
 
-  .search-form {
-    margin-top: var(--space-md);
-    justify-content: center;
-  }
-
-  .language-switcher {
-    margin-top: var(--space-md);
-    text-align: center;
-  }
+.language-switcher {
+  margin-top: var(--space-md);
+  text-align: center;
+}
 
 }

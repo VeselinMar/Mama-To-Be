@@ -16,6 +16,7 @@
   --color-white: #ffffff;
   --color-light: #fffaf5;
   --color-surface: #FFFDFB;
+  --color-muted-text: #9C7B6E;
 
   /* UI states / soft backgrounds */
   --color-bg-soft: #FFF4EC;
@@ -31,6 +32,7 @@
   /* TYPOGRAPHY */
   /* ============================= */
 
+  --text-max-width: 65ch;
   --font-base: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-heading: 'Playfair Display', serif;
 
