@@ -90,10 +90,11 @@ class RecipeAdmin(TranslatableAdmin):
     ]
 
     fieldsets = (
+        ("Title", {"fields": ("name",)}),
+        ("Slug", {"fields": ("slug",)}),
+        ("Content", {"fields": ("text",)}),
         ("Basic Info", {"fields": ("difficulty",)}),
         ("Time", {"fields": ("prep_time", "cook_time")}),
-        ("Title", {"fields": ("name",)}),
-        ("Content", {"fields": ("text",)}),
         ("Tags", {"fields": ("tags",)}),
         ("Timestamps", {"fields": ("created_at", "updated_at")}),
     )
