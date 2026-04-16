@@ -2,43 +2,50 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        {% for category, articles in articles_by_category.items %}
-            <div class="col-12 mb-4">
-                <h2 class="h2">
-                    <a href="{% url 'articles:category-articles' category.value %}" class="category-link">
-                        {{ category.label }}
-                    </a>
-                </h3>
-            </div>
-            
-            <div class="row">
-                {% for article in articles %}
-                <div class="col-md-4 mb-4 text-center">
-                    <a href="{% url 'articles:article-detail' article.slug %}" class="article-card-link">
-                        <div class="card article-card">
-                            {% if article.thumbnail_url %}
-                                <img src="{{ article.thumbnail_url }}" class="article-card-img" alt="{{ article.title }}">
-                            {% elif article.thumbnail %}
-                                <img src="{{ article.thumbnail }}" class="article-card-img" alt="{{ article.title }}">
-                            {% else %}
-                                <img src="{% static 'icons/default-thumbnail.jpg' %}" class="article-card-img" alt="Default thumbnail">
-                            {% endif %}
-                            <div class="article-card-body">
-                                <h5 class="card-title">
-                                    {{ article.title }}
-                                </h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                    {% if forloop.counter == 3 %}
-                        <div class="w-100"></div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+
+<div class="container py-5">
+
+  <div class="row">
+
+    {% for category, articles in articles_by_category.items %}
+
+      <!-- CATEGORY HEADER -->
+      <div class="col-12 mb-4">
+
+        <h2>
+          <a href="{% url 'articles:category-articles' category.value %}"
+             class="category-link">
+            {{ category.label }}
+          </a>
+        </h2>
+
+      </div>
+
+      <!-- ARTICLES GRID -->
+      <div class="row g-4">
+
+        {% for article in articles %}
+
+          <div class="col-12 col-md-4">
+
+            {% include "articles/components/article_card.html" with article=article %}
+
+          </div>
+
+        {% empty %}
+
+          <div class="col-12">
+            <p class="text-muted">No recent articles.</p>
+          </div>
+
         {% endfor %}
-    </div>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
 </div>
+
 {% endblock %}
