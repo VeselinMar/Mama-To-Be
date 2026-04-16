@@ -29,6 +29,7 @@ EXPOSE 10000
 
 # Entry point: run migrations, collect static, then start Gunicorn
 CMD sh -c "\
+    mkdir -p staticfiles && \
     python manage.py migrate --noinput && \
     python manage.py compilemessages && \
     python manage.py collectstatic --noinput && \
