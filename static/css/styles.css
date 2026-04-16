@@ -17,3 +17,5 @@
 
 /* Pages */
 @import "./pages/home.css";
+@import "./pages/recipe-detail.css";
+@import "./pages/article-detail.css";
