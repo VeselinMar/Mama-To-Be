@@ -72,3 +72,73 @@ button,
   font-weight: 500;
   letter-spacing: 0.3px;
 }
+
+.share-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+}
+
+.share-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #333;
+    transition: transform 0.25s ease, fill 0.25s ease;
+}
+
+/* Hover animation */
+.share-btn:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.share-btn:hover svg {
+    transform: scale(1.2);
+}
+
+/* Platform colors on hover */
+.share-btn[data-platform="facebook"]:hover { background: #1877f2; }
+.share-btn[data-platform="whatsapp"]:hover { background: #25d366; }
+.share-btn[data-platform="telegram"]:hover { background: #0088cc; }
+.share-btn[data-platform="viber"]:hover { background: #7360f2; }
+.share-btn[data-platform="copy"]:hover { background: #6c757d; }
+.share-btn[data-platform="native"]:hover { background: #333; }
+
+.share-btn:hover svg {
+    fill: white;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: 120%;
+    background: #222;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.share-btn:hover .tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
