@@ -1,9 +1,9 @@
 {% load static %}
 
 <a href="{% url 'articles:article-detail' article.slug %}"
-   class="article-card-link text-decoration-none">
+   class="text-decoration-none">
 
-  <div class="card article-card h-100">
+  <div class="article-card">
 
     {% if article.thumbnail_url %}
       <img src="{{ article.thumbnail_url }}"
@@ -23,9 +23,9 @@
 
     <div class="article-card-body">
 
-      <h3 class="article-title-link">
+      <span class="article-title-link">
         {{ article.title }}
-      </h3>
+      </span>
 
     </div>
 
