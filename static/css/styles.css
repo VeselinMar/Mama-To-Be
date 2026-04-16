@@ -13,7 +13,7 @@
 
 /* Features */
 @import "./features/list-cards.css";
-@import "./features/recipe.css";
+@import "./features/recipe-create.css";
 
 /* Pages */
 @import "./pages/home.css";
