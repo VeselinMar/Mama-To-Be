@@ -36,13 +36,6 @@
 
 /* Meta row */
 
-.recipe-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
 .recipe-tag {
   font-size: 0.8rem;
   padding: 0.3rem 0.7rem;
