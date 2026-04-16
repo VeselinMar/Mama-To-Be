@@ -108,7 +108,7 @@ class Recipe(TranslatableModel):
         related_name='recipes'
     )
 
-    servings = models.PositiveIntegerField(default=1)
+    servings = models.PositiveIntegerField(default=4)
 
     # Ratings
     avg_rating = models.FloatField(default=0)

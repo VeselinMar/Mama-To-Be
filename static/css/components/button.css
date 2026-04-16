@@ -80,65 +80,108 @@ button,
 }
 
 .share-btn {
-    position: relative;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: none;
+    width: 44px;
+    height: 44px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+
+    border-radius: 50%;
+
     border: none;
-    transition: all 0.25s ease;
+
+    background: rgba(0,0,0,0.03);
+
+    cursor: pointer;
+
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .share-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: #333;
-    transition: transform 0.25s ease, fill 0.25s ease;
+    width: 22px;
+    height: 22px;
+
+    display: block;
+
+    fill: currentColor;
 }
+
+.share-btn[data-platform="facebook"] { color: #1877f2; }
+.share-btn[data-platform="whatsapp"] { color: #25d366; }
+.share-btn[data-platform="telegram"] { color: #0088cc; }
+.share-btn[data-platform="viber"] { color: #7360f2; }
+.share-btn[data-platform="copy"] { color: #6c757d; }
+.share-btn[data-platform="native"] { color: #333; }
 
 /* Hover animation */
 .share-btn:hover {
-    transform: translateY(-4px) scale(1.08);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    background: rgba(0,0,0,0.06);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
 }
 
 .share-btn:hover svg {
-    transform: scale(1.2);
+    transform: scale(1.12);
 }
 
 /* Platform colors on hover */
-.share-btn[data-platform="facebook"]:hover { background: #1877f2; }
-.share-btn[data-platform="whatsapp"]:hover { background: #25d366; }
-.share-btn[data-platform="telegram"]:hover { background: #0088cc; }
-.share-btn[data-platform="viber"]:hover { background: #7360f2; }
-.share-btn[data-platform="copy"]:hover { background: #6c757d; }
-.share-btn[data-platform="native"]:hover { background: #333; }
-
-.share-btn:hover svg {
-    fill: white;
+.share-btn[data-platform="facebook"]:hover {
+    box-shadow: 0 8px 18px rgba(24, 119, 242, 0.25);
 }
 
+.share-btn[data-platform="whatsapp"]:hover {
+    box-shadow: 0 8px 18px rgba(37, 211, 102, 0.25);
+}
+
+.share-btn[data-platform="telegram"]:hover {
+    box-shadow: 0 8px 18px rgba(0, 136, 204, 0.25);
+}
+
+.share-btn[data-platform="viber"]:hover {
+    box-shadow: 0 8px 18px rgba(115, 96, 242, 0.25);
+}
+
+.share-btn:active {
+    transform: translateY(0px) scale(0.97);
+}
 /* Tooltip */
 .tooltip {
     position: absolute;
-    bottom: 120%;
-    background: #222;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+
+    background: rgba(0,0,0,0.85);
     color: #fff;
-    padding: 4px 8px;
-    font-size: 12px;
+
+    font-size: 11px;
+    padding: 4px 7px;
     border-radius: 4px;
+
     white-space: nowrap;
+
     opacity: 0;
-    transform: translateY(5px);
-    transition: all 0.2s ease;
     pointer-events: none;
+
+    transition: opacity 160ms ease, transform 160ms ease;
 }
 
 .share-btn:hover .tooltip {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
+}
+
+.servings-control button {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.15s ease;
+}
+
+.servings-control button:hover {
+    background: rgba(0,0,0,0.05);
 }
