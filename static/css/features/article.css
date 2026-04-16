@@ -1,12 +1,26 @@
-.card, .content-section {
-    background-color: #FFF8F0;
-    border: 1px solid #F1D1B5;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+/* ============================= */
+/* ARTICLE CONTAINER */
+/* ============================= */
+
+.card,
+.content-section {
+  background-color: var(--color-light);
+  border: 1px solid rgba(0,0,0,0.08);
+
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+
+  margin-bottom: var(--space-md);
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+/* ============================= */
+/* ARTICLE IMAGES ONLY */
+/* ============================= */
+
+.content-section img,
+.card img {
+  max-width: 100%;
+  height: auto;
+
+  border-radius: var(--radius-sm);
 }
