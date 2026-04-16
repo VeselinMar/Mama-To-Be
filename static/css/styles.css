@@ -12,8 +12,7 @@
 
 
 /* Features */
-@import "./features/article.css";
-@import "./features/list-article.css";
+@import "./features/list-cards.css";
 @import "./features/recipe.css";
 
 /* Pages */
