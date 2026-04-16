@@ -2,7 +2,6 @@
 /* ARTICLE CONTAINER */
 /* ============================= */
 
-.card,
 .content-section {
   background-color: var(--color-light);
   border: 1px solid rgba(0,0,0,0.08);
@@ -13,12 +12,12 @@
   margin-bottom: var(--space-md);
 }
 
+
 /* ============================= */
 /* ARTICLE IMAGES ONLY */
 /* ============================= */
 
-.content-section img,
-.card img {
+.content-section img {
   max-width: 100%;
   height: auto;
 
