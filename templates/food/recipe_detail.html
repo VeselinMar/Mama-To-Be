@@ -14,10 +14,10 @@
 <meta property="og:description" content="{{ recipe.text|striptags|truncatechars:160 }}">
 <meta property="og:site_name" content="Mom-To-Be">
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ recipe.name }}">
 <meta name="twitter:description" content="{{ recipe.text|striptags|truncatechars:160 }}">
+
 {% if recipe.thumbnail %}
 <meta name="twitter:image" content="{{ request.build_absolute_uri }}{{ recipe.thumbnail.url }}">
 {% endif %}
@@ -35,8 +35,7 @@
 
     {% if recipe.thumbnail %}
     <div class="recipe-media">
-        <img src="{{ recipe.thumbnail.url }}"
-             alt="{{ recipe.name }}">
+        <img src="{{ recipe.thumbnail.url }}" alt="{{ recipe.name }}">
     </div>
     {% endif %}
 
@@ -66,101 +65,175 @@
         </div>
     </header>
 
-    {% if recipe.recipeingredient %}
-    <section class="recipe-section">
-        <h4>Ingredients</h4>
+    {# INGREDIENT-BASED SECTION  #}
 
-        <ul class="ingredient-list">
-            {% for ri in recipe.recipeingredient_set.all %}
-                <li>
-                    <span class="ingredient-qty">
-                        {{ ri.quantity }} {{ ri.unit }}
-                    </span>
-                    <span class="ingredient-name">
-                        {{ ri.ingredient.name }}
-                    </span>
+    {% if recipe.recipeingredient_set.exists %}
 
-                    {% if ri.note %}
-                        <span class="ingredient-note">
-                            ({{ ri.note }})
-                        </span>
-                    {% endif %}
-                </li>
-            {% empty %}
-                <li class="ingredient-empty">
-                    No ingredients listed.
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
+    <div class="recipe-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="recipe-main">
+
+            <!-- SERVINGS CONTROL -->
+            <section class="recipe-section soft-card">
+                <h4>Servings</h4>
+
+                <div class="servings-control" data-servings="{{ recipe.servings }}">
+                    
+                    <button type="button" id="servings-decrease" aria-label="Decrease servings">
+                        −
+                    </button>
+
+                    <div class="servings-display">
+                        <span id="servings-value">{{ recipe.servings }}</span>
+                    </div>
+
+                    <button type="button" id="servings-increase" aria-label="Increase servings">
+                        +
+                    </button>
+
+                </div>
+            </section>
+
+            <!-- INGREDIENTS -->
+            <section class="recipe-section soft-card nutrition-card">
+                <h4>Ingredients</h4>
+
+                <ul class="ingredient-list"
+                    data-base-servings="{{ recipe.servings }}">
+
+                    {% for ri in recipe.recipeingredient_set.all %}
+                        <li class="ingredient-item"
+                            data-base-qty="{{ ri.quantity }}"
+                            data-unit="{{ ri.unit }}">
+
+                            <span class="ingredient-qty">
+                                <span class="qty-value">{{ ri.quantity }}</span>
+                                {{ ri.unit }}
+                            </span>
+
+                            <span class="ingredient-name">
+                                {{ ri.ingredient.name }}
+                            </span>
+
+                            {% if ri.note %}
+                                <span class="ingredient-note">
+                                    ({{ ri.note }})
+                                </span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <aside class="recipe-aside">
+
+            <!-- NUTRITION -->
+            <section class="recipe-section nutrition-card">
+                <h4>Nutrition (per serving)</h4>
+
+                <div class="nutrition-grid">
+
+                    <div class="nutrition-item">
+                        <strong id="calories">{{ recipe.calories_per_serving }}</strong>
+                        <span>kcal</span>
+                    </div>
+
+                    <div class="nutrition-item">
+                        <strong id="protein">{{ recipe.total_macros.protein|floatformat:1 }}</strong>
+                        <span>protein</span>
+                    </div>
+
+                    <div class="nutrition-item">
+                        <strong id="carbs">{{ recipe.total_macros.carbs|floatformat:1 }}</strong>
+                        <span>carbs</span>
+                    </div>
+
+                    <div class="nutrition-item">
+                        <strong id="fat">{{ recipe.total_macros.fat|floatformat:1 }}</strong>
+                        <span>fat</span>
+                    </div>
+
+                </div>
+            </section>
+
+        </aside>
+
+    </div>
+
     {% endif %}
 
+    <!-- RECIPE TEXT (always shown) -->
     <section class="recipe-content">
         {{ recipe.text|safe }}
     </section>
 
-    <!-- SHARE SECTION -->
+    <!-- SHARE -->
     <div class="share-buttons"
-     data-url="{{ request.build_absolute_uri }}"
-     data-title="{{ recipe.name|escapejs }}">
+         data-url="{{ request.build_absolute_uri }}"
+         data-title="{{ recipe.name|escapejs }}">
 
-    <!-- Facebook -->
-    <a class="share-btn" data-platform="facebook"
-       href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
-       target="_blank" rel="noopener"
-       aria-label="Share on Facebook">
-        <span class="tooltip">Facebook</span>
-        <svg viewBox="0 0 24 24">
-            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12"/>
-        </svg>
-    </a>
+        <!-- Facebook -->
+        <a class="share-btn" data-platform="facebook"
+           href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
+           target="_blank" rel="noopener">
+            <span class="tooltip">Facebook</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.8c0-2.3 1.4-3.6 3.5-3.6 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12"/>
+            </svg>
+        </a>
 
-    <!-- WhatsApp -->
-    <a class="share-btn" data-platform="whatsapp"
-       href="https://wa.me/?text={{ request.build_absolute_uri|urlencode }}"
-       target="_blank"
-       aria-label="Share on WhatsApp">
-        <span class="tooltip">WhatsApp</span>
-        <svg viewBox="0 0 24 24">
-            <path d="M20 4a10 10 0 0 0-16.5 11.5L2 22l6.7-1.7A10 10 0 1 0 20 4zM12 20a8 8 0 0 1-4.1-1.1l-.3-.2-4 .9.9-3.9-.2-.3A8 8 0 1 1 12 20zm4.3-6.1c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.6.1s-.7.7-.8.8c-.1.1-.3.2-.5.1s-1-.4-2-1.2c-.7-.6-1.2-1.3-1.3-1.5s0-.3.1-.4c.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4s0-.3 0-.4c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 2 .8 2.4.9 2.6c.1.2 1.6 2.5 3.9 3.5.5.2.9.4 1.2.5.5.2 1 .2 1.3.1.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1z"/>
-        </svg>
-    </a>
+        <!-- WhatsApp -->
+        <a class="share-btn" data-platform="whatsapp"
+           href="https://wa.me/?text={{ request.build_absolute_uri|urlencode }}">
+            <span class="tooltip">WhatsApp</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M20 4a10 10 0 0 0-16.5 11.5L2 22l6.7-1.7A10 10 0 1 0 20 4z"/>
+            </svg>
+        </a>
 
-    <!-- Telegram -->
-    <a class="share-btn" data-platform="telegram"
-       href="https://t.me/share/url?url={{ request.build_absolute_uri|urlencode }}"
-       target="_blank">
-        <span class="tooltip">Telegram</span>
-        <svg viewBox="0 0 24 24">
-            <path d="M9.9 16.2l-.4 4c.6 0 .9-.3 1.2-.6l2.9-2.8 6 4.4c1.1.6 1.9.3 2.2-1l4-18.6c.4-1.7-.6-2.4-1.7-2l-23 8.8c-1.6.6-1.6 1.5-.3 1.9l5.9 1.8L20.7 6c.6-.4 1.2-.2.7.2"/>
-        </svg>
-    </a>
+        <!-- Telegram -->
+        <a class="share-btn" data-platform="telegram"
+           href="https://t.me/share/url?url={{ request.build_absolute_uri|urlencode }}">
+            <span class="tooltip">Telegram</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M9.9 16.2l-.4 4c.6 0 .9-.3 1.2-.6l2.9-2.8 6 4.4c1.1.6 1.9.3 2.2-1l4-18.6c.4-1.7-.6-2.4-1.7-2l-23 8.8c-1.6.6-1.6 1.5-.3 1.9l5.9 1.8L20.7 6c.6-.4 1.2-.2.7.2"/>
+            </svg>
+        </a>
 
-    <!-- Viber -->
-    <a class="share-btn" data-platform="viber"
-       href="viber://forward?text={{ request.build_absolute_uri|urlencode }}">
-        <span class="tooltip">Viber</span>
-        <svg viewBox="0 0 24 24">
-            <path d="M12 2C6.5 2 2 5.7 2 10.3c0 2.6 1.4 4.9 3.6 6.4L5 22l4.2-2.2c.9.2 1.8.3 2.8.3 5.5 0 10-3.7 10-8.3S17.5 2 12 2zm5.1 12.2c-.2.5-1.2 1-1.6 1.1-.4.1-.8.1-1.3 0-3.3-.9-5.4-3.8-5.6-4.1-.2-.3-.9-1.2-.9-2.3s.6-1.7.8-2c.2-.2.5-.3.8-.3h.6c.2 0 .4 0 .5.4.2.5.6 1.7.6 1.8.1.1.1.3 0 .4s-.2.3-.3.4c-.1.1-.2.3-.1.4.1.2.5.9 1.2 1.5.9.8 1.7 1 2 .9.2 0 .3-.2.5-.4.1-.2.3-.5.4-.7.1-.2.3-.2.5-.1.2.1 1.3.6 1.5.7.2.1.3.1.4.2.1.1.1.6-.1 1.1z"/>
-        </svg>
-    </a>
+        <!-- Viber -->
+        <a class="share-btn" data-platform="viber"
+           href="viber://forward?text={{ request.build_absolute_uri|urlencode }}">
+            <span class="tooltip">Viber</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.5 2 2 5.7 2 10.3c0 2.6 1.4 4.9 3.6 6.4L5 22l4.2-2.2c.9.2 1.8.3 2.8.3 5.5 0 10-3.7 10-8.3S17.5 2 12 2z"/>
+            </svg>
+        </a>
 
-    <!-- Copy -->
-    <button class="share-btn" id="copy-link" data-platform="copy" type="button">
-        <span class="tooltip">Copy</span>
-        <svg viewBox="0 0 24 24">
-            <path d="M16 1H4C2.9 1 2 1.9 2 3v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2z"/>
-        </svg>
-    </button>
+        <!-- Copy -->
+        <button class="share-btn" id="copy-link" type="button">
+            <span class="tooltip">Copy</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M16 1H4C2.9 1 2 1.9 2 3v12h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2z"/>
+            </svg>
+        </button>
 
-    <!-- Native -->
-    <button class="share-btn" id="native-share" data-platform="native" type="button">
-        <span class="tooltip">Share</span>
-        <svg viewBox="0 0 24 24">
-            <path d="M18 16.1c-.8 0-1.5.3-2 .8L8.9 13c.1-.3.1-.6.1-.9s0-.6-.1-.9l7-3.9c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3S19.7 2 18 2s-3 1.3-3 3c0 .3 0 .6.1.9l-7 3.9C7.6 9.3 6.9 9 6 9 4.3 9 3 10.3 3 12s1.3 3 3 3c.9 0 1.6-.3 2.1-.8l7.1 3.9c0 .3-.1.5-.1.8 0 1.7 1.3 3 3 3s3-1.3 3-3-1.3-3-3-3z"/>
-        </svg>
-    </button>
+        <!-- Native -->
+        <button class="share-btn" id="native-share" type="button">
+            <span class="tooltip">Share</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M18 16.1c-.8 0-1.5.3-2 .8L8.9 13c.1-.3.1-.6.1-.9s0-.6-.1-.9l7-3.9c.5.5 1.2.8 2 .8 1.7 0 3-1.3 3-3S19.7 2 18 2s-3 1.3-3 3c0 .3 0 .6.1.9l-7 3.9C7.6 9.3 6.9 9 6 9 4.3 9 3 10.3 3 12s1.3 3 3 3c.9 0 1.6-.3 2.1-.8l7.1 3.9c0 .3-.1.5-.1.8 0 1.7 1.3 3 3 3s3-1.3 3-3-1.3-3-3-3z"/>
+            </svg>
+        </button>
+
+    </div>
+
 </div>
-</div>
+
 <script src="{% static 'javascript/recipe-share.js' %}"></script>
+<script src="{% static 'javascript/recipe-servings.js' %}"></script>
+
 {% endblock %}

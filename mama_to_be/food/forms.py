@@ -12,6 +12,7 @@ class RecipeForm(TranslatableModelForm):
             'recipe_type',
             'cook_time',
             'prep_time',
+            'servings',
             'difficulty',
             'tags',
             'thumbnail',
@@ -38,6 +39,12 @@ class RecipeForm(TranslatableModelForm):
             'cook_time': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Minutes'
+            }),
+            'servings': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Servings',
+                'min': 1,
+                'step': 1
             }),
             'tags': forms.CheckboxSelectMultiple(),
             'thumbnail': forms.ClearableFileInput(attrs={
