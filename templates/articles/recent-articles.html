@@ -22,24 +22,20 @@
       </div>
 
       <!-- ARTICLES GRID -->
-      <div class="row g-4">
+      <div class="col-12">
+        <div class="row g-4">
 
-        {% for article in articles %}
+          {% for article in articles %}
+            <div class="col-12 col-md-4">
+              {% include "articles/components/article_card.html" with article=article %}
+            </div>
+          {% empty %}
+            <div class="col-12">
+              <p class="text-muted">No recent articles.</p>
+            </div>
+          {% endfor %}
 
-          <div class="col-12 col-md-4">
-
-            {% include "articles/components/article_card.html" with article=article %}
-
-          </div>
-
-        {% empty %}
-
-          <div class="col-12">
-            <p class="text-muted">No recent articles.</p>
-          </div>
-
-        {% endfor %}
-
+        </div>
       </div>
 
     {% endfor %}
