@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-15 16:15+0200\n"
+"POT-Creation-Date: 2026-04-17 14:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bulgarian <LL@li.org>\n"
@@ -208,7 +208,7 @@ msgstr "Всички рецепти"
 msgid "My Profile"
 msgstr "Моят профил"
 
-#: templates/common/navbar.html:86 templates/food/_recipe_form_base.html:182
+#: templates/common/navbar.html:86 templates/food/_recipe_form_base.html:192
 msgid "Create"
 msgstr "Създай"
 
@@ -229,57 +229,77 @@ msgstr "Изход"
 msgid "Search"
 msgstr "Търсене"
 
-#: templates/food/_recipe_form_base.html:115
+#: templates/food/_recipe_form_base.html:125
 msgid "Search ingredient..."
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:122
+#: templates/food/_recipe_form_base.html:132
 msgid "Qty"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:127
+#: templates/food/_recipe_form_base.html:137
 msgid "Unit"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:132
+#: templates/food/_recipe_form_base.html:142
 msgid "Note"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:136
+#: templates/food/_recipe_form_base.html:146
 msgid "Create new ingredient"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:140
+#: templates/food/_recipe_form_base.html:150
 msgid "Remove"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:151
+#: templates/food/_recipe_form_base.html:161
 msgid "Create Ingredient"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:157
+#: templates/food/_recipe_form_base.html:167
 msgid "Name"
 msgstr ""
 
-#: templates/food/_recipe_form_base.html:162
+#: templates/food/_recipe_form_base.html:172
 msgid "Protein (per 100g)"
 msgstr "Протеини (на 100г)"
 
-#: templates/food/_recipe_form_base.html:167
+#: templates/food/_recipe_form_base.html:177
 msgid "Carbs (per 100g)"
 msgstr "Въглехидрати (на 100г)"
 
-#: templates/food/_recipe_form_base.html:172
+#: templates/food/_recipe_form_base.html:182
 msgid "Fat (per 100g)"
 msgstr "Мазнини (на 100г)"
 
-#: templates/food/_recipe_form_base.html:179
+#: templates/food/_recipe_form_base.html:189
 #: templates/food/create_recipe_form.html:13
 #: templates/food/update_recipe_form.html:17
 msgid "Cancel"
 msgstr ""
 
-#: templates/food/recipe_list.html:43
+#: templates/food/recipe_detail.html:80
+msgid "SERVINGS"
+msgstr "ПОРЦИИ"
+
+#: templates/food/recipe_detail.html:101
+msgid "INGREDIENTS"
+msgstr "СЪСТАВКИ"
+
+#: templates/food/recipe_detail.html:148
+msgid "protein"
+msgstr "протеин"
+
+#: templates/food/recipe_detail.html:153
+msgid "carbs"
+msgstr "въглехидрати"
+
+#: templates/food/recipe_detail.html:158
+msgid "fat"
+msgstr "мазнини"
+
+#: templates/food/recipe_list.html:53
 msgid "No recipes yet."
 msgstr ""
 
