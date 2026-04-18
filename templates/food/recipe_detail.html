@@ -1,5 +1,6 @@
 {% extends 'common/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block meta %}
 
@@ -48,9 +49,9 @@
 
         <div class="recipe-meta">
             {% if recipe.recipe_type %}
-                <span class="recipe-tag">
-                    {{ recipe.get_recipe_type_display }}
-                </span>
+            <span class="recipe-tag">
+                {{ recipe.get_recipe_type_display }}
+            </span>
             {% endif %}
 
             <span class="recipe-tag recipe-tag--soft">
@@ -76,7 +77,7 @@
 
             <!-- SERVINGS CONTROL -->
             <section class="recipe-section soft-card">
-                <h4>Servings</h4>
+                <h4>{% trans "SERVINGS" %}</h4>
 
                 <div class="servings-control" data-servings="{{ recipe.servings }}">
                     
@@ -97,7 +98,7 @@
 
             <!-- INGREDIENTS -->
             <section class="recipe-section soft-card nutrition-card">
-                <h4>Ingredients</h4>
+                <h4>{% trans "INGREDIENTS" %}</h4>
 
                 <ul class="ingredient-list"
                     data-base-servings="{{ recipe.servings }}">
@@ -144,17 +145,17 @@
 
                     <div class="nutrition-item">
                         <strong id="protein">{{ recipe.total_macros.protein|floatformat:1 }}</strong>
-                        <span>protein</span>
+                        <span>{% trans "protein" %}</span>
                     </div>
 
                     <div class="nutrition-item">
                         <strong id="carbs">{{ recipe.total_macros.carbs|floatformat:1 }}</strong>
-                        <span>carbs</span>
+                        <span>{% trans "carbs" %}</span>
                     </div>
 
                     <div class="nutrition-item">
                         <strong id="fat">{{ recipe.total_macros.fat|floatformat:1 }}</strong>
-                        <span>fat</span>
+                        <span>{% trans "fat" %}</span>
                     </div>
 
                 </div>
