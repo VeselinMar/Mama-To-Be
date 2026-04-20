@@ -3,6 +3,7 @@ from parler.admin import TranslatableAdmin
 
 from .models import (
     Ingredient,
+    IngredientTranslation,
     Recipe,
     RecipeIngredient,
     RecipeInteraction,
@@ -15,12 +16,22 @@ from ..common.models import Tag
 # -------------------
 # INGREDIENT
 # -------------------
+
+class IngredientTranslationInline(admin.TabularInline):
+    model = IngredientTranslation
+    extra = 1
+    fields = ("language_code", "name")
+
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ("name", "protein", "carbs", "fat", "calories")
     search_fields = ("name",)
-    # Only actual model fields
     list_filter = ("protein", "carbs", "fat")
+
+    inlines = [IngredientTranslationInline]
+    # def get_queryset(self, request):
+    #     qs = super().get_queryset(request)
+    #     return qs.prefetch_related("translations")
 
 
 # -------------------
