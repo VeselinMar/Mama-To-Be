@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             row.querySelector(".ingredient-search").value = data.name || "";
             row.querySelector(".ingredient-id").value = id || "";
             row.querySelector(".quantity").value = data.quantity || "";
-            row.querySelector(".unit").value = data.unit || "";
+            row.querySelector(".unit").value = "g";
             row.querySelector(".note").value = data.note || "";
 
         }

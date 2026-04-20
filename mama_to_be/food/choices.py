@@ -27,3 +27,22 @@ class DifficultyChoices(models.TextChoices):
     EASY = "easy", "Easy"
     MEDIUM = "medium", "Medium"
     HARD  = "hard", "Hard"
+
+class UnitChoices(models.TextChoices):
+    # Mass
+    GRAM = "g", "Gram (g)"
+    KILOGRAM = "kg", "Kilogram (kg)"
+
+    # Volume
+    MILLILITER = "ml", "Milliliter (ml)"
+    LITER = "l", "Liter (l)"
+    CUP = "cup", "Cup"
+    TABLESPOON = "tbsp", "Tablespoon"
+    TEASPOON = "tsp", "Teaspoon"
+
+    # Count / informal
+    PIECE = "pc", "Piece"
+    PINCH = "pinch", "Pinch"
+    DASH = "dash", "Dash"
+    CLOVE = "clove", "Clove"
+    SLICE = "slice", "Slice"

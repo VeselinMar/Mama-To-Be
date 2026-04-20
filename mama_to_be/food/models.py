@@ -2,13 +2,14 @@ import uuid
 from django.db import models
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
+from django.utils.translation import get_language
 from tinymce.models import HTMLField
 from parler.models import TranslatableModel, TranslatedFields, TranslatableManager
 from parler.utils.context import switch_language
 from slugify import slugify
 
-from .choices import AllergenChoices, RecipeType, DifficultyChoices
-from .managers import RecipeQuerySet  # Assuming you have a custom queryset
+from .choices import AllergenChoices, RecipeType, DifficultyChoices, UnitChoices
+from .managers import RecipeQuerySet 
 from ..common.models import Tag
 from mama_to_be.common.utility import process_image_to_webp
 
@@ -47,6 +48,30 @@ class Ingredient(models.Model):
 
     class Meta:
         ordering = ["name"]
+
+    def get_name(self):
+        lang = get_language()
+
+        translation = next(
+            (t for t in self.translations.all() if t.language_code == lang),
+            None
+        )
+
+        return translation.name if translation else self.name
+
+class IngredientTranslation(models.Model):
+    ingredient = models.ForeignKey(
+        Ingredient,
+        on_delete=models.CASCADE,
+        related_name="translations"
+    )
+    language_code = models.CharField(
+        max_length=10,
+        choices=settings.LANGUAGES)
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = ("ingredient", "language_code")
 
 
 # -------------------
@@ -114,38 +139,72 @@ class Recipe(TranslatableModel):
     avg_rating = models.FloatField(default=0)
     rating_count = models.IntegerField(default=0)
 
-    # Use TranslatableManager with custom queryset (if you have one)
-    # If you don't have RecipeQuerySet, use: objects = TranslatableManager()
     objects = TranslatableManager.from_queryset(RecipeQuerySet)()
 
     class Meta:
         ordering = ['-created_at']
 
-    def _convert_to_grams(self, quantity, unit):
+    def _convert_to_grams(self, quantity, unit, ingredient=None):
+        """
+        Converts a given quantity + unit into grams.
+        Uses ingredient density for volume-based units.
+
+        Returns 0 if conversion is not possible.
+        """
+
         if not quantity:
             return 0
 
         if not unit:
-            return quantity
+            return quantity  # assume already grams
 
-        unit = unit.lower()
+        unit = unit.lower().strip()
 
-        conversions = {
-            "g": 1,
-            "gram": 1,
-            "grams": 1,
-
-            "kg": 1000,
-
-            "ml": 1,
-            "l": 1000,
-
-            "cup": 240,
-            "tbsp": 15,
-            "tsp": 5,
+        # --- Mass conversions (direct → grams)
+        MASS_CONVERSIONS = {
+            UnitChoices.GRAM: 1,
+            UnitChoices.KILOGRAM: 1000,
         }
 
-        return quantity * conversions.get(unit, 0)  # unknown unit → 0
+        # --- Volume conversions (→ milliliters)
+        VOLUME_CONVERSIONS = {
+            UnitChoices.MILLILITER: 1,
+            UnitChoices.LITER: 1000,
+            UnitChoices.CUP: 250,      # EU standard
+            UnitChoices.TABLESPOON: 15,
+            UnitChoices.TEASPOON: 5,
+        }
+
+        # --- Density map (g/ml)
+        DENSITIES = {
+            "water": 1.0,
+            "milk": 1.03,
+            "flour": 0.5,
+            "sugar": 0.85,
+            "butter": 0.96,
+            "oil": 0.92,
+            "honey": 1.4,
+            "rice": 0.85,
+        }
+
+        # --- Mass → grams
+        if unit in MASS_CONVERSIONS:
+            return quantity * MASS_CONVERSIONS[unit]
+
+        # --- Volume → ml → grams
+        if unit in VOLUME_CONVERSIONS:
+            ml = quantity * VOLUME_CONVERSIONS[unit]
+
+            if ingredient:
+                name = getattr(ingredient, "name", "").lower()
+                density = DENSITIES.get(name, 1.0)
+            else:
+                density = 1.0
+
+            return ml * density
+
+        # --- Unknown / unsupported unit
+        return 0
 
     
     @property
@@ -250,7 +309,7 @@ class RecipeIngredient(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 
     quantity = models.FloatField(null=True, blank=True)
-    unit = models.CharField(max_length=20, blank=True, null=True)  # e.g. g, ml, cup
+    unit = models.CharField(max_length=20, choices=UnitChoices.choices, blank=True, null=True)  # e.g. g, ml, cup
 
     note = models.CharField(max_length=100, blank=True, null=True)  # optional ("chopped")
 
@@ -259,8 +318,11 @@ class RecipeIngredient(models.Model):
 
     def __str__(self):
         recipe_name = self.recipe.safe_translation_getter('name', default='Unknown Recipe')
-        return f"{self.quantity}{self.unit} {self.ingredient.name} in {recipe_name}"
 
+        quantity = f"{self.quantity}" if self.quantity else ""
+        unit = f" {self.unit}" if self.unit else ""
+
+        return f"{quantity}{unit} {self.ingredient.name} in {recipe_name}"
 
 # -------------------
 # USER INTERACTION

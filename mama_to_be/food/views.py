@@ -10,6 +10,7 @@ import json
 
 from parler.utils.context import switch_language
 
+from .choices import UnitChoices
 from .models import Recipe, Ingredient, RecipeIngredient
 from .forms import RecipeForm
 from mama_to_be.profiles.models import Profile
@@ -24,6 +25,11 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     template_name = "food/create_recipe_form.html"
     login_url = reverse_lazy("login")
     success_url = reverse_lazy("food:recipe-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["unit_choices"] = UnitChoices.choices
+        return context
 
     def form_valid(self, form):
         # Get ingredients from JSON field
@@ -53,8 +59,8 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
                     RecipeIngredient.objects.create(
                         recipe=self.object,
                         ingredient=ingredient,
-                        quantity=item.get('quantity'),
-                        unit=item.get('unit'),
+                        quantity=item.get('quantity') or 0,
+                        unit=item.get('unit') or "",
                         note=item.get('note'),
                     )
                 except Ingredient.DoesNotExist:
@@ -91,6 +97,8 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
 
         with switch_language(self.object, self.request.LANGUAGE_CODE):
             context["slug"] = self.object.slug
+
+        context["unit_choices"] = UnitChoices.choices
 
         # preload existing ingredients as JSON
         context["ingredients_json"] = json.dumps([
@@ -151,20 +159,32 @@ class RecipeDetailView(DetailView):
         lang = self.request.LANGUAGE_CODE
         slug = self.kwargs["slug"]
 
-        return get_object_or_404(
-            Recipe.objects.active_translations(lang).filter(
+        queryset = (
+            Recipe.objects
+            .active_translations(lang)
+            .filter(
+                translations__language_code=lang,
                 translations__slug=slug
             )
+            .select_related("author")
+            .prefetch_related(
+                "recipeingredient_set__ingredient__translations"
+            )
         )
+
+        return get_object_or_404(queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recipe = self.object
 
-        if recipe.author:
-            author_profile = Profile.objects.get(user=recipe.author)
-            context["author_name"] = author_profile.username
-            context["author_id"] = author_profile.user_id
+        author = recipe.author
+
+        if author:
+            profile = Profile.objects.filter(user=author).first()
+            if profile:
+                context["author_name"] = profile.username
+                context["author_id"] = profile.user_id
 
         return context
 

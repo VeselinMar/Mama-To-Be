@@ -132,10 +132,11 @@
                    placeholder="{% trans 'Qty' %}"
                    style="max-width: 100px;">
 
-            <input type="text"
-                   class="form-control unit"
-                   placeholder="{% trans 'Unit' %}"
-                   style="max-width: 100px;">
+            <select class="form-select unit" style="max-width: 120px;">
+                {% for value, label in unit_choices %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
 
             <input type="text"
                    class="form-control note"
