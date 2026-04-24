@@ -35,8 +35,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         # Get ingredients from JSON field
 
         ingredients_json = self.request.POST.get('ingredients_json', '[]')
-        print("RAW ingredients_json:")
-        print(repr(ingredients_json))
+
         try:
             ingredients_data = json.loads(ingredients_json)
         except json.JSONDecodeError:
@@ -48,26 +47,35 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         
         with transaction.atomic():
             self.object = form.save()
+
+            ingredient_ids = {
+                item.get('ingredient_id')
+                for item in ingredients_data
+                if item.get('ingredient_id')
+            }
+            ingredients = Ingredient.objects.in_bulk(ingredient_ids)
             
+            recipe_ingredients = []
+
             for item in ingredients_data:
-                ingredient_id = item.get('ingredient_id')
-                if not ingredient_id:
+                ingredient = ingredients.get(item.get('ingredient_id'))
+                if not ingredient:
                     continue
-                
-                try:
-                    ingredient = Ingredient.objects.get(id=ingredient_id)
-                    RecipeIngredient.objects.create(
+
+                recipe_ingredients.append(
+                    RecipeIngredient(
                         recipe=self.object,
                         ingredient=ingredient,
                         quantity=item.get('quantity') or 0,
                         unit=item.get('unit') or "",
                         note=item.get('note'),
                     )
-                except Ingredient.DoesNotExist:
-                    continue
+                )
+
+            RecipeIngredient.objects.bulk_create(recipe_ingredients)
         
         messages.success(self.request, "Recipe created successfully!")
-        return super().form_valid(form)
+        return redirect(self.get_success_url())
 
     def form_invalid(self, form):
         messages.error(self.request, "Please correct the errors below.")
