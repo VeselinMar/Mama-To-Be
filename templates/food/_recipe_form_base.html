@@ -209,6 +209,7 @@
 <script>
     const csrfToken = "{{ csrf_token }}";
     const autocompleteUrl = "{% url 'food:ingredient-autocomplete' %}";
+    const uploadUrl = "{% url 'food:upload-image' %}";
     const createIngredientUrl = "{% url 'food:ingredient-create' %}";
     
     {% block existing_ingredients %}
