@@ -119,7 +119,7 @@
 
       </ul>
 
-      <!-- SEARCH -->
+      {% comment %} <!-- SEARCH -->
       <form class="d-flex search-form ms-3" action="{% url 'articles:search' %}" method="get">
         <input class="form-control search-input"
                type="search"
@@ -131,7 +131,7 @@
         <button class="btn btn--icon" type="submit">
           <i class="bi bi-search"></i>
         </button>
-      </form>
+      </form> {% endcomment %}
 
       <!-- LANGUAGE SWITCHER -->
       <div class="dropdown language-switcher ms-3">
