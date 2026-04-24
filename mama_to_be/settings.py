@@ -220,10 +220,10 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": 500,
     "width": "100%",
     "plugins": (
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak "
+        "advlist autolink lists link image charmap print preview anchor pagebreak "
         "searchreplace wordcount visualblocks visualchars code fullscreen "
         "insertdatetime media nonbreaking save table directionality "
-        "emoticons template paste textpattern imagetools autoresize"
+        "emoticons template autoresize"
     ),
     "toolbar": (
         "insertfile undo redo | styleselect | bold italic underline strikethrough | "

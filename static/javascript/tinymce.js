@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", function() {
         selector: 'textarea',
         height: 500,
         width: '100%',
-        plugins: 'advlist autolink lists link image charmap preview hr pagebreak ' +
+        plugins: 'advlist autolink lists link image charmap preview pagebreak ' +
                  'searchreplace wordcount visualblocks visualchars code fullscreen ' +
                  'media nonbreaking save table directionality ' +
-                 'emoticons paste textpattern imagetools autoresize',
+                 'emoticons autoresize',
         toolbar: 'undo redo | styleselect formatselect | bold italic underline strikethrough | ' +
                  'alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ' +
                  'link image media | preview fullscreen | charmap emoticons',
