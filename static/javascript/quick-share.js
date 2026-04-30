@@ -1,5 +1,3 @@
-// recipe-share.js
-
 document.addEventListener("DOMContentLoaded", function () {
     const shareContainer = document.querySelector(".share-buttons");
 
