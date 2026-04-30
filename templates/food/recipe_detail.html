@@ -232,6 +232,18 @@
 
     </div>
 
+    {% if suggested_recipes %}
+    <div class="container-py-5">
+        <div class="row g-4">
+            {% for r in suggested_recipes %}
+            <div class="col-12 col-md-4">
+                {% include "food/components/recipe_card.html" with recipe=r %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 
 <script src="{% static 'javascript/recipe-share.js' %}"></script>

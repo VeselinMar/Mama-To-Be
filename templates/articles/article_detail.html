@@ -42,5 +42,17 @@
     </section>
     {% endif %}
 
+    {% if suggested_articles %}
+    <div class="container-py-5">
+        <div class="row g-4">
+            {% for article in suggested_articles %}
+                <div class="col-12 col-md-4">
+                {% include "articles/components/article_card.html" with article=article %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
 </article>
 {% endblock %}

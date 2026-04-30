@@ -1,19 +1,19 @@
 {% load static %}
 
-<a href="{% url 'articles:article-detail' article.slug %}"
+<a href="{% url 'food:recipe-detail' recipe.slug %}"
    class="text-decoration-none">
 
   <div class="article-card">
 
-    {% if article.thumbnail_url %}
-      <img src="{{ article.thumbnail_url }}"
+    {% if recipe.thumbnail_url %}
+      <img src="{{ recipe.thumbnail_url }}"
            class="article-card-img"
-           alt="{{ article.title }}">
+           alt="{{ recipe.title }}">
 
-    {% elif article.thumbnail %}
-      <img src="{{ article.thumbnail.url }}"
+    {% elif recipe.thumbnail %}
+      <img src="{{ recipe.thumbnail.url }}"
            class="article-card-img"
-           alt="{{ article.title }}">
+           alt="{{ recipe.title }}">
 
     {% else %}
       <img src="{% static 'icons/default-thumbnail.jpg' %}"
@@ -24,7 +24,7 @@
     <div class="article-card-body">
 
       <span class="article-title-link">
-        {{ article.title }}
+        {{ recipe.name }}
       </span>
 
     </div>
