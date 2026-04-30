@@ -2,7 +2,7 @@ from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.views.decorators.http import require_POST
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db import transaction
 from django.http import JsonResponse
@@ -163,36 +163,38 @@ class RecipeDetailView(DetailView):
     template_name = "food/recipe_detail.html"
     context_object_name = "recipe"
 
-    def get_object(self, queryset=None):
+    def get_queryset(self):
         lang = self.request.LANGUAGE_CODE
-        slug = self.kwargs["slug"]
 
-        queryset = (
+        return (
             Recipe.objects
             .active_translations(lang)
             .filter(
                 translations__language_code=lang,
-                translations__slug=slug
             )
-            .select_related("author")
             .prefetch_related(
                 "recipeingredient_set__ingredient__translations"
             )
         )
 
-        return get_object_or_404(queryset)
+    def get_object(self, queryset=None):
+        queryset = self.get_queryset()
+        return get_object_or_404(
+            queryset,
+            translations__slug=self.kwargs["slug"]
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recipe = self.object
+        lang = self.request.LANGUAGE_CODE
 
-        author = recipe.author
-
-        if author:
-            profile = Profile.objects.filter(user=author).first()
-            if profile:
-                context["author_name"] = profile.username
-                context["author_id"] = profile.user_id
+        context["suggested_recipes"] = (
+            Recipe.objects
+            .active_translations(lang)
+            .exclude(id=recipe.id)
+            .order_by("-created_at")[:3]
+        )
 
         return context
 

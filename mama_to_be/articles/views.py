@@ -82,23 +82,28 @@ class ArticleDisplayView(DetailView):
     template_name = 'articles/article_detail.html'
     context_object_name = 'article'
 
-    def get_object(self, queryset=None):
-        lang = self.request.LANGUAGE_CODE
-        slug = self.kwargs['slug']
+    def get_queryset(self):
+        return (
+            Article.objects.active_translations(self.request.LANGUAGE_CODE)
+            .filter(is_published=True)
+        )
 
+    def get_object(self, queryset=None):
         return get_object_or_404(
-            Article.objects.active_translations(lang).filter(
-                translations__slug=slug
-            )
+            self.get_queryset(),
+            translations__slug=self.kwargs["slug"]
         )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         article = self.object
 
-        author_profile = Profile.objects.get(user=article.author)
-        context['author_name'] = author_profile.username
-        context['author_id'] = author_profile.user_id
+        context["suggested_articles"] = (
+            Article.objects.active_translations(self.request.LANGUAGE_CODE)
+            .filter(category=article.category, is_published=True)
+            .exclude(id=article.id)
+            .order_by("-published_at")[:3]
+        )
         return context
 
 class CategoryArticlesView(ListView):
@@ -123,6 +128,7 @@ class CategoryArticlesView(ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = CategoryChoices(self.kwargs['category'])
         return context
+
 
 class RecentArticlesView(ListView):
     model = Article
