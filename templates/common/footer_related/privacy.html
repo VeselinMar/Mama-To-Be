@@ -1,5 +1,6 @@
 {% extends 'common/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
@@ -7,83 +8,126 @@
 
   <div class="about-container">
 
-    <h1 class="about-title">Datenschutzerklärung</h1>
+    <h1 class="about-title">{% trans "Privacy Policy" %}</h1>
 
     <p class="about-lead">
-      Information gemäß Datenschutz-Grundverordnung (DSGVO)
+      {% trans "Information according to the General Data Protection Regulation (GDPR)" %}
     </p>
 
     <p>
-      Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir verarbeiten Ihre Daten daher ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, TKG 2003).
+      {% blocktrans %}
+      The protection of your personal data is of particular concern to us. We therefore process your data
+      exclusively on the basis of the statutory provisions (GDPR, Telecommunications Act 2003).
+      {% endblocktrans %}
     </p>
 
-    <p class="about-section-title">Verantwortlicher</p>
+    <p class="about-section-title">
+      {% trans "Data controller" %}
+    </p>
 
     <p>
-      Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
+      {% blocktrans %}
+      Responsible for data processing on this website:<br>
       Maria Martinova<br>
-      E-Mail: mariamarina5030@gmail.com
+      Email: mariamarina5030@gmail.com
+      {% endblocktrans %}
     </p>
 
-    <p class="about-section-title">Zugriffsdaten / Server-Logfiles</p>
-
-    <p>
-      Der Hosting-Provider erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt.
-      Dies sind insbesondere: IP-Adresse, Datum und Uhrzeit des Zugriffs, verwendeter Browser und Betriebssystem.
-      Diese Daten sind technisch erforderlich, um die Website korrekt darzustellen und die Stabilität und Sicherheit zu gewährleisten.
+    <p class="about-section-title">
+      {% trans "Access data / server log files" %}
     </p>
 
     <p>
-      Eine Zusammenführung dieser Daten mit anderen Datenquellen erfolgt nicht.
-    </p>
-
-    <p class="about-section-title">Cookies</p>
-
-    <p>
-      Diese Website verwendet ausschließlich technisch notwendige Cookies, die für den Betrieb der Seite erforderlich sind (z. B. Session- und Sicherheitsfunktionen).
-      Eine Nutzung der Website ist ohne diese Cookies nicht möglich.
-      Es erfolgt keine Analyse Ihres Nutzungsverhaltens.
-    </p>
-
-    <p class="about-section-title">Google Fonts</p>
-
-    <p>
-      Diese Website verwendet Google Fonts, die von Google Ireland Limited bereitgestellt werden.
-      Beim Aufruf der Seite lädt Ihr Browser die Schriftarten direkt von Google-Servern.
-      Dabei kann Ihre IP-Adresse an Google übermittelt werden.
+      {% blocktrans %}
+      The hosting provider automatically collects and stores information in so-called server log files,
+      which your browser automatically transmits. This includes: IP address, date and time of access,
+      browser type, and operating system. These data are technically required to display the website
+      correctly and ensure stability and security.
+      {% endblocktrans %}
     </p>
 
     <p>
-      Die Nutzung von Google Fonts erfolgt im Interesse einer einheitlichen und ansprechenden Darstellung der Website (Art. 6 Abs. 1 lit. f DSGVO).
+      {% blocktrans %}
+      These data are not merged with other data sources.
+      {% endblocktrans %}
     </p>
 
-    <p class="about-section-title">Keine Analyse- oder Tracking-Tools</p>
-
-    <p>
-      Diese Website verwendet keine Webanalyse-Tools (wie z. B. Google Analytics), keine Tracking-Technologien und keine Marketing-Cookies.
-    </p>
-
-    <p class="about-section-title">Speicherdauer</p>
-
-    <p>
-      Personenbezogene Daten werden nur so lange gespeichert, wie dies zur Erfüllung des jeweiligen Zwecks erforderlich ist bzw. wie es gesetzlich vorgeschrieben ist.
-    </p>
-
-    <p class="about-section-title">Ihre Rechte</p>
-
-    <p>
-      Ihnen stehen grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit sowie Widerspruch zu.
+    <p class="about-section-title">
+      {% trans "Cookies" %}
     </p>
 
     <p>
-      Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen das Datenschutzrecht verstößt, haben Sie das Recht, sich bei der Datenschutzbehörde zu beschweren.
+      {% blocktrans %}
+      This website only uses technically necessary cookies required for the operation of the site
+      (e.g. session and security functions). It is not possible to use the website without these cookies.
+      No analysis of user behavior is performed.
+      {% endblocktrans %}
     </p>
 
-    <p class="about-section-title">Kontakt</p>
+    <p class="about-section-title">
+      {% trans "Google Fonts" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      This website uses Google Fonts provided by Google Ireland Limited. When you visit the site,
+      your browser loads fonts directly from Google servers. Your IP address may be transmitted to Google.
+      {% endblocktrans %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      The use of Google Fonts is based on our legitimate interest in a consistent and appealing presentation
+      of the website (Art. 6(1)(f) GDPR).
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "No analytics or tracking tools" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      This website does not use web analytics tools (such as Google Analytics), tracking technologies,
+      or marketing cookies.
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "Data retention" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      Personal data is stored only as long as necessary to fulfill the respective purpose or as required by law.
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "Your rights" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      You generally have the right to access, rectification, erasure, restriction of processing,
+      data portability, and objection.
+      {% endblocktrans %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      If you believe that the processing of your data violates data protection law, you have the right
+      to lodge a complaint with the supervisory authority.
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "Contact" %}
+    </p>
 
     <p>
       Maria Martinova<br>
-      E-Mail: mariamarina5030@gmail.com
+      Email: mariamarina5030@gmail.com
     </p>
 
   </div>

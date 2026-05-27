@@ -1,5 +1,6 @@
 {% extends 'common/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
@@ -7,18 +8,22 @@
 
   <div class="about-container">
 
-    <h1 class="about-title">Contact</h1>
+    <h1 class="about-title">{% trans "Contact" %}</h1>
 
     <p class="about-lead">
-      I’d love to hear from you
+      {% trans "I’d love to hear from you" %}
     </p>
 
     <p>
+      {% blocktrans %}
       Whether you have questions, feedback, or suggestions, feel free to reach out.
       I always appreciate messages from readers and other parents sharing similar experiences.
+      {% endblocktrans %}
     </p>
 
-    <p class="about-section-title">Email</p>
+    <p class="about-section-title">
+      {% trans "Email" %}
+    </p>
 
     <p>
       <a href="mailto:mariamarina5030@gmail.com">
