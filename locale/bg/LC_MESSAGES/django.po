@@ -308,11 +308,11 @@ msgid ""
 "This website contains links to external third-party websites. We have "
 "no influence over their content\n"
 "and therefore assume no liability for external content.\n"
-""
+
 msgstr ""
+"\n"
 "Този уебсайт съдържа връзки към външни уебсайтове на трети страни. Нямаме контрол върху тяхното съдържание\n"
 "и поради това не поемаме отговорност за външното съдържание.\n"
-""
 
 #: templates/common/footer_related/privacy.html:14
 msgid "Information according to the General Data Protection Regulation (GDPR)"
