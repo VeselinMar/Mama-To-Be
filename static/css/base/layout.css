@@ -5,9 +5,8 @@ body {
   font-family: var(--font-base);
   font-size: 16px;
   line-height: 1.6;
-
-  padding: var(--space-lg);
-
+  margin: 0;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

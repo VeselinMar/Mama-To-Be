@@ -1,27 +1,50 @@
 {% load static i18n %}
 
-  <footer class="site-footer">
-    <div class="footer-container">
+<footer class="site-footer">
 
-  <!-- Navigation -->
-  <div class="footer__links">
-    <ul>
-      <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
-      <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
-    </ul>
+  <div class="footer-container">
+
+    <!-- ========================= -->
+    <!-- BRAND -->
+    <!-- ========================= -->
+    <div class="footer__brand">
+      <a href="{% url 'home' %}" class="footer__logo">
+        <img src="{% static 'icons/website-logo.png' %}"
+             alt="Mama-To-Be"
+             class="footer__logo-img">
+      </a>
+    </div>
+
+    <!-- ========================= -->
+    <!-- MAIN LINKS -->
+    <!-- ========================= -->
+    <div class="footer__main">
+
+      <!-- Navigation -->
+      <div class="footer__links">
+        <ul>
+          <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
+          <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer__legal">
+        <a href="{% url 'impressum' %}">{% trans "Impressum" %}</a>
+        <span class="footer__separator">•</span>
+        <a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a>
+      </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- COPYRIGHT -->
+    <!-- ========================= -->
+    <div class="footer__copyright">
+      &copy; {{ now|date:"Y" }} Mama-To-Be.
+      {% trans "All rights reserved." %}
+    </div>
+
   </div>
 
-  <!-- Legal -->
-  <div class="footer__legal">
-    <a href="{% url 'impressum' %}">{% trans "Impressum" %}</a>
-    <span>|</span>
-    <a href="{% url 'privacy_policy' %}">{% trans "Privacy Policy" %}</a>
-  </div>
-
-  <!-- Copyright -->
-  <div class="footer__copyright">
-    &copy; {{ now|date:"Y" }} Mama-To-Be. {% trans "All rights reserved." %}
-  </div>
-
-  </div>
 </footer>

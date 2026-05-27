@@ -1,83 +1,44 @@
 {% load static i18n %}
 
+{% get_current_language as CURRENT_LANGUAGE %}
+{% get_available_languages as AVAILABLE_LANGUAGES %}
+
 <nav class="navbar navbar-expand-lg custom-navbar">
-  <div class="container custom-container">
 
-    <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
-      <img src="{% static 'icons/website-logo.svg' %}" 
-           alt="Mom-To-Be"
-           class="navbar-logo img-fluid">
-    </a>
+  <div class="container custom-container flex-column">
 
-    <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-            aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- ========================= -->
+    <!-- TOP ROW (ALWAYS VISIBLE) -->
+    <!-- ========================= -->
+    <div class="d-flex align-items-center justify-content-between w-100 py-2">
 
-    <!-- Navbar content -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- LOGO -->
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+        <img src="{% static 'icons/website-logo.png' %}"
+             alt="Mom-To-Be"
+             class="navbar-logo img-fluid">
+      </a>
 
-      <!-- LEFT NAV -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- TOGGLER (ONLY MOBILE) -->
+      <button class="navbar-toggler d-lg-none"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="{% trans 'Toggle navigation' %}">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
-        </li>
-
-        <!-- Articles -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="articlesDropdown" role="button" 
-             data-bs-toggle="dropdown" aria-expanded="false">
-            {% trans "Articles" %}
-          </a>
-
-          <ul class="dropdown-menu custom-dropdown dropdown-menu-end" aria-labelledby="articlesDropdown">
-            <li class="dropdown-title">{% trans "Learn more about" %}</li>
-
-            {% for category in navbar_categories %}
-              <li>
-                <a class="dropdown-item custom-dropdown-item"
-                   href="{% url 'articles:category-articles' category=category.value %}">
-                  {{ category.name }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </li>
-
-        <!-- Recipes -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="recipesDropdown" role="button"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            {% trans "Recipes" %}
-          </a>
-
-          <ul class="dropdown-menu custom-dropdown dropdown-menu-end" aria-labelledby="recipesDropdown">
-            <li class="dropdown-title">{% trans "Explore recipes" %}</li>
-
-            <li>
-              <a class="dropdown-item custom-dropdown-item"
-                 href="{% url 'food:recipe-list' %}">
-                {% trans "All Recipes" %}
-              </a>
-            </li>
-          </ul>
-        </li>
-
-      </ul>
-
-      <!-- RIGHT NAV -->
-      <ul class="navbar-nav align-items-lg-center">
-
+      <!-- RIGHT UTILITIES (DESKTOP ONLY) -->
+      <div class="d-none d-lg-flex align-items-center gap-3">
         {% if user.is_authenticated %}
 
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link" href="{% url 'profile-display' user_id=user.id %}">
               {% trans "My Profile" %}
             </a>
-          </li>
+          </li> {% endcomment %}
 
           <!-- Create -->
           <li class="nav-item dropdown">
@@ -117,70 +78,181 @@
 
         {% endif %}
 
-      </ul>
 
-      {% comment %} <!-- SEARCH -->
-      <form class="d-flex search-form ms-3" action="{% url 'articles:search' %}" method="get">
-        <input class="form-control search-input"
-               type="search"
-               name="q"
-               value="{{ request.GET.q }}"
-               placeholder="{% trans 'Search' %}"
-               aria-label="{% trans 'Search' %}">
+        <!-- SEARCH -->
+        <form class="search-form" action="{% url 'search' %}" method="get">
+          <div class="search-wrapper">
+            <i class="bi bi-search search-icon"></i>
+            <input class="form-control search-input"
+                   type="search"
+                   name="q"
+                   value="{{ request.GET.q }}"
+                   placeholder="{% trans 'Search' %}">
+          </div>
+        </form>
 
-        <button class="btn btn--icon" type="submit">
-          <i class="bi bi-search"></i>
-        </button>
-      </form> {% endcomment %}
+        <!-- SOCIALS -->
+        <div class="navbar-socials">
+          <a href="https://www.instagram.com/mariamarina11/"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="social-link">
+            <i class="bi bi-instagram"></i>
+          </a>
+        </div>
+    <!-- LANGUAGE --> 
+    <div class="dropdown language-switcher ms-3"> 
+      <button class="btn btn--secondary d-flex align-items-center" 
+      type="button" 
+      id="languageDropdown" 
+      data-bs-toggle="dropdown" 
+      aria-expanded="false"> 
+        <img src="{% static 'icons/'|add:CURRENT_LANGUAGE|add:'.svg' %}" alt="{{ CURRENT_LANGUAGE }}" 
+        class="flag-icon me-2"> 
+        <span class="fw-semibold"> {{ CURRENT_LANGUAGE|upper }} </span> 
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2" aria-labelledby="languageDropdown">
+         {% for lang_code, lang_name in AVAILABLE_LANGUAGES %} 
+         <li> 
+          <form action="{% url 'set_language' %}" method="post" class="m-0"> {% csrf_token %} 
+            <input type="hidden" name="next" value="{{ request.path }}"> 
+            <input type="hidden" name="language" value="{{ lang_code }}"> 
+            <button type="submit" class="dropdown-item d-flex align-items-center 
+            {% if lang_code == CURRENT_LANGUAGE %}active
+            {% endif %}"
+            > 
+            <img src="{% static 'icons/'|add:lang_code|add:'.svg' %}" alt="{{ lang_code }}" class="flag-icon me-3"> 
+            <span class="flex-grow-1"> {{ lang_name }} </span> 
+            {% if lang_code == CURRENT_LANGUAGE %} 
+            <i class="bi bi-check2"></i> 
+            {% endif %} 
+            </button> 
+          </form> 
+        </li> 
+        {% endfor %} 
+      </ul> 
+    </div>
 
-      <!-- LANGUAGE SWITCHER -->
-      <div class="dropdown language-switcher ms-3">
-
-        <button class="btn btn--secondary d-flex align-items-center"
-                type="button"
-                id="languageDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
-
-          <img src="{% static 'icons/'|add:CURRENT_LANGUAGE|add:'.svg' %}"
-               alt="{{ CURRENT_LANGUAGE }}"
-               class="flag-icon me-2">
-
-          <span class="fw-semibold">{{ CURRENT_LANGUAGE|upper }}</span>
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2"
-            aria-labelledby="languageDropdown">
-
-          {% for lang in PUBLIC_LANGUAGES %}
-          <li>
-            <form action="{% url 'set_language' %}" method="post" class="m-0">
-              {% csrf_token %}
-
-              <input type="hidden" name="next" value="{{ request.path }}">
-              <input type="hidden" name="language" value="{{ lang.0 }}">
-
-              <button type="submit"
-                      class="dropdown-item d-flex align-items-center
-                             {% if lang.0 == CURRENT_LANGUAGE %} active {% endif %}">
-
-                <img src="{% static 'icons/'|add:lang.0|add:'.svg' %}"
-                     alt="{{ lang.0 }}"
-                     class="flag-icon me-3">
-
-                <span class="flex-grow-1">{{ lang.1 }}</span>
-
-                {% if lang.0 == CURRENT_LANGUAGE %}
-                  <i class="bi bi-check2"></i>
-                {% endif %}
-              </button>
-
-            </form>
-          </li>
-          {% endfor %}
-
-        </ul>
       </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- COLLAPSIBLE AREA -->
+    <!-- ========================= -->
+    <div class="collapse navbar-collapse w-100" id="navbarNav">
+      
+      <div class="navbar-collapse-inner">
+
+        <!-- MOBILE VERSION OF UTILITIES -->
+        <div class="d-lg-none py-3">
+
+          <!-- SEARCH -->
+          <form class="search-form mb-3"
+                action="{% url 'search' %}"
+                method="get">
+            <input class="form-control"
+                  type="search"
+                  name="q"
+                  placeholder="{% trans 'Search' %}">
+          </form>
+
+          <!-- SOCIALS + LANGUAGE -->
+          <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <div class="navbar-socials">
+              <a href="https://www.instagram.com/mariamarina11/" target="_blank">
+                <i class="bi bi-instagram"></i>
+              </a>
+            </div>
+
+            <div class="language-switcher">
+               <div class="dropdown language-switcher ms-3"> 
+                <button class="btn btn--secondary d-flex align-items-center" 
+                type="button" 
+                id="languageDropdown" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false"> 
+                  <img src="{% static 'icons/'|add:CURRENT_LANGUAGE|add:'.svg' %}" alt="{{ CURRENT_LANGUAGE }}" 
+                  class="flag-icon me-2"> 
+                  <span class="fw-semibold"> {{ CURRENT_LANGUAGE|upper }} </span> 
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2" aria-labelledby="languageDropdown">
+                  {% for lang_code, lang_name in AVAILABLE_LANGUAGES %} 
+                  <li> 
+                    <form action="{% url 'set_language' %}" method="post" class="m-0"> {% csrf_token %} 
+                      <input type="hidden" name="next" value="{{ request.path }}"> 
+                      <input type="hidden" name="language" value="{{ lang_code }}"> 
+                      <button type="submit" class="dropdown-item d-flex align-items-center 
+                      {% if lang_code == CURRENT_LANGUAGE %}active
+                      {% endif %}"
+                      > 
+                      <img src="{% static 'icons/'|add:lang_code|add:'.svg' %}" alt="{{ lang_code }}" class="flag-icon me-3"> 
+                      <span class="flex-grow-1"> {{ lang_name }} </span> 
+                      {% if lang_code == CURRENT_LANGUAGE %} 
+                      <i class="bi bi-check2"></i> 
+                      {% endif %} 
+                      </button> 
+                    </form> 
+                  </li> 
+                  {% endfor %} 
+                </ul> 
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- ========================= -->
+      <!-- CATEGORY NAV (ROW 2 DESKTOP) -->
+      <!-- ========================= -->
+      <ul class="navbar-nav categories-nav w-100 d-flex flex-lg-row flex-column gap-lg-4">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+           href="#"
+           row="button" 
+           data-bs-toggle="dropdown"
+           aria-expanden="false">
+            {% trans "Articles" %}
+          </a>
+          <ul class="dropdown-menu custom-dropdown">
+            <li class="dropdown-title">{% trans "Learn more about" %}</li>
+            {% for category in navbar_categories %}
+              <li>
+                <a class="dropdown-item custom-dropdown-item"
+                   href="{% url 'articles:category-articles' category=category.value %}">
+                  {{ category.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">
+            {% trans "Recipes" %}
+          </a>
+          <ul class="dropdown-menu custom-dropdown">
+            <li class="dropdown-title">{% trans "Explore recipes" %}</li>
+            <li>
+              <a class="dropdown-item custom-dropdown-item"
+                 href="{% url 'food:recipe-list' %}">
+                {% trans "All Recipes" %}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">
+            {% trans "За мен" %}
+          </a>
+        </li>
+
+      </ul>
 
     </div>
   </div>

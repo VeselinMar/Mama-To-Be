@@ -23,10 +23,10 @@
 
   /* Footer (semantic aliasing of base tokens) */
   --color-footer-bg-start: var(--color-primary);
-  --color-footer-bg-end: #E08C78;
-  --color-footer-text: var(--color-light);
-  --color-footer-muted: rgba(255, 248, 240, 0.8);
-  --color-footer-border: rgba(255, 248, 240, 0.3);
+  --color-footer-bg-end: #d97a66; /* softer, deeper coral */
+  --color-footer-text: var(--color-text);
+  --color-footer-muted: rgba(60, 40, 35, 0.65);
+  --color-footer-border: rgba(60, 40, 35, 0.12);
 
   /* ============================= */
   /* TYPOGRAPHY */
@@ -67,4 +67,5 @@
 
   --transition-fast: 0.3s ease;
   --transition-base: 0.4s ease;
+  --transition-slow: 0.5s ease;
 }

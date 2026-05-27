@@ -7,6 +7,7 @@ from tinymce.models import HTMLField
 from parler.models import TranslatableModel, TranslatedFields, TranslatableManager
 from parler.utils.context import switch_language
 from slugify import slugify
+from django.contrib.postgres.search import SearchVectorField
 
 from .choices import AllergenChoices, RecipeType, DifficultyChoices, UnitChoices
 from .managers import RecipeQuerySet 
@@ -102,7 +103,7 @@ class Recipe(TranslatableModel):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    search_vector = SearchVectorField(null=True, blank=True)
     recipe_type = models.CharField(
         max_length=15,
         choices=RecipeType.choices,

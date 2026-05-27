@@ -1,0 +1,49 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+  {% if query %}
+
+    <!-- RESULTS SUMMARY -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <p class="search-results-summary">
+          {{ results|length }} result{{ results|length|pluralize }} for
+          "<strong>{{ query }}</strong>"
+        </p>
+      </div>
+    </div>
+
+    {% if results %}
+
+      <!-- RESULTS GRID -->
+      <div class="row g-4 search-results-grid">
+        {% for item in results %}
+          <div class="col-12 col-md-4">
+            {% if item.type == 'article' %}
+              {% include "articles/components/article_card.html" with article=item.obj %}
+            {% else %}
+              {% include "food/components/recipe_card.html" with recipe=item.obj %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+    {% else %}
+
+      <div class="row">
+        <div class="col-12">
+          <p class="text-muted">No results found for "<strong>{{ query }}</strong>".</p>
+        </div>
+      </div>
+
+    {% endif %}
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

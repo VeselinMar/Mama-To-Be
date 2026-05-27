@@ -2,6 +2,7 @@ from django.contrib import admin
 from parler.admin import TranslatableAdmin
 from .models import Article
 
+
 @admin.register(Article)
 class ArticleAdmin(TranslatableAdmin):
     list_display = ('title', 'author', 'published_at', 'category', 'is_published')

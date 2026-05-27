@@ -14,8 +14,11 @@
 /* Features */
 @import "./features/list-cards.css";
 @import "./features/recipe-create.css";
+@import "./features/scrollbar.css";
 
 /* Pages */
 @import "./pages/home.css";
 @import "./pages/recipe-detail.css";
 @import "./pages/article-detail.css";
+@import "./pages/search-results.css";
+@import "./pages/about.css";
