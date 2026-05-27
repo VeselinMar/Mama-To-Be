@@ -1,6 +1,6 @@
 from django.urls import path
 
-from mama_to_be.common.views import HomeView, PrivacyView, ImpressumView, ContactView, AboutView
+from mama_to_be.common.views import HomeView, PrivacyView, ImpressumView, ContactView, AboutView, search_view
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -8,4 +8,6 @@ urlpatterns = [
     path('impressum/', ImpressumView.as_view(), name='impressum'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('about/', AboutView.as_view(), name='about'),
+    path("search/", search_view, name="search"),
+
 ]

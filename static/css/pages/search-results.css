@@ -1,0 +1,17 @@
+.search-results-summary {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  color: rgba(0,0,0,0.6);
+}
+
+.search-page .article-card,
+.search-page .recipe-card {
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-page .article-card:hover,
+.search-page .recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}

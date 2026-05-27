@@ -5,78 +5,195 @@
 {% block content %}
 <div class="main-content-wrapper">
 
-  <!-- HERO -->
-  <section class="py-5 text-center hero-section">
-    <div class="container">
+<!-- LATEST CONTENT -->
+<section class="latest-section latest-feature-section">
+  <div class="container">
 
-      <h1 class="display-4 fw-bold">
-        {% trans "Welcome to Mom-To-Be!" %}
-      </h1>
+    <div class="latest-grid">
 
-      <p class="lead mt-3 mx-auto">
-        {% blocktrans trimmed %}
-        "Here I share my personal journey from the moment I realized I was going to be a mother. 
-        You will find useful information about motherhood, as well as my experiences as an expat. 
-        I write about life with a small child, about the challenges and small victories, about the joys, tears, and everything in between. 
-        Many thoughts, poured out on the digital page... and something else."
-        {% endblocktrans %}
-      </p>
+      <!-- Latest Article -->
+      <div class="latest-item">
+        {% if latest_article %}
+          {% include "articles/components/article_card.html" with article=latest_article %}
+        {% else %}
+          <p class="text-muted">No articles yet.</p>
+        {% endif %}
+      </div>
 
-      <a href="{% url 'about' %}" class="btn btn--primary btn--lg mt-3">
-        {% trans "Learn more about me" %}
-      </a>
+      <!-- Latest Recipe -->
+      <div class="latest-item">
 
-    </div>
-  </section>
+        {% if latest_recipe %}
 
-  <!-- ABOUT -->
-  <section class="py-5 about-section">
-    <div class="container">
+          <a href="{% url 'food:recipe-detail' latest_recipe.slug %}"
+             class="text-decoration-none">
 
-      <div class="row align-items-center">
+            <div class="article-card">
 
-        <div class="col-md-6 mb-4 mb-md-0">
-          <img src="{% static 'images/family.png' %}"
-               class="img-fluid"
-               alt="Family illustration">
-        </div>
+              {% if latest_recipe.thumbnail %}
+                <img src="{{ latest_recipe.thumbnail.url }}"
+                     class="article-card-img"
+                     alt="{{ latest_recipe.name }}">
+              {% else %}
+                <img src="{% static 'icons/default-thumbnail.jpg' %}"
+                     class="article-card-img"
+                     alt="{{ latest_recipe.name }}">
+              {% endif %}
 
-        <div class="col-md-6">
+              <div class="article-card-body">
 
-          <h2 class="fw-bold mb-3">
-            {% trans "What will I find on this site?" %}
-          </h2>
+                <span class="article-title-link">
+                  {{ latest_recipe.name }}
+                </span>
 
-          <ul class="mt-3">
-            <li>🤰 {% trans "Pregnancy & Birth — stories and experience" %}</li>
-            <li>👶 {% trans "Raising a young child — tips and personal insights" %}</li>
-            <li>🇦🇹 {% trans "Motherhood in Austria — information and practical advice" %}</li>
-            <li>📚 {% trans "Informational materials — ideas for children's activities" %}</li>
-            <li>🏫 {% trans "Nursery & Kindergarten — how to prepare" %}</li>
-            <li>🍳 {% trans "Family Recipes — meals I often prepare for my family" %}</li>
-            <li>📝 {% trans "Reflections — a digital diary of a mother" %}</li>
-          </ul>
+                <p class="recipe-meta mb-0">
+                  {{ latest_recipe.get_difficulty_display }}
+                  {% if latest_recipe.total_time %}
+                    • {{ latest_recipe.total_time }} min
+                  {% endif %}
+                </p>
 
-        </div>
+              </div>
+
+            </div>
+
+          </a>
+
+        {% else %}
+          <p class="text-muted">No recipes yet.</p>
+        {% endif %}
+
       </div>
 
     </div>
+       <!-- SEARCH BAR -->
+    <div class="latest-search-wrapper">
+
+      <form method="GET"
+            action="{% url 'search' %}"
+            class="latest-search-form">
+
+        <input
+          type="text"
+          name="q"
+          class="latest-search-input"
+          placeholder="Search for..."
+        >
+
+        <button type="submit" class="latest-search-btn">
+          Search
+        </button>
+
+      </form>
+
+    </div>
+    </div>
+  </section>
+
+<!-- ABOUT -->
+<section class="about-section">
+
+  <div class="container">
+
+    <!-- SECTION INTRO -->
+    <div class="section-heading">
+      <h2>{% trans "A place for motherhood, family & everyday life" %}</h2>
+
+      <p>
+        {% trans "Stories, practical advice, inspiration and gentle moments from family life in Austria." %}
+      </p>
+    </div>
+
+    <!-- TOPIC CAROUSEL -->
+    <div class="topics-strip">
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-pregnancy.jpg' %}" alt="">
+        <span>{% trans "Pregnancy" %}</span>
+      </a>
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-baby.jpg' %}" alt="">
+        <span>{% trans "Baby & Toddler" %}</span>
+      </a>
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-austria.jpg' %}" alt="">
+        <span>{% trans "Life in Austria" %}</span>
+      </a>
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-activities.jpg' %}" alt="">
+        <span>{% trans "Activities" %}</span>
+      </a>
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-kindergarten.jpg' %}" alt="">
+        <span>{% trans "Kindergarten" %}</span>
+      </a>
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-recipes.jpg' %}" alt="">
+        <span>{% trans "Recipes" %}</span>
+      </a>
+
+      <a href="#" class="topic-card">
+        <img src="{% static 'images/topic-diary.jpg' %}" alt="">
+        <span>{% trans "Reflections" %}</span>
+      </a>
+
+    </div>
+
+    <!-- PERSONAL STORY -->
+    <section class="about-story-section">
+
+    <div class="container">
+
+      <div class="about-story-layout">
+
+        <div class="about-story-image">
+          <img src="{% static 'images/family.png' %}" alt="">
+        </div>
+
+        <div class="about-story-card">
+
+          <span class="eyebrow">
+            {% trans "Who am I?" %}
+          </span>
+
+          <h2>
+            {% trans "Hi, I'm Maria" %}
+          </h2>
+
+          <p>
+            {% trans "Originally from Bulgaria, I’ve been living in Vienna for more than 13 years. My journey here began with learning German, adapting to a new culture, and finding my own path through university, work, and eventually motherhood." %}
+          </p>
+
+          <p>
+            {% trans "Today I write this small digital diary to share honest reflections on family life, motherhood in Austria, and the everyday moments that shape us." %}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </section>
 
   <!-- CTA -->
-  <section class="py-5 text-center cta-section border-top">
+  <section class="cta-section">
     <div class="container">
 
-      <h2 class="fw-bold">
+      <h2>
         {% trans "See More" %}
       </h2>
 
-      <p class="mb-4">
+      <p>
         {% trans "Browse the latest articles!" %}
       </p>
 
-      <a href="{% url 'articles:recent-articles' %}"
-         class="btn btn--secondary btn--lg">
+      <a href="{% url 'articles:recent-articles' %}">
         {% trans "View Recent Articles" %}
       </a>
 

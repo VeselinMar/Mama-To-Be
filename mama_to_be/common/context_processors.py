@@ -27,8 +27,3 @@ def navbar_data(request):
     return {
         'navbar_categories': navbar,
     }
-
-def public_languages(request):
-    return {
-        'PUBLIC_LANGUAGES': settings.PUBLIC_LANGUAGES
-    }

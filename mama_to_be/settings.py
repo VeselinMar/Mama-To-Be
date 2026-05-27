@@ -79,9 +79,8 @@ INSTALLED_APPS = [
     'modeltranslation',
     'mama_to_be.common',
     'mama_to_be.profiles',
-    'mama_to_be.articles',
-    'mama_to_be.food',
-
+    'mama_to_be.articles.apps.ArticlesConfig',
+    'mama_to_be.food.apps.FoodConfig',
     'storages',
     'tinymce',
     'parler',
@@ -114,7 +113,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'mama_to_be.common.context_processors.navbar_data',
-                'mama_to_be.common.context_processors.public_languages',
             ],
         },
     },
@@ -198,11 +196,6 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,
     }
 }
-
-PUBLIC_LANGUAGES = [
-    ('bg', 'Български'),
-    ('de', 'Deutsch'),
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.postgres.search import SearchVector
 
 from django.http import Http404
 
@@ -163,29 +162,3 @@ class RecentArticlesView(ListView):
 
         context['articles_by_category'] = dict(articles_by_category)
         return context
-
-
-def search_view(request, lang=None):
-    query = request.GET.get("q", "").strip()
-    if not query:
-        return render(request, "articles/search_results.html", {"articles": [], "query": ""})
-
-    lang = lang or request.LANGUAGE_CODE
-
-    articles = (
-        Article.objects.translated(lang)
-        .annotate(search=SearchVector('translations__title', weight='A') +
-                              SearchVector('translations__content', weight='B'))
-        .filter(search__icontains=query, is_published=True)
-        .distinct()
-        .order_by('-published_at')
-    )
-
-    return render(
-        request,
-        "articles/search_results.html",
-        {
-            "articles": articles, 
-            "query": query
-        }
-    )

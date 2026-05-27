@@ -73,7 +73,6 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
                 )
 
             RecipeIngredient.objects.bulk_create(recipe_ingredients)
-        
         messages.success(self.request, "Recipe created successfully!")
         return redirect(self.get_success_url())
 

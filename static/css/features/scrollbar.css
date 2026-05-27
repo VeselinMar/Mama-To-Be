@@ -1,0 +1,36 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b86b5f #ffe5dd;
+}
+
+/* scrollbar width */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* full track */
+*::-webkit-scrollbar-track {
+  background: #FFB4A2;
+  border-radius: var(--radius-full);
+}
+
+/* draggable thumb */
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #d97a66,
+    #b85f52
+  );
+  border-radius: var(--radius-full);
+  border: 2px solid #ffe5dd;
+  background-clip: content-box;
+}
+
+/* hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #b85f52,
+    #8f4a42
+  );
+}
