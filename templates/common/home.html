@@ -69,22 +69,22 @@
        <!-- SEARCH BAR -->
     <div class="latest-search-wrapper">
 
-      <form method="GET"
-            action="{% url 'search' %}"
-            class="latest-search-form">
+    <form method="GET"
+          action="{% url 'search' %}"
+          class="latest-search-form">
 
-        <input
-          type="text"
-          name="q"
-          class="latest-search-input"
-          placeholder="Search for..."
-        >
+      <input
+        type="text"
+        name="q"
+        class="latest-search-input"
+        placeholder="{% trans 'Search for...' %}"
+      >
 
-        <button type="submit" class="latest-search-btn">
-          Search
-        </button>
+      <button type="submit" class="latest-search-btn">
+        {% trans "Search" %}
+      </button>
 
-      </form>
+    </form>
 
     </div>
     </div>
