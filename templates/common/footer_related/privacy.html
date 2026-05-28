@@ -10,7 +10,7 @@
 
     <h1 class="about-title">{% trans "Privacy Policy" %}</h1>
 
-    <p class="about-lead">
+    <h2 class="about-lead">
       {% trans "Information according to the General Data Protection Regulation (GDPR)" %}
     </p>
 
@@ -100,6 +100,59 @@
     <p>
       {% blocktrans %}
       Personal data is stored only as long as necessary to fulfill the respective purpose or as required by law.
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "Contact form" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      When you use the contact form, we process the data you provide (name, email address, and message)
+      in order to respond to your inquiry.
+      {% endblocktrans %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      The legal basis for this processing is Art. 6(1)(b) GDPR (processing necessary for the performance of a contract
+      or pre-contractual measures).
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "Email delivery" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      Contact form submissions are delivered via a third-party transactional email service provider.
+      The provider processes the data solely for the purpose of email transmission.
+      {% endblocktrans %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      We do not use this data for marketing purposes.
+      {% endblocktrans %}
+    </p>
+
+    <p class="about-section-title">
+      {% trans "Security and technical data processing" %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      For security and stability purposes, this website processes limited technical data such as IP addresses.
+      This is used for rate limiting, abuse prevention, and error monitoring.
+      {% endblocktrans %}
+    </p>
+
+    <p>
+      {% blocktrans %}
+      Additionally, temporary identifiers may be used to prevent duplicate form submissions.
+      These identifiers are automatically deleted after a short period.
       {% endblocktrans %}
     </p>
 

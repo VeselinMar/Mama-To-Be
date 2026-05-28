@@ -1,0 +1,203 @@
+/* ============================= */
+/* CONTACT SECTION */
+/* ============================= */
+
+.contact-section {
+  padding: 7rem 0;
+  background: var(--color-bg);
+}
+
+/* layout */
+.contact-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: var(--space-lg);
+
+  align-items: start;
+}
+
+/* ============================= */
+/* INFO CARD (like about-story-card) */
+/* ============================= */
+
+.contact-info-card {
+  background: rgba(255, 253, 251, 0.92);
+  backdrop-filter: blur(10px);
+
+  padding: 3rem;
+  border-radius: 28px;
+
+  box-shadow: var(--shadow-md);
+
+  position: sticky;
+  top: 120px;
+}
+
+.contact-info-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.contact-info-card p {
+  color: var(--color-muted-text);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* email block */
+.contact-email {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-email span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.contact-email a {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-email a:hover {
+  color: var(--color-primary);
+}
+
+/* ============================= */
+/* FORM CARD */
+/* ============================= */
+
+.contact-form-card {
+  background: white;
+  border-radius: 28px;
+
+  padding: 3rem;
+
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================= */
+/* FORM ELEMENTS */
+/* ============================= */
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* inputs */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+
+  padding: 1rem 1.2rem;
+
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+
+  font-size: 1rem;
+
+  background: #fff;
+
+  transition: all 0.2s ease;
+}
+
+.contact-form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* focus */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+
+  border-color: var(--color-primary);
+
+  box-shadow: 0 0 0 3px rgba(250, 179, 164, 0.25);
+}
+
+/* ============================= */
+/* BUTTON (matching your theme) */
+/* ============================= */
+
+.contact-btn {
+  width: 100%;
+
+  padding: 1.1rem;
+
+  border: none;
+  border-radius: 14px;
+
+  background: var(--color-primary);
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.contact-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* ============================= */
+/* MESSAGES */
+/* ============================= */
+
+.contact-messages {
+  margin-bottom: 1.5rem;
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.message.success {
+  background: #e7f7ec;
+  color: #1e7e34;
+}
+
+.message.error {
+  background: #fdecea;
+  color: #b71c1c;
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info-card {
+    position: relative;
+    top: 0;
+  }
+}

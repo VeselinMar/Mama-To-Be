@@ -1,38 +1,78 @@
-{% extends 'common/base.html' %}
-{% load static %}
-{% load i18n %}
+  {% extends 'common/base.html' %}
+  {% load static %}
+  {% load i18n %}
 
-{% block content %}
+  {% block content %}
 
-<section class="about-page">
+  <section class="contact-section">
 
-  <div class="about-container">
+    <div class="section-heading">
+      <h2>{% trans "Contact" %}</h2>
+      <p>{% trans "I’d love to hear from you" %}</p>
+    </div>
 
-    <h1 class="about-title">{% trans "Contact" %}</h1>
+    <div class="contact-layout">
 
-    <p class="about-lead">
-      {% trans "I’d love to hear from you" %}
-    </p>
+      <div class="contact-info-card">
+        <h3>{% trans "Get in touch" %}</h3>
 
-    <p>
-      {% blocktrans %}
-      Whether you have questions, feedback, or suggestions, feel free to reach out.
-      I always appreciate messages from readers and other parents sharing similar experiences.
-      {% endblocktrans %}
-    </p>
+        <p>
+          {% blocktrans %}
+          Whether it’s feedback, questions, or collaboration ideas,
+          I always appreciate hearing from readers.
+          {% endblocktrans %}
+        </p>
 
-    <p class="about-section-title">
-      {% trans "Email" %}
-    </p>
+        <div class="contact-email">
+          <span>Email</span>
+          <a href="mailto:mariamarina5030@gmail.com">
+            mariamarina5030@gmail.com
+          </a>
+        </div>
+      </div>
 
-    <p>
-      <a href="mailto:mariamarina5030@gmail.com">
-        mariamarina5030@gmail.com
-      </a>
-    </p>
+      <div class="contact-form-card">
 
-  </div>
+        {% if messages %}
+          <div class="contact-messages">
+            {% for message in messages %}
+              <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
 
-</section>
+        <form method="post" class="contact-form">
+          {% csrf_token %}
+          <input type="hidden" name="submission_token" value="{{ submission_token }}">
 
-{% endblock %}
+          <div class="form-group">
+            <label>{% trans "Name" %}</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Email" %}</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Message" %}</label>
+            {{ form.message }}
+            {{ form.message.errors }}
+          </div>
+
+          <button type="submit" class="contact-btn">
+            {% trans "Send message" %}
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  {% endblock %}

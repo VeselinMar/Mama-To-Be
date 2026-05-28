@@ -1,25 +1,34 @@
+import logging
 from django.views.generic import TemplateView
 from django.views.decorators.http import require_POST
 from django.views import View
 from django.http import Http404, JsonResponse
 from django.core.files.storage import default_storage
-from .utility import process_image_to_webp
-from ..articles.models import Article
-from ..food.models import Recipe
-from django.utils.translation import get_language
-from concurrent.futures import ThreadPoolExecutor
-
+from django.core.mail import EmailMultiAlternatives
+from django.core.cache import cache
+from django.utils.html import strip_tags
+from django.contrib import messages
+from django.conf import settings
 from django.contrib.postgres.search import (
     SearchQuery,
     SearchRank,
     SearchVector
 )
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django_ratelimit.decorators import ratelimit
+from .utility import process_image_to_webp
+from ..articles.models import Article
+from ..food.models import Recipe
+from .forms import ContactForm
+from django.utils.translation import get_language
+from django.utils.html import escape
+from concurrent.futures import ThreadPoolExecutor
 import traceback
-
+import uuid
 
 # Create your views here.
+
+logger = logging.getLogger("contact")
 
 class HomeView(TemplateView):
     template_name = 'common/home.html'
@@ -55,8 +64,6 @@ class PrivacyView(TemplateView):
 class ImpressumView(TemplateView):
     template_name = 'common/footer_related/impressum.html'
 
-class ContactView(TemplateView):
-    template_name = 'common/footer_related/contact.html'
 
 class AboutView(TemplateView):
     template_name = 'common/footer_related/about.html'
@@ -91,12 +98,20 @@ def lang_to_pg_config(lang_code):
     base = lang_code.split('-')[0].lower()
     return mapping.get(base, 'simple')
 
+@ratelimit(key='ip', rate='30/m', method='GET', block=False)
 def search_view(request):
     q = request.GET.get('q', '').strip()
     lang = request.LANGUAGE_CODE
     config = lang_to_pg_config(lang)
 
     results = []
+
+    if getattr(request, "limited", False):
+        return render(request, "common/search_results.html", {
+            "results": [],
+            "query": q,
+            "error": "Too many requests. Please slow down."
+        })
 
     if q and len(q) <= 100:
         query = SearchQuery(q, config=config, search_type='websearch')
@@ -138,3 +153,133 @@ def search_view(request):
         results.sort(key=lambda x: x['rank'], reverse=True)
 
     return render(request, 'common/search_results.html', {'results': results, 'query': q})
+
+@ratelimit(key='ip', rate='5/m', method='POST', block=False)
+def contact_view(request):
+
+    ip = request.META.get("REMOTE_ADDR")
+
+    if getattr(request, 'limited', False):
+        logger.warning("RATE_LIMIT_TRIGGERED ip=%s", ip)
+        messages.error(request, "Too many requests. Please wait a moment.")
+        return redirect("contact")
+
+    if request.method == "POST":
+
+        form = ContactForm(request.POST)
+        token = request.POST.get("submission_token")
+
+        # 1. Validate token (single-use protection)
+        if not token or not cache.get(token):
+            logger.warning("INVALID_OR_EXPIRED_TOKEN ip=%s token=%s", ip, token)
+            messages.error(request, "This form was already submitted or expired.")
+            return redirect("contact")
+
+        if form.is_valid():
+
+            # -----------------------------
+            # CLEAN INPUT
+            # -----------------------------
+            name = form.cleaned_data["name"].strip().replace("\n", " ")
+            email_addr = form.cleaned_data["email"].strip()
+            message_text = form.cleaned_data["message"].strip()
+
+            safe_name = escape(name)
+            safe_email = escape(email_addr)
+            safe_message = escape(message_text)
+
+            subject = f"New contact form message from {name}"
+
+            # -----------------------------
+            # EMAIL CONTENT (TEXT)
+            # -----------------------------
+            text_content = f"""
+New Contact Message
+
+Name: {name}
+Email: {email_addr}
+
+Message:
+{message_text}
+"""
+
+            # -----------------------------
+            # EMAIL CONTENT (HTML)
+            # -----------------------------
+            html_content = f"""
+<html>
+  <body style="font-family: Arial, sans-serif; background:#f9f9f9; padding:20px;">
+
+    <div style="max-width:600px; margin:auto; background:#ffffff; padding:20px; border-radius:8px;">
+
+      <h2 style="margin-top:0;">New Contact Message</h2>
+
+      <p><strong>Name:</strong> {safe_name}</p>
+      <p><strong>Email:</strong> {safe_email}</p>
+
+      <hr style="border:none; border-top:1px solid #eee;" />
+
+      <h3>Message</h3>
+      <div style="background:#f4f4f4; padding:12px; border-radius:6px; white-space:pre-wrap;">
+        {safe_message}
+      </div>
+
+    </div>
+
+  </body>
+</html>
+"""
+
+            try:
+                msg = EmailMultiAlternatives(
+                    subject=subject,
+                    body=text_content,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[settings.CONTACT_RECEIVER_EMAIL],
+                )
+
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
+                # 2. Consume token ONLY after successful send
+                cache.delete(token)
+
+                logger.info(
+                    "CONTACT_EMAIL_SENT ip=%s email_domain=%s",
+                    ip,
+                    email_addr.split("@")[-1] if email_addr else None
+                )
+
+                messages.success(request, "Message sent successfully")
+                return redirect("contact")
+
+            except Exception:
+                logger.exception(
+                    "CONTACT_EMAIL_FAILED ip=%s email=%s",
+                    ip,
+                    email_addr,
+                )
+
+                messages.error(request, "Failed to send message. Please try again.")
+                return render(request, "common/footer_related/contact.html", {
+                    "form": form,
+                    "submission_token": token,
+                })
+
+        else:
+            logger.warning("CONTACT_FORM_INVALID ip=%s", ip)
+
+            messages.error(request, "Please correct the errors below.")
+            return render(request, "common/footer_related/contact.html", {
+                "form": form,
+                "submission_token": token,
+            })
+
+    # GET → create token
+    submission_token = str(uuid.uuid4())
+    cache.set(submission_token, True, timeout=300)
+
+    return render(request, "common/footer_related/contact.html", {
+        "form": ContactForm(),
+        "submission_token": submission_token,
+    })
