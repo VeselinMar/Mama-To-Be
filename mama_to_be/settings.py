@@ -200,11 +200,16 @@ PARLER_LANGUAGES = {
 # EMAIL SETTINGS
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-EMAIL_HOST = config("BREVO_SMTP_HOST")
-EMAIL_PORT = config("BREVO_SMTP_PORT", cast=int)
+EMAIL_HOST = config("BREVO_SMTP_HOST", default=None)
 
-EMAIL_HOST_USER = config("BREVO_SMTP_USER")
-EMAIL_HOST_PASSWORD = config("BREVO_SMTP_PASSWORD")
+if EMAIL_HOST:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+EMAIL_PORT = config("BREVO_SMTP_PORT", default=587, cast=int)
+EMAIL_HOST_USER = config("BREVO_SMTP_USER", default="")
+EMAIL_HOST_PASSWORD = config("BREVO_SMTP_PASSWORD", default="")
 
 EMAIL_USE_TLS = True
 EMAIL_TIMEOUT = 10
