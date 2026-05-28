@@ -98,7 +98,7 @@ def search_view(request):
 
     results = []
 
-    if q:
+    if q and len(q) <= 100:
         query = SearchQuery(q, config=config, search_type='websearch')
 
         vector_article = (
