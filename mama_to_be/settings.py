@@ -331,16 +331,11 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         },
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "contact.log"),
-            "formatter": "verbose",
-        },
     },
 
     "loggers": {
         "contact": {
-            "handlers": ["console", "file"],
+            "handlers": ["console"],
             "level": "INFO",
             "propagate": False,
         },
