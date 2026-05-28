@@ -78,11 +78,13 @@ class RecipeAdmin(TranslatableAdmin):
         "get_name",
         "difficulty",
         "total_time_display",
+        "servings",
     )
 
     list_filter = (
         "difficulty",
         "tags",
+        "servings",
     )
 
     search_fields = (
@@ -104,7 +106,7 @@ class RecipeAdmin(TranslatableAdmin):
         ("Title", {"fields": ("name",)}),
         ("Slug", {"fields": ("slug",)}),
         ("Content", {"fields": ("text",)}),
-        ("Basic Info", {"fields": ("difficulty",)}),
+        ("Basic Info", {"fields": ("difficulty", "servings")}),
         ("Time", {"fields": ("prep_time", "cook_time")}),
         ("Tags", {"fields": ("tags",)}),
         ("Timestamps", {"fields": ("created_at", "updated_at")}),
