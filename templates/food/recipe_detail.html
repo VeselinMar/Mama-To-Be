@@ -106,7 +106,10 @@
                     {% for ri in recipe.recipeingredient_set.all %}
                         <li class="ingredient-item"
                             data-base-qty="{{ ri.quantity }}"
-                            data-unit="{{ ri.unit }}">
+                            data-unit="{{ ri.unit }}"
+                            data-protein="{{ ri.ingredient.protein }}"
+                            data-carbs="{{ ri.ingredient.carbs }}"
+                            data-fat="{{ ri.ingredient.fat }}">
 
                             <span class="ingredient-qty">
                                 <span class="qty-value">{{ ri.quantity }}</span>

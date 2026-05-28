@@ -25,11 +25,42 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function updateMacros() {
+        let protein = 0;
+        let carbs = 0;
+        let fat = 0;
+
+        ingredientItems.forEach(item => {
+            const baseQty = parseFloat(item.dataset.baseQty);
+            const unit = item.dataset.unit;
+
+            const p = parseFloat(item.dataset.protein);
+            const c = parseFloat(item.dataset.carbs);
+            const f = parseFloat(item.dataset.fat);
+
+            const grams = (baseQty / baseServings) * currentServings;
+
+            const factor = grams / 100;
+
+            protein += p * factor;
+            carbs += c * factor;
+            fat += f * factor;
+        });
+
+        document.getElementById("protein").textContent = protein.toFixed(1);
+        document.getElementById("carbs").textContent = carbs.toFixed(1);
+        document.getElementById("fat").textContent = fat.toFixed(1);
+
+        document.getElementById("calories").textContent =
+            ((protein * 4) + (carbs * 4) + (fat * 9)).toFixed(0);
+    }
+
     function setServings(newValue) {
         currentServings = Math.max(1, newValue);
         display.textContent = currentServings;
 
         updateIngredients();
+        updateMacros();
     }
 
     increaseBtn.addEventListener("click", () => {
