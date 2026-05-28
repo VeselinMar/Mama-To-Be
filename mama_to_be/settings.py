@@ -213,8 +213,8 @@ EMAIL_HOST_PASSWORD = config("BREVO_SMTP_PASSWORD", default="")
 
 EMAIL_USE_TLS = True
 EMAIL_TIMEOUT = 10
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
-CONTACT_RECEIVER_EMAIL = config("CONTACT_RECEIVER_EMAIL")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="test@example.com")
+CONTACT_RECEIVER_EMAIL = config("CONTACT_RECEIVER_EMAIL", default="test@example.com")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
