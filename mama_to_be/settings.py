@@ -197,6 +197,20 @@ PARLER_LANGUAGES = {
     }
 }
 
+# EMAIL SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = config("BREVO_SMTP_HOST")
+EMAIL_PORT = config("BREVO_SMTP_PORT", cast=int)
+
+EMAIL_HOST_USER = config("BREVO_SMTP_USER")
+EMAIL_HOST_PASSWORD = config("BREVO_SMTP_PASSWORD")
+
+EMAIL_USE_TLS = True
+EMAIL_TIMEOUT = 10
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+CONTACT_RECEIVER_EMAIL = config("CONTACT_RECEIVER_EMAIL")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -295,3 +309,35 @@ else:
     AZURE_BLOB_SERVICE_KWARGS = {
     "max_block_size": 4 * 1024 * 1024,
     }
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+
+    "formatters": {
+        "verbose": {
+            "format": "[{levelname}] {asctime} {name} {message}",
+            "style": "{",
+        },
+    },
+
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "contact.log"),
+            "formatter": "verbose",
+        },
+    },
+
+    "loggers": {
+        "contact": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}

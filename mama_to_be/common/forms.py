@@ -1,23 +1,29 @@
 from django import forms
-from django.forms import inlineformset_factory
-
-from mama_to_be.common.models import ToDoList, Task
 
 
-class ToDoListForm(forms.ModelForm):
-    class Meta:
-        model = ToDoList
-        fields = ["title", "is_editable_by_shared_users"]
-        widgets = {
-            "title": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter list title"}),
-            "is_editable_by_shared_users": forms.CheckboxInput(attrs={"class": "form-check-input"}),
-        }
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        widget=forms.TextInput(attrs={"placeholder": "Your name"})
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Your email"})
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={
+            "placeholder": "Your message",
+            "rows": 6
+        })
+    )
 
-    TaskFormSet = inlineformset_factory(
-        ToDoList,
-        Task,
-        fields=["text"],
-        extra=1,
-        widgets={
-            "text": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter task"})
-    })
+    # Honeypot
+    website = forms.CharField(
+        required=False,
+        widget=forms.HiddenInput
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get("website"):
+            raise forms.ValidationError("Spam detected.")
+        return cleaned_data
