@@ -271,15 +271,17 @@ class Recipe(TranslatableModel):
         if unit in COUNT_CONVERSIONS:
             conversions = COUNT_CONVERSIONS[unit]
 
+            if ingredient:
+                ingredient_name = getattr(ingredient, "name", "").lower().strip()
+            else:
+                ingredient_name = None
+
             grams_per_unit = conversions.get(
                 ingredient_name,
                 conversions["default"]
             )
 
             return quantity * grams_per_unit
-
-        # --- Unknown / unsupported unit
-        return 0
 
     
     @property
