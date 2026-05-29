@@ -411,16 +411,16 @@ msgstr ""
 "Този уебсайт съдържа връзки към външни сайтове на трети страни. Нямаме влияние върху тяхното съдържание\n"
 "и следователно не поемаме отговорност за външното съдържание.\n"
 
+msgid ""
 "\n"
-"      This website contains links to external third-party websites. We have "
-"no influence over their content\n"
+"      This website contains links to external third-party websites. We have no influence over their content\n"
 "      and therefore assume no liability for external content.\n"
 "      "
 msgstr ""
 "\n"
-"Този уебсайт съдържа връзки към външни уебсайтове на трети страни. Нямаме "
-"контрол върху тяхното съдържание\n"
-"и поради това не поемаме отговорност за външното съдържание.\n"
+"      Този уебсайт съдържа връзки към външни уебсайтове на трети страни. Нямаме контрол върху тяхното съдържание\n"
+"      и поради това не поемаме отговорност за външното съдържание.\n"
+"      "
 
 #: templates/common/footer_related/impressum.html:76
 #, fuzzy
