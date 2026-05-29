@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-27 22:05+0200\n"
+"POT-Creation-Date: 2026-05-29 11:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Food"
 msgstr "Essen"
 
-#: mama_to_be/articles/choices.py:7 templates/common/home.html:112
+#: mama_to_be/articles/choices.py:7
 msgid "Pregnancy"
 msgstr "Schwangerschaft"
 
@@ -81,6 +81,54 @@ msgstr "Bildung"
 msgid "Relationship"
 msgstr "Beziehungen"
 
+#: mama_to_be/food/choices.py:35
+msgid "g"
+msgstr "g"
+
+#: mama_to_be/food/choices.py:36
+msgid "kg"
+msgstr "kg"
+
+#: mama_to_be/food/choices.py:38
+msgid "ml"
+msgstr "ml"
+
+#: mama_to_be/food/choices.py:39
+msgid "l"
+msgstr "l"
+
+#: mama_to_be/food/choices.py:41
+msgid "cup"
+msgstr "Tasse"
+
+#: mama_to_be/food/choices.py:42
+msgid "tbsp"
+msgstr "EL"
+
+#: mama_to_be/food/choices.py:43
+msgid "tsp"
+msgstr "TL"
+
+#: mama_to_be/food/choices.py:45
+msgid "piece"
+msgstr "Stk."
+
+#: mama_to_be/food/choices.py:46
+msgid "pinch"
+msgstr "Prise"
+
+#: mama_to_be/food/choices.py:47
+msgid "dash"
+msgstr "Schuss"
+
+#: mama_to_be/food/choices.py:48
+msgid "clove"
+msgstr "Zehe"
+
+#: mama_to_be/food/choices.py:49
+msgid "slice"
+msgstr "Scheibe"
+
 #: mama_to_be/profiles/admin.py:21
 msgid "Permissions"
 msgstr "Berechtigungen"
@@ -89,14 +137,14 @@ msgstr "Berechtigungen"
 msgid "Important Dates"
 msgstr "Wichtige Daten"
 
-#: templates/common/footer.html:26
+#: templates/common/footer.html:26 templates/common/navbar.html:252
 msgid "About"
 msgstr "Über mich"
 
 #: templates/common/footer.html:27
-#: templates/common/footer_related/contact.html:11
+#: templates/common/footer_related/contact.html:10
 #: templates/common/footer_related/impressum.html:26
-#: templates/common/footer_related/privacy.html:125
+#: templates/common/footer_related/privacy.html:178
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -132,8 +180,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Die Idee hinter dem Namen basiert auf meiner Überzeugung, dass eine Mutter nicht durch einen positiven Test,\n"
-"      eine lange Schwangerschaft oder sogar die erste Geburt entsteht. Mutter zu werden ist ein Prozess, der wahrscheinlich\n"
+"      Die Idee hinter dem Namen basiert auf meiner Überzeugung, dass eine "
+"Mutter nicht durch einen positiven Test,\n"
+"      eine lange Schwangerschaft oder sogar die erste Geburt entsteht. "
+"Mutter zu werden ist ein Prozess, der wahrscheinlich\n"
 "      sehr lange andauert – oder nie wirklich endet.\n"
 "      "
 
@@ -191,56 +241,97 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Ich bin Maria aus Bulgarien, lebe aber seit 13 Jahren in Wien, Österreich. Ich habe eine sprachliche\n"
-"      Oberschule in Plovdiv mit Spanisch als Hauptfach abgeschlossen, aber die Umstände des Lebens brachten mich\n"
-"      in ein deutschsprachiges Land, wo die erste Herausforderung darin bestand, diese schwierige Sprache zu lernen,\n"
+"      Ich bin Maria aus Bulgarien, lebe aber seit 13 Jahren in Wien, "
+"Österreich. Ich habe eine sprachliche\n"
+"      Oberschule in Plovdiv mit Spanisch als Hauptfach abgeschlossen, aber "
+"die Umstände des Lebens brachten mich\n"
+"      in ein deutschsprachiges Land, wo die erste Herausforderung darin "
+"bestand, diese schwierige Sprache zu lernen,\n"
 "      um an der Universität studieren zu können.\n"
 "\n"
-"      Das System hier erlaubt es, einen Deutschkurs erst nach der Immatrikulation an einer der Wiener Universitäten zu belegen.\n"
-"      Genau das habe ich gemacht und mich für einen Bachelorstudiengang in Technischer Chemie an der Technischen Universität Wien entschieden.\n"
+"      Das System hier erlaubt es, einen Deutschkurs erst nach der "
+"Immatrikulation an einer der Wiener Universitäten zu belegen.\n"
+"      Genau das habe ich gemacht und mich für einen Bachelorstudiengang in "
+"Technischer Chemie an der Technischen Universität Wien entschieden.\n"
 "\n"
-"      Nach einem Jahr voller Mühe und Prüfungen habe ich erfolgreich das Sprachzertifikat bestanden und mein Studium begonnen.\n"
+"      Nach einem Jahr voller Mühe und Prüfungen habe ich erfolgreich das "
+"Sprachzertifikat bestanden und mein Studium begonnen.\n"
 "\n"
-"      Nach dem ersten Jahr wurde mir jedoch klar, dass dies nicht der richtige Weg für mich war. Ich wechselte mein Hauptfach\n"
-"      und meine Universität und legte die Aufnahmeprüfung für Journalismus an der Universität Wien ab. Nach dem Bestehen der Prüfung\n"
-"      und mehreren sehr herausfordernden Semestern wurde mir klar, dass dies der Weg war, den ich gehen wollte, auch wenn ich\n"
-"      Journalismus auf Deutsch studieren und mit Professoren mit starkem österreichischem Akzent umgehen musste.\n"
+"      Nach dem ersten Jahr wurde mir jedoch klar, dass dies nicht der "
+"richtige Weg für mich war. Ich wechselte mein Hauptfach\n"
+"      und meine Universität und legte die Aufnahmeprüfung für Journalismus "
+"an der Universität Wien ab. Nach dem Bestehen der Prüfung\n"
+"      und mehreren sehr herausfordernden Semestern wurde mir klar, dass dies "
+"der Weg war, den ich gehen wollte, auch wenn ich\n"
+"      Journalismus auf Deutsch studieren und mit Professoren mit starkem "
+"österreichischem Akzent umgehen musste.\n"
 "\n"
-"      Für jemanden, der die Sprache noch lernt, war es normal, manchmal zu scheitern, auch wenn ich das damals nicht verstand.\n"
-"      Jede schlechte Note entmutigte mich. Es war demotivierend und wirkte sich negativ auf mich aus.\n"
+"      Für jemanden, der die Sprache noch lernt, war es normal, manchmal zu "
+"scheitern, auch wenn ich das damals nicht verstand.\n"
+"      Jede schlechte Note entmutigte mich. Es war demotivierend und wirkte "
+"sich negativ auf mich aus.\n"
 "\n"
-"      Gleichzeitig lernte ich viele Kolleg:innen – Bulgaren und andere – kennen und mein soziales Leben war ziemlich dynamisch.\n"
+"      Gleichzeitig lernte ich viele Kolleg:innen – Bulgaren und andere – "
+"kennen und mein soziales Leben war ziemlich dynamisch.\n"
 "\n"
-"      Ich fand einen Job, der zunächst nur vorübergehend sein sollte, der aber allmählich fest wurde, und die Universität nahm eine\n"
+"      Ich fand einen Job, der zunächst nur vorübergehend sein sollte, der "
+"aber allmählich fest wurde, und die Universität nahm eine\n"
 "      sekundäre oder sogar tertiäre Rolle ein.\n"
 "\n"
-"      Einige Jahre und eine Pandemie später befinde ich mich an einem wunderbaren Punkt in meinem Leben: Ich habe einen großartigen Ehemann,\n"
-"      einen kleinen Sohn und ein gemütliches Zuhause hier im Herzen der klassischen Hauptstadt Europas. Ich schreibe dieses kleine\n"
-"      Tagebuch in der Hoffnung, jemandem wie mir oder jeder Person, die ähnliche Erfahrungen macht, nützlich zu sein.\n"
+"      Einige Jahre und eine Pandemie später befinde ich mich an einem "
+"wunderbaren Punkt in meinem Leben: Ich habe einen großartigen Ehemann,\n"
+"      einen kleinen Sohn und ein gemütliches Zuhause hier im Herzen der "
+"klassischen Hauptstadt Europas. Ich schreibe dieses kleine\n"
+"      Tagebuch in der Hoffnung, jemandem wie mir oder jeder Person, die "
+"ähnliche Erfahrungen macht, nützlich zu sein.\n"
 "      "
 
-#: templates/common/footer_related/contact.html:14
+#: templates/common/footer_related/contact.html:11
 msgid "I’d love to hear from you"
 msgstr "Ich freue mich, von dir zu hören"
 
-#: templates/common/footer_related/contact.html:18
+#: templates/common/footer_related/contact.html:17
+msgid "Get in touch"
+msgstr ""
+
+#: templates/common/footer_related/contact.html:20
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "      Whether you have questions, feedback, or suggestions, feel free to "
+#| "reach out.\n"
+#| "      I always appreciate messages from readers and other parents sharing "
+#| "similar experiences.\n"
+#| "      "
 msgid ""
 "\n"
-"      Whether you have questions, feedback, or suggestions, feel free to "
-"reach out.\n"
-"      I always appreciate messages from readers and other parents sharing "
-"similar experiences.\n"
-"      "
+"          Whether it’s feedback, questions, or collaboration ideas,\n"
+"          I always appreciate hearing from readers.\n"
+"          "
 msgstr ""
 "\n"
 "      Egal ob Fragen, Feedback oder Vorschläge – melde dich gerne.\n"
-"      Ich freue mich immer über Nachrichten von Leserinnen und anderen Eltern, die ähnliche Erfahrungen teilen.\n"
+"      Ich freue mich immer über Nachrichten von Leserinnen und anderen "
+"Eltern, die ähnliche Erfahrungen teilen.\n"
 "      "
 
-#: templates/common/footer_related/contact.html:25
+#: templates/common/footer_related/contact.html:49
+#: templates/food/_recipe_form_base.html:168
+msgid "Name"
+msgstr ""
+
+#: templates/common/footer_related/contact.html:55
 #: templates/common/footer_related/impressum.html:30
 msgid "Email"
 msgstr "E-Mail"
+
+#: templates/common/footer_related/contact.html:61
+msgid "Message"
+msgstr "Nachricht"
+
+#: templates/common/footer_related/contact.html:67
+msgid "Send message"
+msgstr "Nachricht senden"
 
 #: templates/common/footer_related/impressum.html:11
 msgid "Legal Notice"
@@ -275,7 +366,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Diese Website dient als persönliches Tagebuch und als Ort, um Erfahrungen rund um Familie,\n"
+"      Diese Website dient als persönliches Tagebuch und als Ort, um "
+"Erfahrungen rund um Familie,\n"
 "      Schwangerschaft, Mutterschaft und den Alltag in Österreich zu teilen.\n"
 "      "
 
@@ -292,8 +384,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Dennoch übernehmen wir keine\n"
-"      Gewähr für die Richtigkeit, Vollständigkeit oder Aktualität der Inhalte.\n"
+"      Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt "
+"erstellt. Dennoch übernehmen wir keine\n"
+"      Gewähr für die Richtigkeit, Vollständigkeit oder Aktualität der "
+"Inhalte.\n"
 "      "
 
 #: templates/common/footer_related/impressum.html:65
@@ -309,8 +403,56 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Diese Website enthält Links zu externen Websites Dritter. Auf deren Inhalte haben wir keinen Einfluss\n"
+"      Diese Website enthält Links zu externen Websites Dritter. Auf deren "
+"Inhalte haben wir keinen Einfluss\n"
 "      und übernehmen daher keine Haftung für externe Inhalte.\n"
+"      "
+
+#: templates/common/footer_related/impressum.html:76
+#, fuzzy
+#| msgid "Who is behind this website?"
+msgid "Technical operation of this website"
+msgstr "Wer steht hinter dieser Website?"
+
+#: templates/common/footer_related/impressum.html:80
+msgid ""
+"\n"
+"      This website processes limited technical data in order to operate "
+"securely and reliably.\n"
+"      This includes IP addresses for security purposes, rate limiting, and "
+"server logs for error monitoring.\n"
+"      "
+msgstr ""
+"\n"
+"      Diese Website verarbeitet begrenzte technische Daten, um einen sicheren und zuverlässigen Betrieb zu gewährleisten.\n"
+"      Dazu gehören IP-Adressen zu Sicherheitszwecken, eine Begrenzung von Anfragen (Rate-Limiting) sowie Server-Logs zur Fehlerüberwachung.\n"
+"      "
+
+#: templates/common/footer_related/impressum.html:87
+msgid ""
+"\n"
+"      When you use the contact form, the information you provide (such as "
+"your name, email address,\n"
+"      and message) is transmitted to the website owner via a secure email "
+"service provider.\n"
+"      "
+msgstr ""
+"\n"
+"      Wenn Sie das Kontaktformular verwenden, werden die von Ihnen bereitgestellten Informationen (wie Name, E-Mail-Adresse\n"
+"      und Nachricht) über einen sicheren E-Mail-Dienstanbieter an den Website-Betreiber übermittelt.\n"
+"      "
+
+#: templates/common/footer_related/impressum.html:94
+msgid ""
+"\n"
+"      Email delivery is handled by a third-party transactional email service "
+"provider.\n"
+"      No marketing use of submitted data takes place.\n"
+"      "
+msgstr ""
+"\n"
+"      Der E-Mail-Versand wird von einem externen Anbieter für transaktionale E-Mail-Dienste abgewickelt.\n"
+"      Eine Nutzung der übermittelten Daten zu Marketingzwecken findet nicht statt.\n"
 "      "
 
 #: templates/common/footer_related/privacy.html:14
@@ -327,8 +469,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Der Schutz Ihrer personenbezogenen Daten ist uns ein besonderes Anliegen. Daher verarbeiten wir Ihre Daten\n"
-"      ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, Telekommunikationsgesetz 2003).\n"
+"      Der Schutz Ihrer personenbezogenen Daten ist uns ein besonderes "
+"Anliegen. Daher verarbeiten wir Ihre Daten\n"
+"      ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, "
+"Telekommunikationsgesetz 2003).\n"
 "      "
 
 #: templates/common/footer_related/privacy.html:25
@@ -354,26 +498,32 @@ msgid "Access data / server log files"
 msgstr "Zugriffsdaten / Server-Logfiles"
 
 #: templates/common/footer_related/privacy.html:41
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "The hosting provider automatically collects and stores information in so-"
+#| "called server log files,\n"
+#| "which your browser automatically transmits. This includes: IP address, "
+#| "date and time of access,\n"
+#| "browser type, and operating system. These data are technically required "
+#| "to display the website\n"
+#| "correctly and ensure stability and security.\n"
 msgid ""
 "\n"
-"The hosting provider automatically collects and stores information in "
+"      The hosting provider automatically collects and stores information in "
 "so-called server log files,\n"
-"which your browser automatically transmits. This includes: IP address, "
+"      which your browser automatically transmits. This includes: IP address, "
 "date and time of access,\n"
-"browser type, and operating system. These data are technically "
+"      browser type, and operating system. These data are technically "
 "required to display the website\n"
-"correctly and ensure stability and security.\n"
-""
+"      correctly and ensure stability and security.\n"
+"      "
 msgstr ""
 "\n"
-"Der Hosting-Anbieter erhebt und speichert automatisch Informationen in "
-"sogenannten Server-Logfiles,\n"
-"die Ihr Browser automatisch übermittelt. Dazu gehören: IP-Adresse, "
-"Datum und Uhrzeit des Zugriffs,\n"
-"Browsertyp und Betriebssystem. Diese Daten sind technisch erforderlich, "
-"um die Website korrekt\n"
+"Der Hosting-Anbieter erhebt und speichert automatisch Informationen in sogenannten Server-Logdateien,\n"
+"die Ihr Browser automatisch übermittelt. Dazu gehören: IP-Adresse, Datum und Uhrzeit des Zugriffs,\n"
+"Browsertyp und Betriebssystem. Diese Daten sind technisch erforderlich, um die Website korrekt\n"
 "anzuzeigen und Stabilität sowie Sicherheit zu gewährleisten.\n"
-""
 
 #: templates/common/footer_related/privacy.html:50
 msgid ""
@@ -402,8 +552,8 @@ msgstr ""
 "\n"
 "      Diese Website verwendet nur technisch notwendige Cookies, die für den "
 "Betrieb der Seite erforderlich sind\n"
-"      (z. B. Sitzungs- und Sicherheitsfunktionen). Die Nutzung der Website ist "
-"ohne diese Cookies nicht möglich.\n"
+"      (z. B. Sitzungs- und Sicherheitsfunktionen). Die Nutzung der Website "
+"ist ohne diese Cookies nicht möglich.\n"
 "      Es wird keine Analyse des Nutzerverhaltens durchgeführt.\n"
 "      "
 
@@ -421,8 +571,9 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Diese Website verwendet Google Fonts, bereitgestellt von Google Ireland Limited. "
-"Beim Besuch der Seite lädt Ihr Browser die Schriftarten direkt von den Google-Servern.\n"
+"      Diese Website verwendet Google Fonts, bereitgestellt von Google "
+"Ireland Limited. Beim Besuch der Seite lädt Ihr Browser die Schriftarten "
+"direkt von den Google-Servern.\n"
 "      Ihre IP-Adresse kann an Google übermittelt werden.\n"
 "      "
 
@@ -435,7 +586,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Die Verwendung von Google Fonts erfolgt auf Grundlage unseres berechtigten Interesses an einer konsistenten und ansprechenden Darstellung\n"
+"      Die Verwendung von Google Fonts erfolgt auf Grundlage unseres "
+"berechtigten Interesses an einer konsistenten und ansprechenden Darstellung\n"
 "      der Website (Art. 6 Abs. 1 lit. f DSGVO).\n"
 "      "
 
@@ -452,8 +604,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Diese Website verwendet keine Web-Analyse-Tools (wie Google Analytics), "
-"Tracking-Technologien\n"
+"      Diese Website verwendet keine Web-Analyse-Tools (wie Google "
+"Analytics), Tracking-Technologien\n"
 "      oder Marketing-Cookies.\n"
 "      "
 
@@ -469,14 +621,112 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Personenbezogene Daten werden nur so lange gespeichert, wie es zur Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzlich vorgeschrieben ist.\n"
+"      Personenbezogene Daten werden nur so lange gespeichert, wie es zur "
+"Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzlich "
+"vorgeschrieben ist.\n"
 "      "
 
 #: templates/common/footer_related/privacy.html:107
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact form"
+msgstr "Kontakt"
+
+#: templates/common/footer_related/privacy.html:111
+msgid ""
+"\n"
+"      When you use the contact form, we process the data you provide (name, "
+"email address, and message)\n"
+"      in order to respond to your inquiry.\n"
+"      "
+msgstr ""
+"\n"
+"      Wenn Sie das Kontaktformular verwenden, verarbeiten wir die von Ihnen bereitgestellten Daten (Name, E-Mail-Adresse\n"
+"      und Nachricht), um auf Ihre Anfrage zu antworten.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:118
+msgid ""
+"\n"
+"      The legal basis for this processing is Art. 6(1)(b) GDPR (processing "
+"necessary for the performance of a contract\n"
+"      or pre-contractual measures).\n"
+"      "
+msgstr ""
+"\n"
+"      Rechtsgrundlage für diese Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO (Verarbeitung, die zur Erfüllung eines Vertrags\n"
+"      oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist).\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:125
+msgid "Email delivery"
+msgstr "E-Mail-Zustellung"
+
+#: templates/common/footer_related/privacy.html:129
+msgid ""
+"\n"
+"      Contact form submissions are delivered via a third-party transactional "
+"email service provider.\n"
+"      The provider processes the data solely for the purpose of email "
+"transmission.\n"
+"      "
+msgstr ""
+"\n"
+"      Kontaktformular-Eingaben werden über einen externen Anbieter für transaktionale E-Mail-Dienste zugestellt.\n"
+"      Der Anbieter verarbeitet die Daten ausschließlich zum Zweck der E-Mail-Übermittlung.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:136
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "      These data are not merged with other data sources.\n"
+#| "      "
+msgid ""
+"\n"
+"      We do not use this data for marketing purposes.\n"
+"      "
+msgstr ""
+"\n"
+"      Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:142
+msgid "Security and technical data processing"
+msgstr "Sicherheit und technische Datenverarbeitung"
+
+#: templates/common/footer_related/privacy.html:146
+msgid ""
+"\n"
+"      For security and stability purposes, this website processes limited "
+"technical data such as IP addresses.\n"
+"      This is used for rate limiting, abuse prevention, and error "
+"monitoring.\n"
+"      "
+msgstr ""
+"\n"
+"      Aus Sicherheits- und Stabilitätsgründen verarbeitet diese Website begrenzte technische Daten wie IP-Adressen.\n"
+"      Diese werden für Rate-Limiting, Missbrauchsprävention und Fehlerüberwachung verwendet.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:153
+msgid ""
+"\n"
+"      Additionally, temporary identifiers may be used to prevent duplicate "
+"form submissions.\n"
+"      These identifiers are automatically deleted after a short period.\n"
+"      "
+msgstr ""
+"\n"
+"      Zusätzlich können temporäre Kennungen verwendet werden, um doppelte Formularübermittlungen zu verhindern.\n"
+"      Diese Kennungen werden nach kurzer Zeit automatisch gelöscht.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:160
 msgid "Your rights"
 msgstr "Ihre Rechte"
 
-#: templates/common/footer_related/privacy.html:111
+#: templates/common/footer_related/privacy.html:164
 msgid ""
 "\n"
 "      You generally have the right to access, rectification, erasure, "
@@ -485,11 +735,12 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Sie haben grundsätzlich das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,\n"
+"      Sie haben grundsätzlich das Recht auf Auskunft, Berichtigung, "
+"Löschung, Einschränkung der Verarbeitung,\n"
 "      Datenübertragbarkeit und Widerspruch.\n"
 "      "
 
-#: templates/common/footer_related/privacy.html:118
+#: templates/common/footer_related/privacy.html:171
 msgid ""
 "\n"
 "      If you believe that the processing of your data violates data "
@@ -522,73 +773,47 @@ msgstr "Ein Ort für Mutterschaft, Familie und Alltag"
 msgid ""
 "Stories, practical advice, inspiration and gentle moments from family life "
 "in Austria."
-msgstr "Geschichten, praktische Tipps, Inspiration und ruhige Momente aus dem Familienleben in Österreich."
+msgstr ""
+"Geschichten, praktische Tipps, Inspiration und ruhige Momente aus dem "
+"Familienleben in Österreich."
 
-#: templates/common/home.html:117
-#, fuzzy
-#| msgid "Baby Gear"
-msgid "Baby & Toddler"
-msgstr "Baby & Kleinkind"
-
-#: templates/common/home.html:122
-msgid "Life in Austria"
-msgstr "Leben in Österreich"
-
-#: templates/common/home.html:127
-msgid "Activities"
-msgstr "Aktivitäten"
-
-#: templates/common/home.html:132
-msgid "Kindergarten"
-msgstr "Kindergarten"
-
-#: templates/common/home.html:137 templates/common/navbar.html:237
-#: templates/food/recipe_list.html:8
-msgid "Recipes"
-msgstr "Rezepten"
-
-#: templates/common/home.html:142
-#, fuzzy
-msgid "Relationships"
-msgstr "Beziehungen"
-
-#: templates/common/home.html:161
+#: templates/common/home.html:162
 msgid "Who am I?"
 msgstr "Wer bin ich?"
 
-#: templates/common/home.html:165
+#: templates/common/home.html:166
 msgid "Hi, I'm Maria"
 msgstr "Hallo, ich bin Maria"
 
-#: templates/common/home.html:169
+#: templates/common/home.html:170
 msgid ""
 "Originally from Bulgaria, I’ve been living in Vienna for more than 13 years. "
 "My journey here began with learning German, adapting to a new culture, and "
 "finding my own path through university, work, and eventually motherhood."
 msgstr ""
-"Ursprünglich aus Bulgarien stammend, lebe ich seit mehr als 13 Jahren in Wien. "
-"Meine Reise hier begann mit dem Erlernen der deutschen Sprache, der Anpassung an "
-"eine neue Kultur und dem Finden meines eigenen Weges durch Universität, Arbeit "
-"und schließlich die Mutterschaft."
+"Ursprünglich aus Bulgarien stammend, lebe ich seit mehr als 13 Jahren in "
+"Wien. Meine Reise hier begann mit dem Erlernen der deutschen Sprache, der "
+"Anpassung an eine neue Kultur und dem Finden meines eigenen Weges durch "
+"Universität, Arbeit und schließlich die Mutterschaft."
 
-#: templates/common/home.html:173
+#: templates/common/home.html:174
 msgid ""
 "Today I write this small digital diary to share honest reflections on family "
 "life, motherhood in Austria, and the everyday moments that shape us."
 msgstr ""
-"Heute schreibe ich dieses kleine digitale Tagebuch, um ehrliche Gedanken über "
-"Familienleben, Mutterschaft in Österreich und die alltäglichen Momente, die uns "
-"prägen, zu teilen."
+"Heute schreibe ich dieses kleine digitale Tagebuch, um ehrliche Gedanken "
+"über Familienleben, Mutterschaft in Österreich und die alltäglichen Momente, "
+"die uns prägen, zu teilen."
 
-#: templates/common/home.html:189
+#: templates/common/home.html:190
 msgid "See More"
 msgstr "Mehr anzeigen"
 
-#: templates/common/home.html:193
+#: templates/common/home.html:194
 msgid "Browse the latest articles!"
 msgstr "Durchstöbern Sie die neuesten Artikel!"
 
-#: templates/common/home.html:197
+#: templates/common/home.html:198
 msgid "View Recent Articles"
 msgstr "Neueste Artikel ansehen"
 
@@ -621,6 +846,10 @@ msgstr "Tagebuch"
 msgid "Learn more about"
 msgstr "Erfahren Sie mehr über"
 
+#: templates/common/navbar.html:237 templates/food/recipe_list.html:8
+msgid "Recipes"
+msgstr "Rezepten"
+
 #: templates/common/navbar.html:240
 msgid "Explore recipes"
 msgstr "Durchstöbern Sie die Rezepten!"
@@ -628,10 +857,6 @@ msgstr "Durchstöbern Sie die Rezepten!"
 #: templates/common/navbar.html:244
 msgid "All Recipes"
 msgstr "Alle Rezepten"
-
-#: templates/common/navbar.html:252
-msgid "За мен"
-msgstr ""
 
 #: templates/food/_recipe_form_base.html:125
 msgid "Search ingredient..."
@@ -655,10 +880,6 @@ msgstr ""
 
 #: templates/food/_recipe_form_base.html:162
 msgid "Create Ingredient"
-msgstr ""
-
-#: templates/food/_recipe_form_base.html:168
-msgid "Name"
 msgstr ""
 
 #: templates/food/_recipe_form_base.html:173
@@ -687,15 +908,19 @@ msgstr "PORTIONEN"
 msgid "INGREDIENTS"
 msgstr "ZUTATEN"
 
-#: templates/food/recipe_detail.html:148
+#: templates/food/recipe_detail.html:144
+msgid "Nutrition (for whole recipe)"
+msgstr "Nährwerte (für das gesamte Rezept)"
+
+#: templates/food/recipe_detail.html:155
 msgid "protein"
 msgstr "Protein"
 
-#: templates/food/recipe_detail.html:153
+#: templates/food/recipe_detail.html:160
 msgid "carbs"
 msgstr "Kohlenhydrate"
 
-#: templates/food/recipe_detail.html:158
+#: templates/food/recipe_detail.html:165
 msgid "fat"
 msgstr "Fett"
 
@@ -710,6 +935,24 @@ msgstr ""
 #: templates/food/update_recipe_form.html:14
 msgid "Save Changes"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Baby Gear"
+#~ msgid "Baby & Toddler"
+#~ msgstr "Baby & Kleinkind"
+
+#~ msgid "Life in Austria"
+#~ msgstr "Leben in Österreich"
+
+#~ msgid "Activities"
+#~ msgstr "Aktivitäten"
+
+#~ msgid "Kindergarten"
+#~ msgstr "Kindergarten"
+
+#, fuzzy
+#~ msgid "Relationships"
+#~ msgstr "Beziehungen"
 
 #~ msgid "Welcome to Mom-To-Be!"
 #~ msgstr "Willkommen bei Mom-To-Be!"

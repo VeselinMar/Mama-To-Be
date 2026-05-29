@@ -188,6 +188,70 @@ class Recipe(TranslatableModel):
             "rice": 0.85,
         }
 
+        COUNT_CONVERSIONS = {
+            UnitChoices.PIECE: {
+                # Generic fallback
+                "default": 100,
+
+                # Eggs / dairy
+                "egg": 50,
+                "egg white": 30,
+                "egg yolk": 18,
+                "mozzarella ball": 125,
+
+                # Fruits
+                "apple": 180,
+                "banana": 120,
+                "pear": 180,
+                "orange": 130,
+                "lemon": 120,
+                "lime": 70,
+                "peach": 150,
+                "plum": 65,
+                "kiwi": 75,
+                "mango": 300,
+                "avocado": 200,
+                "strawberry": 12,
+                "grape": 5,
+
+                # Vegetables
+                "onion": 110,
+                "red onion": 120,
+                "shallot": 35,
+                "tomato": 120,
+                "cherry tomato": 17,
+                "potato": 180,
+                "sweet potato": 200,
+                "carrot": 60,
+                "zucchini": 200,
+                "cucumber": 300,
+                "bell pepper": 150,
+                "chili pepper": 15,
+                "jalapeno": 14,
+                "garlic bulb": 60,
+                "corn cob": 100,
+                "mushroom": 18,
+
+                # Bakery
+                "bagel": 95,
+                "bread roll": 60,
+                "burger bun": 80,
+                "croissant": 70,
+
+                # Meat / fish
+                "chicken breast": 180,
+                "chicken thigh": 120,
+                "sausage": 90,
+                "hot dog": 50,
+                "burger patty": 150,
+                "salmon fillet": 200,
+
+                # Misc
+                "tofu block": 400,
+                "bouillon cube": 10,
+            },
+        }
+
         # --- Mass → grams
         if unit in MASS_CONVERSIONS:
             return quantity * MASS_CONVERSIONS[unit]
@@ -203,6 +267,16 @@ class Recipe(TranslatableModel):
                 density = 1.0
 
             return ml * density
+    
+        if unit in COUNT_CONVERSIONS:
+            conversions = COUNT_CONVERSIONS[unit]
+
+            grams_per_unit = conversions.get(
+                ingredient_name,
+                conversions["default"]
+            )
+
+            return quantity * grams_per_unit
 
         # --- Unknown / unsupported unit
         return 0
