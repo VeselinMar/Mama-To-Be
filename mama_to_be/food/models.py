@@ -153,7 +153,7 @@ class Recipe(TranslatableModel):
         Returns 0 if conversion is not possible.
         """
 
-        if not quantity:
+        if quantity is None:
             return 0
 
         if not unit:
@@ -271,10 +271,12 @@ class Recipe(TranslatableModel):
         if unit in COUNT_CONVERSIONS:
             conversions = COUNT_CONVERSIONS[unit]
 
-            if ingredient:
-                ingredient_name = getattr(ingredient, "name", "").lower().strip()
-            else:
-                ingredient_name = None
+            ingredient_name = (
+                getattr(ingredient, "name", None)
+            )
+
+            if ingredient_name:
+                ingredient_name = ingredient_name.lower().strip()
 
             grams_per_unit = conversions.get(
                 ingredient_name,
@@ -291,6 +293,10 @@ class Recipe(TranslatableModel):
         fat = 0
 
         for ri in self.recipeingredient_set.all():
+
+            if not ri.ingredient:
+                continue
+
             grams = self._convert_to_grams(ri.quantity, ri.unit)
 
             if grams == 0:
@@ -320,6 +326,9 @@ class Recipe(TranslatableModel):
 
     @property
     def calories_per_serving(self):
+        if not self.servings:
+            return 0
+
         return round(self.total_calories / self.servings, 2)
     
     @property
