@@ -409,10 +409,8 @@ msgstr ""
 "      "
 
 #: templates/common/footer_related/impressum.html:76
-#, fuzzy
-#| msgid "Who is behind this website?"
 msgid "Technical operation of this website"
-msgstr "Wer steht hinter dieser Website?"
+msgstr "Technischer Betrieb dieser Website"
 
 #: templates/common/footer_related/impressum.html:80
 msgid ""
