@@ -253,6 +253,10 @@ class Recipe(TranslatableModel):
         }
 
         # --- Mass → grams
+        if quantity is None:
+            return 0
+
+        quantity = float(quantity)
         if unit in MASS_CONVERSIONS:
             return quantity * MASS_CONVERSIONS[unit]
 
@@ -276,7 +280,7 @@ class Recipe(TranslatableModel):
             )
 
             if ingredient_name:
-                ingredient_name = ingredient_name.lower().strip()
+                ingredient_name = ingredient_name.lower().strip().replace("_", " ")
 
             grams_per_unit = conversions.get(
                 ingredient_name,
@@ -284,6 +288,8 @@ class Recipe(TranslatableModel):
             )
 
             return quantity * grams_per_unit
+            
+        return 0
 
     
     @property
@@ -299,10 +305,13 @@ class Recipe(TranslatableModel):
 
             grams = self._convert_to_grams(ri.quantity, ri.unit)
 
-            if grams == 0:
+            if not grams or grams <= 0:
                 continue
 
-            factor = grams / 100
+            if grams > 1000:
+                logger.warning("Suspicious ingredient weight: %s", grams)
+
+            factor = grams / 100.0
 
             protein += ri.ingredient.protein * factor
             carbs += ri.ingredient.carbs * factor
