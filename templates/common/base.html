@@ -19,11 +19,11 @@
 <nav>
     {% include 'common/navbar.html' %}
 </nav>
-<body>
-    <div>
+<body class="app-body">
+    <main class="page-content container">
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
 </body>
 <footer>
     {% include 'common/footer.html' %}

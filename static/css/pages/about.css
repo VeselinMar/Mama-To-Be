@@ -10,11 +10,14 @@
 
 /* center column like magazine text */
 .about-container {
-  max-width: 750px;
-  margin: 0 auto;
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: var(--color-text);
+    padding: 0 6rem;
 
-  line-height: 1.8;
-  color: var(--color-text);
+    display: flex;
+    flex-direction: column;
 }
 
 /* ============================= */
@@ -55,7 +58,11 @@
 .about-container p {
   margin-bottom: 1.5rem;
 
+  max-width: 65ch;
+
   font-size: 1rem;
+
+  margin-bottom: 1.5rem;
 
   color: var(--color-text);
 }
