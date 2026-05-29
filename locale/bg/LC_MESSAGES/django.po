@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-27 22:05+0200\n"
+"POT-Creation-Date: 2026-05-29 11:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bulgarian <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Food"
 msgstr "Храна"
 
-#: mama_to_be/articles/choices.py:7 templates/common/home.html:112
+#: mama_to_be/articles/choices.py:7
 msgid "Pregnancy"
 msgstr "Бременност"
 
@@ -81,6 +81,54 @@ msgstr "Образование"
 msgid "Relationship"
 msgstr "Взаимоотношения"
 
+#: mama_to_be/food/choices.py:35
+msgid "g"
+msgstr "г"
+
+#: mama_to_be/food/choices.py:36
+msgid "kg"
+msgstr "кг"
+
+#: mama_to_be/food/choices.py:38
+msgid "ml"
+msgstr "мл"
+
+#: mama_to_be/food/choices.py:39
+msgid "l"
+msgstr "л"
+
+#: mama_to_be/food/choices.py:41
+msgid "cup"
+msgstr "чаша"
+
+#: mama_to_be/food/choices.py:42
+msgid "tbsp"
+msgstr "с.л."
+
+#: mama_to_be/food/choices.py:43
+msgid "tsp"
+msgstr "ч.л."
+
+#: mama_to_be/food/choices.py:45
+msgid "piece"
+msgstr "бр."
+
+#: mama_to_be/food/choices.py:46
+msgid "pinch"
+msgstr "щипка"
+
+#: mama_to_be/food/choices.py:47
+msgid "dash"
+msgstr "малко"
+
+#: mama_to_be/food/choices.py:48
+msgid "clove"
+msgstr "скилидка"
+
+#: mama_to_be/food/choices.py:49
+msgid "slice"
+msgstr "резен"
+
 #: mama_to_be/profiles/admin.py:21
 msgid "Permissions"
 msgstr "Разрешения"
@@ -89,14 +137,14 @@ msgstr "Разрешения"
 msgid "Important Dates"
 msgstr "Важни дати"
 
-#: templates/common/footer.html:26
+#: templates/common/footer.html:26 templates/common/navbar.html:252
 msgid "About"
 msgstr "За мен"
 
 #: templates/common/footer.html:27
-#: templates/common/footer_related/contact.html:11
+#: templates/common/footer_related/contact.html:10
 #: templates/common/footer_related/impressum.html:26
-#: templates/common/footer_related/privacy.html:125
+#: templates/common/footer_related/privacy.html:178
 msgid "Contact"
 msgstr "Контакти"
 
@@ -132,8 +180,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Идеята зад името идва от моето убеждение, че една майка не се създава от положителен тест,\n"
-"      дълга бременност или дори първото раждане. Да станеш майка е процес, който вероятно продължава\n"
+"      Идеята зад името идва от моето убеждение, че една майка не се създава "
+"от положителен тест,\n"
+"      дълга бременност или дори първото раждане. Да станеш майка е процес, "
+"който вероятно продължава\n"
 "      много дълго време — или никога не свършва.\n"
 "      "
 
@@ -191,58 +241,99 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Аз съм Мария, от България, но живея от 13 години във Виена, Австрия. Завършила съм езикова\n"
-"      гимназия в Пловдив с профил испански език, но по стечение на обстоятелствата животът ме отведе в\n"
-"      немскоезична страна, където първото предизвикателство беше да науча този толкова труден език, за\n"
+"      Аз съм Мария, от България, но живея от 13 години във Виена, Австрия. "
+"Завършила съм езикова\n"
+"      гимназия в Пловдив с профил испански език, но по стечение на "
+"обстоятелствата животът ме отведе в\n"
+"      немскоезична страна, където първото предизвикателство беше да науча "
+"този толкова труден език, за\n"
 "      да мога да следвам в университет.\n"
 "\n"
-"      Практиката тук е, че можеш да се запишеш на курс по немски, когато вече си матрикулиран в някой от\n"
-"      виенските университети. Направих точно това, като избрах бакалавър „Техническа химия“ в\n"
+"      Практиката тук е, че можеш да се запишеш на курс по немски, когато "
+"вече си матрикулиран в някой от\n"
+"      виенските университети. Направих точно това, като избрах бакалавър "
+"„Техническа химия“ в\n"
 "      Техническия университет.\n"
 "\n"
-"      След една година усилия и изпити успешно взех езиковия сертификат и започнах следването си.\n"
+"      След една година усилия и изпити успешно взех езиковия сертификат и "
+"започнах следването си.\n"
 "\n"
-"      Още след първата година обаче усетих, че мястото ми не е там по различни причини. Реших да сменя\n"
-"      специалността и университета и се явих на приемен изпит по журналистика във Виенския университет.\n"
-"      След успешния изпит и няколко много трудни семестъра разбрах, че това е пътят, който искам да следвам,\n"
-"      въпреки че трябваше да се боря с журналистика на немски и професори с тежък австрийски акцент.\n"
+"      Още след първата година обаче усетих, че мястото ми не е там по "
+"различни причини. Реших да сменя\n"
+"      специалността и университета и се явих на приемен изпит по "
+"журналистика във Виенския университет.\n"
+"      След успешния изпит и няколко много трудни семестъра разбрах, че това "
+"е пътят, който искам да следвам,\n"
+"      въпреки че трябваше да се боря с журналистика на немски и професори с "
+"тежък австрийски акцент.\n"
 "\n"
-"      Е... за краткия ми опит с езика е нормално понякога да ме късат, макар че тогава не го знаех и всяка\n"
+"      Е... за краткия ми опит с езика е нормално понякога да ме късат, макар "
+"че тогава не го знаех и всяка\n"
 "      неуспешна оценка ме отчайваше. Това е демотивиращо и влияе негативно.\n"
 "\n"
-"      В същото време се запознавах с много колеги – българи и не само – и социалният ми живот беше доста\n"
+"      В същото време се запознавах с много колеги – българи и не само – и "
+"социалният ми живот беше доста\n"
 "      динамичен.\n"
 "\n"
-"      Намерих си уж временна работа, която постепенно се превърна в постоянна, а университетът остана на\n"
+"      Намерих си уж временна работа, която постепенно се превърна в "
+"постоянна, а университетът остана на\n"
 "      второ или дори трето място.\n"
 "\n"
-"      Няколко години и една пандемия по-късно се намирам на прекрасно място в живота си: имам чудесен съпруг,\n"
-"      малък син и уютен дом тук, в сърцето на класическата столица на Европа. Пиша своя малък дневник с\n"
-"      желанието да бъда полезна на някой като мен или на човек, който преминава през подобни неща.\n"
+"      Няколко години и една пандемия по-късно се намирам на прекрасно място "
+"в живота си: имам чудесен съпруг,\n"
+"      малък син и уютен дом тук, в сърцето на класическата столица на "
+"Европа. Пиша своя малък дневник с\n"
+"      желанието да бъда полезна на някой като мен или на човек, който "
+"преминава през подобни неща.\n"
 "      "
 
-#: templates/common/footer_related/contact.html:14
+#: templates/common/footer_related/contact.html:11
 msgid "I’d love to hear from you"
 msgstr "Ще се радвам да се свържете с мен"
 
-#: templates/common/footer_related/contact.html:18
+#: templates/common/footer_related/contact.html:17
+msgid "Get in touch"
+msgstr ""
+
+#: templates/common/footer_related/contact.html:20
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "      Whether you have questions, feedback, or suggestions, feel free to "
+#| "reach out.\n"
+#| "      I always appreciate messages from readers and other parents sharing "
+#| "similar experiences.\n"
+#| "      "
 msgid ""
 "\n"
-"      Whether you have questions, feedback, or suggestions, feel free to "
-"reach out.\n"
-"      I always appreciate messages from readers and other parents sharing "
-"similar experiences.\n"
-"      "
+"          Whether it’s feedback, questions, or collaboration ideas,\n"
+"          I always appreciate hearing from readers.\n"
+"          "
 msgstr ""
 "\n"
-"      Независимо дали имате въпроси, обратна връзка или предложения, не се колебайте да се свържете с мен.\n"
-"      Винаги оценявам съобщенията от читатели и други родители, които споделят сходен опит.\n"
+"      Независимо дали имате въпроси, обратна връзка или предложения, не се "
+"колебайте да се свържете с мен.\n"
+"      Винаги оценявам съобщенията от читатели и други родители, които "
+"споделят сходен опит.\n"
 "      "
 
-#: templates/common/footer_related/contact.html:25
+#: templates/common/footer_related/contact.html:49
+#: templates/food/_recipe_form_base.html:168
+msgid "Name"
+msgstr "Име"
+
+#: templates/common/footer_related/contact.html:55
 #: templates/common/footer_related/impressum.html:30
 msgid "Email"
 msgstr "Електронна поща"
+
+#: templates/common/footer_related/contact.html:61
+msgid "Message"
+msgstr "Съобщение"
+
+#: templates/common/footer_related/contact.html:67
+msgid "Send message"
+msgstr "Изпратете съобщение"
 
 #: templates/common/footer_related/impressum.html:11
 msgid "Legal Notice"
@@ -277,7 +368,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Този уебсайт служи като личен дневник и място за споделяне на преживявания, свързани със семейството,\n"
+"      Този уебсайт служи като личен дневник и място за споделяне на "
+"преживявания, свързани със семейството,\n"
 "      бременността, майчинството и ежедневието в Австрия.\n"
 "      "
 
@@ -294,7 +386,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Съдържанието на този уебсайт е създадено с възможно най-голяма грижа. Въпреки това не\n"
+"      Съдържанието на този уебсайт е създадено с възможно най-голяма грижа. "
+"Въпреки това не\n"
 "      гарантираме точността, пълнотата или актуалността на съдържанието.\n"
 "      "
 
@@ -303,16 +396,79 @@ msgid "Liability for links"
 msgstr "Отговорност за връзки"
 
 #: templates/common/footer_related/impressum.html:69
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "This website contains links to external third-party websites. We have no "
+#| "influence over their content\n"
+#| "and therefore assume no liability for external content.\n"
 msgid ""
 "\n"
-"This website contains links to external third-party websites. We have "
-"no influence over their content\n"
+"This website contains links to external third-party websites. We have no influence over their content\n"
 "and therefore assume no liability for external content.\n"
-
 msgstr ""
 "\n"
-"Този уебсайт съдържа връзки към външни уебсайтове на трети страни. Нямаме контрол върху тяхното съдържание\n"
+"Този уебсайт съдържа връзки към външни сайтове на трети страни. Нямаме влияние върху тяхното съдържание\n"
+"и следователно не поемаме отговорност за външното съдържание.\n"
+
+"\n"
+"      This website contains links to external third-party websites. We have "
+"no influence over their content\n"
+"      and therefore assume no liability for external content.\n"
+"      "
+msgstr ""
+"\n"
+"Този уебсайт съдържа връзки към външни уебсайтове на трети страни. Нямаме "
+"контрол върху тяхното съдържание\n"
 "и поради това не поемаме отговорност за външното съдържание.\n"
+
+#: templates/common/footer_related/impressum.html:76
+#, fuzzy
+#| msgid "Who is behind this website?"
+msgid "Technical operation of this website"
+msgstr "Кой стои зад този уебсайт?"
+
+#: templates/common/footer_related/impressum.html:80
+msgid ""
+"\n"
+"      This website processes limited technical data in order to operate "
+"securely and reliably.\n"
+"      This includes IP addresses for security purposes, rate limiting, and "
+"server logs for error monitoring.\n"
+"      "
+msgstr ""
+"\n"
+"      Този уебсайт обработва ограничени технически данни с цел да работи сигурно и надеждно.\n"
+"      Това включва IP адреси за целите на сигурността, ограничаване на заявки (rate limiting) и\n"
+"      сървърни логове за мониторинг на грешки.\n"
+"      "
+
+#: templates/common/footer_related/impressum.html:87
+msgid ""
+"\n"
+"      When you use the contact form, the information you provide (such as "
+"your name, email address,\n"
+"      and message) is transmitted to the website owner via a secure email "
+"service provider.\n"
+"      "
+msgstr ""
+"\n"
+"      Когато използвате контактната форма, предоставената от вас информация (като име, имейл адрес\n"
+"      и съобщение) се изпраща до собственика на уебсайта чрез защитен доставчик на имейл услуги.\n"
+"      "
+
+#: templates/common/footer_related/impressum.html:94
+msgid ""
+"\n"
+"      Email delivery is handled by a third-party transactional email service "
+"provider.\n"
+"      No marketing use of submitted data takes place.\n"
+"      "
+msgstr ""
+"\n"
+"      Доставката на имейли се извършва от външен доставчик на транзакционни имейл услуги.\n"
+"      Предоставените данни не се използват за маркетингови цели.\n"
+"      "
 
 #: templates/common/footer_related/privacy.html:14
 msgid "Information according to the General Data Protection Regulation (GDPR)"
@@ -328,8 +484,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Защитата на вашите лични данни е от особено значение за нас. Затова обработваме вашите данни\n"
-"      единствено въз основа на законовите разпоредби (GDPR, Закона за телекомуникациите от 2003 г.).\n"
+"      Защитата на вашите лични данни е от особено значение за нас. Затова "
+"обработваме вашите данни\n"
+"      единствено въз основа на законовите разпоредби (GDPR, Закона за "
+"телекомуникациите от 2003 г.).\n"
 "      "
 
 #: templates/common/footer_related/privacy.html:25
@@ -367,9 +525,12 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Хостинг доставчикът автоматично събира и съхранява информация в така наречените сървърни лог файлове,\n"
-"      които вашият браузър автоматично предава. Това включва: IP адрес, дата и час на достъп,\n"
-"      тип браузър и операционна система. Тези данни са технически необходими, за да се показва уебсайтът\n"
+"      Хостинг доставчикът автоматично събира и съхранява информация в така "
+"наречените сървърни лог файлове,\n"
+"      които вашият браузър автоматично предава. Това включва: IP адрес, дата "
+"и час на достъп,\n"
+"      тип браузър и операционна система. Тези данни са технически "
+"необходими, за да се показва уебсайтът\n"
 "      коректно и да се гарантират стабилност и сигурност.\n"
 "      "
 
@@ -398,8 +559,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Този уебсайт използва само технически необходими бисквитки, които са нужни за функционирането на сайта\n"
-"      (напр. сесийни и защитни функции). Не е възможно да се използва уебсайтът без тези бисквитки.\n"
+"      Този уебсайт използва само технически необходими бисквитки, които са "
+"нужни за функционирането на сайта\n"
+"      (напр. сесийни и защитни функции). Не е възможно да се използва "
+"уебсайтът без тези бисквитки.\n"
 "      Не се извършва анализ на потребителското поведение.\n"
 "      "
 
@@ -417,8 +580,10 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Този уебсайт използва Google Fonts, предоставени от Google Ireland Limited. При посещение на сайта\n"
-"      вашият браузър зарежда шрифтовете директно от сървърите на Google. Вашият IP адрес може да бъде предаден на Google.\n"
+"      Този уебсайт използва Google Fonts, предоставени от Google Ireland "
+"Limited. При посещение на сайта\n"
+"      вашият браузър зарежда шрифтовете директно от сървърите на Google. "
+"Вашият IP адрес може да бъде предаден на Google.\n"
 "      "
 
 #: templates/common/footer_related/privacy.html:79
@@ -430,7 +595,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Използването на Google Fonts се основава на нашия легитимен интерес за последователно и привлекателно представяне\n"
+"      Използването на Google Fonts се основава на нашия легитимен интерес за "
+"последователно и привлекателно представяне\n"
 "      на уебсайта (чл. 6, параграф 1, буква „е“ от GDPR).\n"
 "      "
 
@@ -447,7 +613,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Този уебсайт не използва инструменти за уеб анализ (като Google Analytics), технологии за проследяване\n"
+"      Този уебсайт не използва инструменти за уеб анализ (като Google "
+"Analytics), технологии за проследяване\n"
 "      или маркетингови бисквитки.\n"
 "      "
 
@@ -463,14 +630,112 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Личните данни се съхраняват само толкова дълго, колкото е необходимо за изпълнение на съответната цел или както се изисква от закона.\n"
+"      Личните данни се съхраняват само толкова дълго, колкото е необходимо "
+"за изпълнение на съответната цел или както се изисква от закона.\n"
 "      "
 
 #: templates/common/footer_related/privacy.html:107
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact form"
+msgstr "Контакти"
+
+#: templates/common/footer_related/privacy.html:111
+msgid ""
+"\n"
+"      When you use the contact form, we process the data you provide (name, "
+"email address, and message)\n"
+"      in order to respond to your inquiry.\n"
+"      "
+msgstr ""
+"\n"
+"      Когато използвате контактната форма, ние обработваме предоставените от вас данни (име, имейл адрес\n"
+"      и съобщение), за да отговорим на вашето запитване.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:118
+msgid ""
+"\n"
+"      The legal basis for this processing is Art. 6(1)(b) GDPR (processing "
+"necessary for the performance of a contract\n"
+"      or pre-contractual measures).\n"
+"      "
+msgstr ""
+"\n"
+"      Правното основание за тази обработка е чл. 6, параграф 1, буква б) от GDPR (обработване, необходимо за изпълнение на договор\n"
+"      или за предприемане на преддоговорни мерки).\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:125
+msgid "Email delivery"
+msgstr "Доставка на имейли"
+
+#: templates/common/footer_related/privacy.html:129
+msgid ""
+"\n"
+"      Contact form submissions are delivered via a third-party transactional "
+"email service provider.\n"
+"      The provider processes the data solely for the purpose of email "
+"transmission.\n"
+"      "
+msgstr ""
+"\n"
+"      Съобщенията, изпратени чрез контактната форма, се доставят чрез външен доставчик на транзакционни имейл услуги.\n"
+"      Доставчикът обработва данните единствено с цел предаване на имейла.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:136
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "      These data are not merged with other data sources.\n"
+#| "      "
+msgid ""
+"\n"
+"      We do not use this data for marketing purposes.\n"
+"      "
+msgstr ""
+"\n"
+"      Тези данни не се обединяват с други източници на данни.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:142
+msgid "Security and technical data processing"
+msgstr "Сигурност и обработка на технически данни"
+
+#: templates/common/footer_related/privacy.html:146
+msgid ""
+"\n"
+"      For security and stability purposes, this website processes limited "
+"technical data such as IP addresses.\n"
+"      This is used for rate limiting, abuse prevention, and error "
+"monitoring.\n"
+"      "
+msgstr ""
+"\n"
+"      С цел сигурност и стабилност този уебсайт обработва ограничени технически данни, като IP адреси.\n"
+"      Те се използват за ограничаване на заявки (rate limiting), предотвратяване на злоупотреби и\n"
+"      мониторинг на грешки.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:153
+msgid ""
+"\n"
+"      Additionally, temporary identifiers may be used to prevent duplicate "
+"form submissions.\n"
+"      These identifiers are automatically deleted after a short period.\n"
+"      "
+msgstr ""
+"\n"
+"      Освен това могат да се използват временни идентификатори за предотвратяване на повторно изпращане на формуляри.\n"
+"      Тези идентификатори се изтриват автоматично след кратък период от време.\n"
+"      "
+
+#: templates/common/footer_related/privacy.html:160
 msgid "Your rights"
 msgstr "Вашите права"
 
-#: templates/common/footer_related/privacy.html:111
+#: templates/common/footer_related/privacy.html:164
 msgid ""
 "\n"
 "      You generally have the right to access, rectification, erasure, "
@@ -479,11 +744,12 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      По принцип имате право на достъп, коригиране, изтриване, ограничаване на обработването,\n"
+"      По принцип имате право на достъп, коригиране, изтриване, ограничаване "
+"на обработването,\n"
 "      преносимост на данните и възражение.\n"
 "      "
 
-#: templates/common/footer_related/privacy.html:118
+#: templates/common/footer_related/privacy.html:171
 msgid ""
 "\n"
 "      If you believe that the processing of your data violates data "
@@ -492,7 +758,8 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-"      Ако смятате, че обработването на вашите данни нарушава закона за защита на данните, имате право\n"
+"      Ако смятате, че обработването на вашите данни нарушава закона за "
+"защита на данните, имате право\n"
 "      да подадете жалба до надзорния орган.\n"
 "      "
 
@@ -515,70 +782,47 @@ msgstr "Място за майчинство, семейство и ежедне
 msgid ""
 "Stories, practical advice, inspiration and gentle moments from family life "
 "in Austria."
-msgstr "Истории, практични съвети, вдъхновение и нежни моменти от семейния живот в Австрия."
+msgstr ""
+"Истории, практични съвети, вдъхновение и нежни моменти от семейния живот в "
+"Австрия."
 
-#: templates/common/home.html:117
-#, fuzzy
-#| msgid "Baby Gear"
-msgid "Baby & Toddler"
-msgstr "Бебешки аксесоари"
-
-#: templates/common/home.html:122
-msgid "Life in Austria"
-msgstr "Живот в Австрия"
-
-#: templates/common/home.html:127
-msgid "Activities"
-msgstr "Дейности"
-
-#: templates/common/home.html:132
-msgid "Kindergarten"
-msgstr "Детска градина"
-
-#: templates/common/home.html:137 templates/common/navbar.html:237
-#: templates/food/recipe_list.html:8
-msgid "Recipes"
-msgstr "Рецептурник"
-
-#: templates/common/home.html:142
-#, fuzzy
-#| msgid "Relationship"
-msgid "Reflections"
-msgstr "Взаимоотношения"
-
-#: templates/common/home.html:161
+#: templates/common/home.html:162
 msgid "Who am I?"
 msgstr "Коя съм аз?"
 
-#: templates/common/home.html:165
+#: templates/common/home.html:166
 msgid "Hi, I'm Maria"
 msgstr "Здравей, аз съм Мария"
 
-#: templates/common/home.html:169
+#: templates/common/home.html:170
 msgid ""
 "Originally from Bulgaria, I’ve been living in Vienna for more than 13 years. "
 "My journey here began with learning German, adapting to a new culture, and "
 "finding my own path through university, work, and eventually motherhood."
 msgstr ""
-"По произход съм от България и живея във Виена повече от 13 години. "
-"Пътят ми тук започна с изучаването на немски език, адаптирането към нова култура и "
-"намирането на собствен път през университета, работата и в крайна сметка майчинството."
+"По произход съм от България и живея във Виена повече от 13 години. Пътят ми "
+"тук започна с изучаването на немски език, адаптирането към нова култура и "
+"намирането на собствен път през университета, работата и в крайна сметка "
+"майчинството."
 
-#: templates/common/home.html:173
+#: templates/common/home.html:174
 msgid ""
 "Today I write this small digital diary to share honest reflections on family "
 "life, motherhood in Austria, and the everyday moments that shape us."
-msgstr "Днес пиша този малък дигитален дневник, за да споделя искрени размисли за семейния живот, майчинството в Австрия и ежедневните моменти, които ни оформят."
+msgstr ""
+"Днес пиша този малък дигитален дневник, за да споделя искрени размисли за "
+"семейния живот, майчинството в Австрия и ежедневните моменти, които ни "
+"оформят."
 
-#: templates/common/home.html:189
+#: templates/common/home.html:190
 msgid "See More"
 msgstr "Вижте повече"
 
-#: templates/common/home.html:193
+#: templates/common/home.html:194
 msgid "Browse the latest articles!"
 msgstr "Разгледайте най-новите статии!"
 
-#: templates/common/home.html:197
+#: templates/common/home.html:198
 msgid "View Recent Articles"
 msgstr "Вижте скорошните статии"
 
@@ -610,6 +854,10 @@ msgstr "Дневник"
 #: templates/common/navbar.html:223
 msgid "Learn more about"
 msgstr "Научете повече за"
+
+#: templates/common/navbar.html:237 templates/food/recipe_list.html:8
+msgid "Recipes"
+msgstr "Рецептурник"
 
 #: templates/common/navbar.html:240
 msgid "Explore recipes"
@@ -643,10 +891,6 @@ msgstr "Премахни"
 msgid "Create Ingredient"
 msgstr "Добави съставка"
 
-#: templates/food/_recipe_form_base.html:168
-msgid "Name"
-msgstr "Име"
-
 #: templates/food/_recipe_form_base.html:173
 msgid "Protein (per 100g)"
 msgstr "Протеини (на 100г)"
@@ -673,15 +917,19 @@ msgstr "ПОРЦИИ"
 msgid "INGREDIENTS"
 msgstr "СЪСТАВКИ"
 
-#: templates/food/recipe_detail.html:148
+#: templates/food/recipe_detail.html:144
+msgid "Nutrition (for whole recipe)"
+msgstr ""
+
+#: templates/food/recipe_detail.html:155
 msgid "protein"
 msgstr "протеин"
 
-#: templates/food/recipe_detail.html:153
+#: templates/food/recipe_detail.html:160
 msgid "carbs"
 msgstr "въглехидрати"
 
-#: templates/food/recipe_detail.html:158
+#: templates/food/recipe_detail.html:165
 msgid "fat"
 msgstr "мазнини"
 
@@ -696,6 +944,25 @@ msgstr "Редактирай рецепта"
 #: templates/food/update_recipe_form.html:14
 msgid "Save Changes"
 msgstr "Запази промени"
+
+#, fuzzy
+#~| msgid "Baby Gear"
+#~ msgid "Baby & Toddler"
+#~ msgstr "Бебешки аксесоари"
+
+#~ msgid "Life in Austria"
+#~ msgstr "Живот в Австрия"
+
+#~ msgid "Activities"
+#~ msgstr "Дейности"
+
+#~ msgid "Kindergarten"
+#~ msgstr "Детска градина"
+
+#, fuzzy
+#~| msgid "Relationship"
+#~ msgid "Reflections"
+#~ msgstr "Взаимоотношения"
 
 #~ msgid "Welcome to Mom-To-Be!"
 #~ msgstr "Добре дошли в Mom-To-Be!"

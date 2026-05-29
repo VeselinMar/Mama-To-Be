@@ -1,4 +1,7 @@
 from django.db import models
+
+from django.utils.translation import gettext_lazy as _
+
 class AllergenChoices(models.TextChoices):
     GLUTEN = "A", "Cereals containing gluten (wheat, rye, barley, oats)"
     CRUSTACEANS = "B", "Crustaceans (crabs, prawns, lobsters)"
@@ -29,20 +32,18 @@ class DifficultyChoices(models.TextChoices):
     HARD  = "hard", "Hard"
 
 class UnitChoices(models.TextChoices):
-    # Mass
-    GRAM = "g", "Gram (g)"
-    KILOGRAM = "kg", "Kilogram (kg)"
+    GRAM = "g", _("g")
+    KILOGRAM = "kg", _("kg")
 
-    # Volume
-    MILLILITER = "ml", "Milliliter (ml)"
-    LITER = "l", "Liter (l)"
-    CUP = "cup", "Cup"
-    TABLESPOON = "tbsp", "Tablespoon"
-    TEASPOON = "tsp", "Teaspoon"
+    MILLILITER = "ml", _("ml")
+    LITER = "l", _("l")
 
-    # Count / informal
-    PIECE = "pc", "Piece"
-    PINCH = "pinch", "Pinch"
-    DASH = "dash", "Dash"
-    CLOVE = "clove", "Clove"
-    SLICE = "slice", "Slice"
+    CUP = "cup", _("cup")
+    TABLESPOON = "tbsp", _("tbsp")
+    TEASPOON = "tsp", _("tsp")
+
+    PIECE = "pc", _("piece")
+    PINCH = "pinch", _("pinch")
+    DASH = "dash", _("dash")
+    CLOVE = "clove", _("clove")
+    SLICE = "slice", _("slice")

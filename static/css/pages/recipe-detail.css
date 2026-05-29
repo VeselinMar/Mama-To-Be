@@ -287,6 +287,115 @@
     padding: 14px;
 }
 
+/* ============================= */
+/* INGREDIENT CHECKLIST */
+/* ============================= */
+
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    background: transparent;
+    border: 1px solid transparent;
+
+    transition:
+        background 0.15s ease,
+        opacity 0.15s ease,
+        border-color 0.15s ease;
+}
+
+/* clickable full row */
+.ingredient-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* custom checkbox */
+.ingredient-check {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 6px;
+    border: 1.5px solid rgba(0,0,0,0.15);
+
+    background: #fff;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.12s ease;
+}
+
+/* hover */
+.ingredient-item:hover {
+    background: rgba(0,0,0,0.03);
+}
+
+/* checkbox hover */
+.ingredient-check:hover {
+    border-color: var(--color-primary);
+}
+
+/* checked state */
+.ingredient-check:checked {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* checkmark */
+.ingredient-check:checked::after {
+    content: "✓";
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* checked ingredient row */
+.ingredient-item.checked {
+    opacity: 0.55;
+    background: rgba(0,0,0,0.025);
+}
+
+/* strike text */
+.ingredient-item.checked .ingredient-name,
+.ingredient-item.checked .ingredient-qty,
+.ingredient-item.checked .ingredient-note {
+    text-decoration: line-through;
+}
+
+/* quantity */
+.ingredient-qty {
+    width: 90px;
+    font-weight: 600;
+    color: #333;
+    flex-shrink: 0;
+}
+
+/* ingredient */
+.ingredient-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+/* note */
+.ingredient-note {
+    color: var(--color-muted-text);
+    font-size: 0.9rem;
+}
 
 @media (max-width: 900px) {
     .recipe-grid {

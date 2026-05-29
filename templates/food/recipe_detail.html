@@ -111,20 +111,24 @@
                             data-carbs="{{ ri.ingredient.carbs }}"
                             data-fat="{{ ri.ingredient.fat }}">
 
-                            <span class="ingredient-qty">
-                                <span class="qty-value">{{ ri.quantity }}</span>
-                                {{ ri.unit }}
-                            </span>
+                            <label class="ingredient-checkbox">
+                                <input type="checkbox" class="ingredient-check">
 
-                            <span class="ingredient-name">
-                                {{ ri.ingredient.get_name }}
-                            </span>
-
-                            {% if ri.note %}
-                                <span class="ingredient-note">
-                                    ({{ ri.note }})
+                                <span class="ingredient-qty">
+                                    <span class="qty-value">{{ ri.quantity }}</span>
+                                    {{ ri.get_unit_display }}
                                 </span>
-                            {% endif %}
+
+                                <span class="ingredient-name">
+                                    {{ ri.ingredient.get_name }}
+                                </span>
+
+                                {% if ri.note %}
+                                    <span class="ingredient-note">
+                                        ({{ ri.note }})
+                                    </span>
+                                {% endif %}
+                            </label>
                         </li>
                     {% endfor %}
                 </ul>
