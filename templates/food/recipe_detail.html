@@ -115,7 +115,7 @@
                                 <input type="checkbox" class="ingredient-check">
 
                                 <span class="ingredient-qty">
-                                    <span class="qty-value">{{ ri.quantity }}</span>
+                                    <span class="qty-value">{{ ri.quantity|floatformat:"0" }}</span>
                                     {{ ri.get_unit_display }}
                                 </span>
 

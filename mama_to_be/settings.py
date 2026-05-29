@@ -38,7 +38,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 if DEBUG:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost", "www.mom-to-be.at", "mom-to-be.at"]
 else:
     ALLOWED_HOSTS = [
         host.strip()
