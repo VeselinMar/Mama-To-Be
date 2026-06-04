@@ -513,5 +513,49 @@
     width: 100%;
     padding: 1rem;
   }
+  .about-story-section {
+      padding: 4rem 0;
+  }
 
+  .about-story-layout {
+    grid-template-columns: 1fr;
+    min-height: unset;
+    gap: 0;
+  }
+
+  .about-story-image img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .about-story-card {
+    margin-left: 0;
+    margin-top: -40px;
+    border-radius: 0 0 20px 20px;
+    padding: 2.5rem 2rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-story-image img {
+    border-radius: 16px 16px 0 0;
+    aspect-ratio: 3 / 2; /* slightly less tall on small screens */
+  }
+
+  .about-story-card {
+    margin-top: 0;           /* drop the overlap — too tight on small phones */
+    border-radius: 0 0 16px 16px;
+    padding: 2rem 1.25rem;
+    box-shadow: none;        /* shadow looks odd when flush with image */
+  }
+
+  .about-story-card h2 {
+    margin-bottom: 1rem;
+  }
+
+  .about-story-card p {
+    max-width: 100%;
+  }
 }
