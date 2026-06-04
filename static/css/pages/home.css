@@ -541,14 +541,14 @@
 @media (max-width: 480px) {
   .about-story-image img {
     border-radius: 16px 16px 0 0;
-    aspect-ratio: 3 / 2; /* slightly less tall on small screens */
+    aspect-ratio: 3 / 2;
   }
 
   .about-story-card {
-    margin-top: 0;           /* drop the overlap — too tight on small phones */
+    margin-top: 0;
     border-radius: 0 0 16px 16px;
     padding: 2rem 1.25rem;
-    box-shadow: none;        /* shadow looks odd when flush with image */
+    box-shadow: none;
   }
 
   .about-story-card h2 {
