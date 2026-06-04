@@ -8,7 +8,6 @@
   padding: 6rem 1rem;
 }
 
-/* center column like magazine text */
 .about-container {
     max-width: 750px;
     margin: 0 auto;
@@ -43,7 +42,6 @@
   color: var(--color-muted-text);
 }
 
-/* section subtitles */
 .about-section-title {
   font-weight: 600;
   font-size: 1.1rem;
@@ -54,7 +52,6 @@
   color: var(--color-text);
 }
 
-/* paragraphs */
 .about-container p {
   margin-bottom: 1.5rem;
 
@@ -88,6 +85,7 @@
 
   .about-container {
     max-width: 100%;
+    padding: 0;
   }
 
   .about-title {
