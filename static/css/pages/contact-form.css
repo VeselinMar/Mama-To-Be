@@ -1,33 +1,36 @@
 /* ============================= */
-/* CONTACT SECTION */
+/* CONTACT SECTION               */
 /* ============================= */
 
 .contact-section {
-  padding: 7rem 0;
+  padding: clamp(4rem, 8vw, 7rem) 1.5rem;
   background: var(--color-bg);
 }
 
-/* layout */
+/* ============================= */
+/* LAYOUT                        */
+/* ============================= */
+
 .contact-layout {
   max-width: 1100px;
   margin: 0 auto;
 
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: var(--space-lg);
+  gap: clamp(1.5rem, 4vw, 3rem);
 
   align-items: start;
 }
 
 /* ============================= */
-/* INFO CARD (like about-story-card) */
+/* INFO CARD                     */
 /* ============================= */
 
 .contact-info-card {
   background: rgba(255, 253, 251, 0.92);
   backdrop-filter: blur(10px);
 
-  padding: 3rem;
+  padding: clamp(1.75rem, 3vw, 3rem);
   border-radius: 28px;
 
   box-shadow: var(--shadow-md);
@@ -38,7 +41,7 @@
 
 .contact-info-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   margin-bottom: 1rem;
 }
 
@@ -67,6 +70,7 @@
   color: var(--color-text);
   font-weight: 600;
   text-decoration: none;
+  word-break: break-all; /* prevents long emails overflowing on mobile */
 }
 
 .contact-email a:hover {
@@ -74,49 +78,54 @@
 }
 
 /* ============================= */
-/* FORM CARD */
+/* FORM CARD                     */
 /* ============================= */
 
 .contact-form-card {
   background: white;
   border-radius: 28px;
 
-  padding: 3rem;
+  padding: clamp(1.75rem, 3vw, 3rem);
 
   box-shadow: var(--shadow-lg);
 }
 
 /* ============================= */
-/* FORM ELEMENTS */
+/* FORM ELEMENTS                 */
 /* ============================= */
 
 .contact-form .form-group {
   margin-bottom: 1.5rem;
 }
 
+/* Django's label_tag renders a <label> — style it here */
 .contact-form label {
   display: block;
   margin-bottom: 0.5rem;
 
   font-weight: 600;
+  font-size: 0.95rem;
   color: var(--color-text);
 }
 
-/* inputs */
+/* inputs + textarea */
 .contact-form input,
 .contact-form textarea {
+  box-sizing: border-box; /* prevents width overflow with padding */
   width: 100%;
 
   padding: 1rem 1.2rem;
 
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 14px;
 
   font-size: 1rem;
+  font-family: inherit; /* prevents browser falling back to system font */
 
   background: #fff;
+  color: var(--color-text);
 
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .contact-form textarea {
@@ -130,12 +139,20 @@
   outline: none;
 
   border-color: var(--color-primary);
-
   box-shadow: 0 0 0 3px rgba(250, 179, 164, 0.25);
 }
 
+/* Django form field error list */
+.contact-form .errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: #b71c1c;
+}
+
 /* ============================= */
-/* BUTTON (matching your theme) */
+/* BUTTON                        */
 /* ============================= */
 
 .contact-btn {
@@ -149,12 +166,13 @@
   background: var(--color-primary);
 
   color: white;
-
+  font-size: 1rem;
   font-weight: 700;
+  font-family: inherit;
 
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .contact-btn:hover {
@@ -162,8 +180,12 @@
   transform: translateY(-1px);
 }
 
+.contact-btn:active {
+  transform: translateY(0);
+}
+
 /* ============================= */
-/* MESSAGES */
+/* MESSAGES                      */
 /* ============================= */
 
 .contact-messages {
@@ -188,7 +210,7 @@
 }
 
 /* ============================= */
-/* MOBILE */
+/* TABLET                        */
 /* ============================= */
 
 @media (max-width: 900px) {
@@ -199,5 +221,24 @@
   .contact-info-card {
     position: relative;
     top: 0;
+  }
+}
+
+/* ============================= */
+/* MOBILE                        */
+/* ============================= */
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 3rem 1rem;
+  }
+
+  .contact-info-card,
+  .contact-form-card {
+    border-radius: 20px;
+  }
+
+  .contact-info-card p {
+    margin-bottom: 1.25rem;
   }
 }
