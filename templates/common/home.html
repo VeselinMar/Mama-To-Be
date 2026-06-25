@@ -46,13 +46,6 @@
                   {{ latest_recipe.name }}
                 </span>
 
-                <p class="recipe-meta mb-0">
-                  {{ latest_recipe.get_difficulty_display }}
-                  {% if latest_recipe.total_time %}
-                    • {{ latest_recipe.total_time }} min
-                  {% endif %}
-                </p>
-
               </div>
 
             </div>
@@ -179,25 +172,6 @@
 
     </div>
 
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-
-      <h2>
-        {% trans "See More" %}
-      </h2>
-
-      <p>
-        {% trans "Browse the latest articles!" %}
-      </p>
-
-      <a href="{% url 'articles:recent-articles' %}">
-        {% trans "View Recent Articles" %}
-      </a>
-
-    </div>
   </section>
 
 </div>

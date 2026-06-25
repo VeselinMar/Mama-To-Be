@@ -316,7 +316,6 @@
 /* STORY */
 
 .about-story-section {
-  padding: 7rem 0;
   overflow: hidden;
 }
 
@@ -512,9 +511,6 @@
   .latest-search-btn {
     width: 100%;
     padding: 1rem;
-  }
-  .about-story-section {
-      padding: 4rem 0;
   }
 
   .about-story-layout {

@@ -1,14 +1,16 @@
-  {% extends 'common/base.html' %}
-  {% load static %}
-  {% load i18n %}
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
 
-  {% block content %}
+{% block content %}
 
-  <section class="contact-section">
+<section class="contact-section">
+
+  <div class="container">
 
     <div class="section-heading">
       <h2>{% trans "Contact" %}</h2>
-      <p>{% trans "I’d love to hear from you" %}</p>
+      <p>{% trans "I'd love to hear from you" %}</p>
     </div>
 
     <div class="contact-layout">
@@ -18,13 +20,13 @@
 
         <p>
           {% blocktrans %}
-          Whether it’s feedback, questions, or collaboration ideas,
+          Whether it's feedback, questions, or collaboration ideas,
           I always appreciate hearing from readers.
           {% endblocktrans %}
         </p>
 
         <div class="contact-email">
-          <span>Email</span>
+          <span>{% trans "Email" %}</span>
           <a href="mailto:mariamarina5030@gmail.com">
             mariamarina5030@gmail.com
           </a>
@@ -46,19 +48,19 @@
           <input type="hidden" name="submission_token" value="{{ submission_token }}">
 
           <div class="form-group">
-            <label>{% trans "Name" %}</label>
+            {{ form.name.label_tag }}
             {{ form.name }}
             {{ form.name.errors }}
           </div>
 
           <div class="form-group">
-            <label>{% trans "Email" %}</label>
+            {{ form.email.label_tag }}
             {{ form.email }}
             {{ form.email.errors }}
           </div>
 
           <div class="form-group">
-            <label>{% trans "Message" %}</label>
+            {{ form.message.label_tag }}
             {{ form.message }}
             {{ form.message.errors }}
           </div>
@@ -73,6 +75,8 @@
 
     </div>
 
-  </section>
+  </div>
 
-  {% endblock %}
+</section>
+
+{% endblock %}
