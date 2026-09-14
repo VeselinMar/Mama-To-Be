@@ -9,7 +9,7 @@ urlpatterns = [
     path("recipes/create/", RecipeCreateView.as_view(), name="recipe-create"),
     path("recipes/<slug:slug>/update/", RecipeUpdateView.as_view(), name="recipe-update"),
     # recipe repr
-    path("recipes/", RecipeListView.as_view(), name="recipe-list"),
+    path("", RecipeListView.as_view(), name="recipe-list"),
     path("recipes/<slug:slug>/", RecipeDetailView.as_view(), name="recipe-detail"),
     path('upload-image/', upload_image, name='upload-image'),
     # ingredients
