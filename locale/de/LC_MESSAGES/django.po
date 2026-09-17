@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-17 09:03+0000\n"
-"PO-Revision-Date: 2026-09-17 11:04+0200\n"
+"PO-Revision-Date: 2026-09-17 11:56+0200\n"
 "Last-Translator: veselin <veselin.martinov@gmail.com>\n"
 "Language-Team: German <kde-i18n-doc@kde.org>\n"
 "Language: de\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.04.3\n"
+"X-Generator: Poedit 3.9\n"
 
 #: mama_to_be/articles/choices.py:6
 msgid "Food"
@@ -436,7 +436,7 @@ msgstr ""
 
 #: templates/common/footer_related/disclaimer.html:32
 msgid "Personal experiences"
-msgstr "persönliche Erfahrungen"
+msgstr "Persönliche Erfahrungen"
 
 #: templates/common/footer_related/disclaimer.html:36
 msgid ""
@@ -486,6 +486,7 @@ msgstr ""
 "Stillen, Fruchtbarkeit, Ernährung,\n"
 "Symptome, häufige Gesundheitsfragen und andere Aspekte der Frauengesundheit "
 "behandeln.\n"
+"         "
 
 #: templates/common/footer_related/disclaimer.html:61
 #| msgid ""
@@ -526,6 +527,7 @@ msgstr ""
 "einer Erkrankung leiden oder andere gesundheitliche\n"
 "Bedenken haben, wenden Sie sich bitte an eine entsprechend qualifizierte "
 "medizinische Fachkraft.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:76
 msgid "Babies and children"
@@ -543,6 +545,7 @@ msgstr ""
 "Mom-To-Be kann auch Informationen über Babys und Kinder enthalten, "
 "einschließlich Entwicklung, Ernährung,\n"
 "Schlaf, Gesundheit, Verhalten, Erziehung und den Familienalltag.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:87
 msgid ""
@@ -557,6 +560,7 @@ msgstr ""
 "Diese Inhalte dienen allgemeinen Bildungs- und Informationszwecken und "
 "ersetzen nicht die individuelle Beratung durch einen Kinderarzt\n"
 "oder eine andere entsprechend qualifizierte Fachkraft.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:94
 msgid ""
@@ -572,6 +576,7 @@ msgstr ""
 "Entwicklung,\n"
 "Ernährung, des Verhaltens oder Wohlbefindens Ihres Babys oder Kindes haben, "
 "holen Sie bitte individuellen professionellen Rat ein.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:101
 msgid "Recipes and food information"
@@ -597,6 +602,7 @@ msgstr ""
 "Rezeptinformationen, aber die Ergebnisse können je nach Zutaten, Marken, "
 "Geräten, Zubereitungsmethoden\n"
 "und anderen Umständen variieren.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:114
 msgid ""
@@ -614,6 +620,7 @@ msgstr ""
 "Dies ist insbesondere während der Schwangerschaft, bei der Zubereitung von "
 "Speisen für Babys oder Kinder sowie\n"
 "bei Allergien, Unverträglichkeiten oder Erkrankungen wichtig.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:122
 msgid "Meal plans and nutritional information"
@@ -631,6 +638,7 @@ msgstr ""
 "Meine wöchentlichen Mahlzeitenpläne und Ideen für Mahlzeiten werden als "
 "persönliche Inspiration geteilt. Sie sind keine individuell zugeschnittenen\n"
 "Ernährungspläne, medizinischen Diäten oder Ernährungsempfehlungen.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:133
 msgid ""
@@ -651,6 +659,7 @@ msgstr ""
 "Schätzwerte und dienen ausschließlich\n"
 "zu Informationszwecken. Sie sollten nicht als genaue Messwerte oder "
 "individuelle Ernährungsempfehlungen betrachtet werden.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:142
 msgid ""
@@ -672,6 +681,7 @@ msgstr ""
 "entsprechend qualifizierte medizinische Fachkraft\n"
 "oder eine registrierte Ernährungsberaterin bzw. einen registrierten "
 "Ernährungsberater.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:151
 msgid "Sources and references"
@@ -693,6 +703,7 @@ msgstr ""
 "Ich bemühe mich, zuverlässige und relevante Quellen zu verwenden, "
 "insbesondere bei Themen rund um Gesundheit, Schwangerschaft, Ernährung und\n"
 "Kinder.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:163
 msgid ""
@@ -710,6 +721,7 @@ msgstr ""
 "das Datum und den Kontext der ursprünglichen Quelle berücksichtigen und "
 "gegebenenfalls aktuelle\n"
 "offizielle oder professionelle Empfehlungen prüfen.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:171
 msgid "External links"
@@ -730,6 +742,7 @@ msgstr ""
 "Ressourcen Dritter enthalten. Diese Links können als zusätzliche "
 "Informationsquellen oder aus Gründen der Benutzerfreundlichkeit "
 "bereitgestellt werden.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:182
 msgid ""
@@ -748,6 +761,7 @@ msgstr ""
 "zwangsläufig, dass ich die Website,\n"
 "das Produkt, die Dienstleistung oder die Informationen, auf die er verweist, "
 "unterstütze.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:190
 msgid "Advertising and commercial content"
@@ -766,6 +780,7 @@ msgstr ""
 "kostenlos zur Verfügung gestellte Produkte,\n"
 "Markenpartnerschaften oder andere Formen kommerzieller Zusammenarbeit "
 "enthalten.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:201
 msgid ""
@@ -779,6 +794,7 @@ msgstr ""
 "Wo dies zutrifft, werde ich kommerzielle Beziehungen klar kennzeichnen und "
 "die für die\n"
 "Inhalte geltenden Offenlegungspflichten einhalten.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:208
 msgid "Accuracy and updates"
@@ -801,6 +817,7 @@ msgstr ""
 "Ich kann jedoch nicht garantieren, dass alle Informationen jederzeit "
 "vollständig, korrekt\n"
 "oder aktuell sind.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:220
 msgid ""
@@ -818,6 +835,7 @@ msgstr ""
 "Ihre Gesundheit oder die Gesundheit Ihres Kindes betreffen können, beachten "
 "Sie bitte auch die aktuellen professionellen oder offiziellen\n"
 "Empfehlungen.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:228
 msgid "No professional relationship"
@@ -837,6 +855,7 @@ msgstr ""
 "kein Arzt-Patienten-, Ernährungsberater-Klienten-,\n"
 "Therapeuten-Klienten- oder sonstiges professionelles Verhältnis zwischen "
 "Ihnen und mir.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:239
 msgid ""
@@ -850,6 +869,7 @@ msgstr ""
 "Mom-To-Be soll Informationen, Inspiration und persönliche Perspektiven "
 "bieten – keine individuelle\n"
 "professionelle Betreuung oder Beratung.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:246
 msgid "Questions"
@@ -869,6 +889,7 @@ msgstr ""
 "Informationen auf Mom-To-Be haben,\n"
 "kontaktieren Sie mich bitte über die auf der Website angegebenen "
 "Kontaktdaten.\n"
+"        "
 
 #: templates/common/footer_related/disclaimer.html:257
 msgid ""
@@ -882,6 +903,7 @@ msgstr ""
 "Dieser Haftungsausschluss kann aktualisiert werden, wenn sich Mom-To-Be "
 "weiterentwickelt, sich die Inhalte ändern oder sich die geltenden\n"
 "Anforderungen ändern.\n"
+"        "
 
 #: templates/common/footer_related/impressum.html:14
 msgid "Legal Notice"
@@ -1453,7 +1475,7 @@ msgstr "Diese Woche auf meinem Speiseplan"
 
 #: templates/food/meal_plan_list.html:12
 msgid "Seven dinners I'm looking forward to making this week."
-msgstr " Ein Blick darauf, was ich diese Woche zum Abendessen koche."
+msgstr "Ein Blick darauf, was ich diese Woche zum Abendessen koche."
 
 #: templates/food/meal_plan_list.html:74
 msgid "No weekly dinner plans available yet."

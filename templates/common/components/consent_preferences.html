@@ -1,0 +1,140 @@
+{% load i18n %}
+
+<div
+  class="modal fade"
+  id="privacyPreferencesModal"
+  tabindex="-1"
+  aria-labelledby="privacyPreferencesModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="privacyPreferencesModalLabel">
+          {% trans "Privacy preferences" %}
+        </h2>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="{% trans 'Close' %}"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+
+        <p>
+          {% blocktrans %}
+          Choose which optional technologies you would like to allow.
+          Necessary technologies cannot be disabled because they are required
+          for the website to function.
+          {% endblocktrans %}
+        </p>
+
+        <div class="consent-option">
+          <div>
+            <h3 class="h6 mb-1">{% trans "Necessary" %}</h3>
+            <p class="small text-muted mb-0">
+              {% trans "Required for security and basic website functionality." %}
+            </p>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              checked
+              disabled
+            >
+          </div>
+        </div>
+
+        <div class="consent-option">
+          <div>
+            <h3 class="h6 mb-1">{% trans "Preferences" %}</h3>
+            <p class="small text-muted mb-0">
+              {% trans "Remember optional preferences and settings." %}
+            </p>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="consentPreferences"
+              data-consent-category="preferences"
+            >
+          </div>
+        </div>
+
+        <div class="consent-option">
+          <div>
+            <h3 class="h6 mb-1">{% trans "Analytics" %}</h3>
+            <p class="small text-muted mb-0">
+              {% trans "Help me understand how visitors use Mom-To-Be." %}
+            </p>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="consentAnalytics"
+              data-consent-category="analytics"
+            >
+          </div>
+        </div>
+
+        <div class="consent-option">
+          <div>
+            <h3 class="h6 mb-1">{% trans "External media" %}</h3>
+            <p class="small text-muted mb-0">
+              {% trans "Allow content from services such as Instagram, YouTube, and Google Maps." %}
+            </p>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="consentExternalMedia"
+              data-consent-category="external_media"
+            >
+          </div>
+        </div>
+
+        <div class="consent-option">
+          <div>
+            <h3 class="h6 mb-1">{% trans "Marketing" %}</h3>
+            <p class="small text-muted mb-0">
+              {% trans "Allow advertising, affiliate, or marketing technologies." %}
+            </p>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="consentMarketing"
+              data-consent-category="marketing"
+            >
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-consent-action="save-preferences"
+        >
+          {% trans "Save preferences" %}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
