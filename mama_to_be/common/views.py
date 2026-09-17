@@ -68,6 +68,9 @@ class ImpressumView(TemplateView):
 class AboutView(TemplateView):
     template_name = 'common/footer_related/about.html'
 
+class DisclaimerView(TemplateView):
+    template_name = 'common/footer_related/disclaimer.html'
+
 @require_POST
 def upload_image(request):
     print("METHOD:", request.method)

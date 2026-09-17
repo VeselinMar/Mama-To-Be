@@ -1,0 +1,269 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<section class="about-page">
+
+  <div class="about-container">
+
+    <article>
+
+      <header>
+        <h1 class="about-title">{% trans "Disclaimer" %}</h1>
+      </header>
+
+      <p>
+        {% blocktrans %}
+        Mom-To-Be is a personal blog where I share information, personal experiences, recipes, meal ideas,
+        and things I have learned along the way as a mother.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        The content on this website is intended for general informational, educational, and inspirational
+        purposes. It is not intended to replace individual professional advice.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Personal experiences" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Some of the content on Mom-To-Be is based on my own experiences of pregnancy, motherhood, family
+        life, food, and parenting.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Personal experiences are not professional recommendations. What works for me or my family may not
+        be appropriate for another person, pregnancy, baby, child, or family.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Pregnancy and women's health" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Mom-To-Be may cover topics such as pregnancy, postpartum life, breastfeeding, fertility, nutrition,
+        symptoms, common health questions, and other aspects of women's health.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        This content is provided for general information only. I am not a doctor, midwife, dietitian,
+        pharmacist, or other healthcare professional.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Health information is personal, and individual circumstances matter. If you are pregnant, trying to
+        conceive, breastfeeding, experiencing symptoms, taking medication, or have a medical condition or
+        other health concern, please seek advice from an appropriately qualified healthcare professional.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Babies and children" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Mom-To-Be may also contain information about babies and children, including development, feeding,
+        sleep, health, behaviour, parenting, and everyday family life.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        This content is intended for general educational and informational purposes and is not a substitute
+        for individual advice from a pediatrician or other appropriately qualified professional.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Every child is different. If you have concerns about your baby's or child's health, development,
+        feeding, behaviour, or wellbeing, please seek individual professional advice.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Recipes and food information" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Recipes on Mom-To-Be are shared for cooking inspiration and general informational purposes.
+        I make reasonable efforts to provide accurate ingredients, instructions, measurements, and other
+        recipe information, but results may vary depending on ingredients, brands, equipment, preparation
+        methods, and other circumstances.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Please use appropriate food-safety practices and consider your individual dietary requirements.
+        This is particularly important during pregnancy, when preparing food for babies or children, or
+        when dealing with allergies, intolerances, or medical conditions.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Meal plans and nutritional information" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        My weekly meal plans and meal ideas are shared as personal inspiration. They are not personalised
+        dietary plans, medical diets, or nutritional prescriptions.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Recipes and meal plans may include approximate nutritional information, including calories and
+        macronutrients such as protein, carbohydrates, and fat. These figures are estimates provided for
+        informational purposes only and should not be treated as precise measurements or personalised
+        nutritional recommendations.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Nutritional values can vary depending on ingredients, brands, quantities, preparation methods,
+        serving sizes, and other factors. If you have specific nutritional needs or are looking for
+        personalised dietary advice, please consult an appropriately qualified healthcare professional
+        or registered dietitian.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Sources and references" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Where appropriate, I include references and links to sources used when researching an article.
+        I aim to use reliable and relevant sources, particularly for health, pregnancy, nutrition, and
+        child-related topics.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Information and recommendations from external sources may change over time. Readers should
+        consider the date and context of the original source and, where appropriate, check current
+        official or professional guidance.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "External links" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Mom-To-Be may contain links to third-party websites, products, services, organisations, or other
+        resources. These links may be provided as additional sources of information or for convenience.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Third-party websites operate independently from Mom-To-Be, and I do not control their content,
+        availability, or privacy practices. A link does not necessarily mean that I endorse the website,
+        product, service, or information to which it leads.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Advertising and commercial content" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Mom-To-Be may in the future include advertising, affiliate links, sponsored content, gifted products,
+        brand partnerships, or other forms of commercial collaboration.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Where applicable, I will aim to clearly identify commercial relationships and comply with the
+        disclosure requirements that apply to the content.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Accuracy and updates" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        I make reasonable efforts to research, review, and update the information published on Mom-To-Be.
+        However, I cannot guarantee that every piece of information will always be complete, accurate,
+        or current.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Content may be corrected, updated, expanded, or removed when appropriate. For information that
+        may affect your health or your child's health, please refer to current professional or official
+        guidance as well.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "No professional relationship" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        Reading or using content published on Mom-To-Be does not create a doctor-patient, dietitian-client,
+        therapist-client, or other professional relationship between you and me.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        Mom-To-Be is intended to provide information, inspiration, and personal perspective—not individual
+        professional care or advice.
+        {% endblocktrans %}
+      </p>
+
+      <h2 class="about-section-title">
+        {% trans "Questions" %}
+      </h2>
+
+      <p>
+        {% blocktrans %}
+        If you have questions about this disclaimer or the way information is presented on Mom-To-Be,
+        please contact me using the contact details provided on the website.
+        {% endblocktrans %}
+      </p>
+
+      <p>
+        {% blocktrans %}
+        This disclaimer may be updated as Mom-To-Be develops, its content changes, or applicable
+        requirements change.
+        {% endblocktrans %}
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+{% endblock %}
