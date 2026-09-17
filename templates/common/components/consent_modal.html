@@ -1,0 +1,97 @@
+{% load i18n %}
+
+<div
+  class="modal fade"
+  id="privacyConsentModal"
+  tabindex="-1"
+  aria-labelledby="privacyConsentModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header border-0">
+        <h1 class="modal-title fs-4" id="privacyConsentModalLabel">
+          {% trans "Welcome to Mom-To-Be" %}
+        </h1>
+      </div>
+
+      <div class="modal-body">
+
+        <p>
+          {% blocktrans %}
+          Mom-To-Be is a personal blog about motherhood, pregnancy, family life,
+          recipes, meal ideas, and everyday experiences.
+          {% endblocktrans %}
+        </p>
+
+        <p>
+          {% blocktrans %}
+          Some articles cover pregnancy, nutrition, babies, and children's health.
+          This content is provided for general informational purposes and is not a
+          substitute for individual professional advice.
+          {% endblocktrans %}
+        </p>
+
+        <p>
+          <a href="{% url 'disclaimer' %}">
+            {% trans "Read the full disclaimer" %}
+          </a>
+        </p>
+
+        <hr class="my-4">
+
+        <h2 class="h5">
+          {% trans "Your privacy matters" %}
+        </h2>
+
+        <p>
+          {% blocktrans %}
+          We use technologies that are necessary for the website to work.
+          With your permission, we may also use analytics and external content
+          such as Instagram, YouTube, or Google Maps.
+          {% endblocktrans %}
+        </p>
+
+        <p class="small text-muted mb-0">
+          {% blocktrans %}
+          You can change your choices at any time through Cookie Preferences.
+          {% endblocktrans %}
+        </p>
+
+      </div>
+
+      <div class="modal-footer border-0 d-flex flex-column flex-sm-row">
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-consent-action="accept-all"
+        >
+          {% trans "Accept all" %}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-consent-action="reject-optional"
+        >
+          {% trans "Reject optional" %}
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-link"
+          data-bs-toggle="modal"
+          data-bs-target="#privacyPreferencesModal"
+        >
+          {% trans "Manage preferences" %}
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
