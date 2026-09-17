@@ -1,22 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# SPDX-FileCopyrightText: 2026 veselin <veselin.martinov@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 09:15+0000\n"
-"PO-Revision-Date: 2026-06-25 15:10+0200\n"
-"Last-Translator: \n"
-"Language-Team: Bulgarian <LL@li.org>\n"
+"POT-Creation-Date: 2026-09-14 12:58+0000\n"
+"PO-Revision-Date: 2026-09-14 14:59+0200\n"
+"Last-Translator: veselin <veselin.martinov@gmail.com>\n"
+"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #: mama_to_be/articles/choices.py:6
 msgid "Food"
@@ -82,6 +81,18 @@ msgstr "Образование"
 msgid "Relationship"
 msgstr "Взаимоотношения"
 
+#: mama_to_be/food/choices.py:30
+msgid "Easy"
+msgstr "Лесно"
+
+#: mama_to_be/food/choices.py:31
+msgid "Medium"
+msgstr "Средно"
+
+#: mama_to_be/food/choices.py:32
+msgid "Hard"
+msgstr "Трудно"
+
 #: mama_to_be/food/choices.py:35
 msgid "g"
 msgstr "г"
@@ -130,6 +141,34 @@ msgstr "скилидка"
 msgid "slice"
 msgstr "резен"
 
+#: mama_to_be/food/models.py:478
+msgid "Monday"
+msgstr "Понеделник"
+
+#: mama_to_be/food/models.py:479
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: mama_to_be/food/models.py:480
+msgid "Wednesday"
+msgstr "Сряда"
+
+#: mama_to_be/food/models.py:481
+msgid "Thursday"
+msgstr "Четвъртък"
+
+#: mama_to_be/food/models.py:482
+msgid "Friday"
+msgstr "Петък "
+
+#: mama_to_be/food/models.py:483
+msgid "Saturday"
+msgstr "Събота"
+
+#: mama_to_be/food/models.py:484
+msgid "Sunday"
+msgstr "Неделя"
+
 #: mama_to_be/profiles/admin.py:21
 msgid "Permissions"
 msgstr "Разрешения"
@@ -138,7 +177,7 @@ msgstr "Разрешения"
 msgid "Important Dates"
 msgstr "Важни дати"
 
-#: templates/common/footer.html:26 templates/common/navbar.html:252
+#: templates/common/footer.html:26 templates/common/navbar.html:257
 msgid "About"
 msgstr "За мен"
 
@@ -166,11 +205,11 @@ msgstr "Всички права запазени."
 msgid "Hello!"
 msgstr "Здравейте!"
 
-#: templates/common/footer_related/about.html:15
+#: templates/common/footer_related/about.html:17
 msgid "What is behind the name Mom to be?"
 msgstr "Какво се крие зад името Mom to be?"
 
-#: templates/common/footer_related/about.html:19
+#: templates/common/footer_related/about.html:20
 msgid ""
 "\n"
 "        The idea behind the name comes from my belief that a mother is not "
@@ -188,11 +227,11 @@ msgstr ""
 "      много дълго време — или никога не свършва.\n"
 "      "
 
-#: templates/common/footer_related/about.html:27
+#: templates/common/footer_related/about.html:28
 msgid "Who is behind this website?"
 msgstr "Кой стои зад този уебсайт?"
 
-#: templates/common/footer_related/about.html:31
+#: templates/common/footer_related/about.html:32
 msgid ""
 "\n"
 "        I am Maria, from Bulgaria, but I have been living in Vienna, Austria "
@@ -214,7 +253,7 @@ msgstr ""
 "        да следвам в университет.\n"
 "        "
 
-#: templates/common/footer_related/about.html:40
+#: templates/common/footer_related/about.html:41
 msgid ""
 "\n"
 "        The system here allows you to enroll in a German course only after "
@@ -232,7 +271,7 @@ msgstr ""
 "        Техническия университет във Виена.\n"
 "        "
 
-#: templates/common/footer_related/about.html:48
+#: templates/common/footer_related/about.html:49
 msgid ""
 "\n"
 "        After one year of effort and exams, I successfully passed the "
@@ -244,7 +283,7 @@ msgstr ""
 "сертификат и започнах обучението си.\n"
 "        "
 
-#: templates/common/footer_related/about.html:54
+#: templates/common/footer_related/about.html:55
 msgid ""
 "\n"
 "        After the first year, however, I realized that it was not the right "
@@ -269,7 +308,7 @@ msgstr ""
 "        изразен австрийски акцент.\n"
 "        "
 
-#: templates/common/footer_related/about.html:63
+#: templates/common/footer_related/about.html:64
 msgid ""
 "\n"
 "        For someone still learning the language, it was normal to fail "
@@ -285,7 +324,7 @@ msgstr ""
 "и ми се отразяваше негативно.\n"
 "        "
 
-#: templates/common/footer_related/about.html:70
+#: templates/common/footer_related/about.html:71
 msgid ""
 "\n"
 "        At the same time, I met many colleagues—Bulgarians and others—and my "
@@ -297,7 +336,7 @@ msgstr ""
 "социалният ми живот беше доста динамичен.\n"
 "        "
 
-#: templates/common/footer_related/about.html:76
+#: templates/common/footer_related/about.html:77
 msgid ""
 "\n"
 "        I found what was supposed to be a temporary job, which gradually "
@@ -311,7 +350,7 @@ msgstr ""
 "         започна да заема второстепенна или дори третостепенна роля.\n"
 "        "
 
-#: templates/common/footer_related/about.html:83
+#: templates/common/footer_related/about.html:84
 msgid ""
 "\n"
 "        A few years and a pandemic later, I find myself in a wonderful place "
@@ -849,25 +888,29 @@ msgstr "Създай Рецепта"
 msgid "Logout"
 msgstr "Изход"
 
-#: templates/common/navbar.html:220
-msgid "Articles"
+#: templates/common/navbar.html:217
+msgid "Journal"
 msgstr "Дневник"
 
-#: templates/common/navbar.html:223
+#: templates/common/navbar.html:220
 msgid "Learn more about"
 msgstr "Научете повече за"
 
-#: templates/common/navbar.html:237 templates/food/recipe_list.html:8
-msgid "Recipes"
+#: templates/common/navbar.html:235
+msgid "Cookbook"
 msgstr "Рецептурник"
 
-#: templates/common/navbar.html:240
+#: templates/common/navbar.html:238
 msgid "Explore recipes"
 msgstr "Разгледайте Рецепти"
 
-#: templates/common/navbar.html:244
+#: templates/common/navbar.html:242
 msgid "All Recipes"
 msgstr "Всички рецепти"
+
+#: templates/common/navbar.html:251 templates/food/meal_plan_detail.html:32
+msgid "This week on my menu"
+msgstr "Тази седмица на моята трапеза"
 
 #: templates/food/_recipe_form_base.html:125
 msgid "Search ingredient..."
@@ -915,6 +958,26 @@ msgstr "Мазнини (на 100г)"
 msgid "Cancel"
 msgstr "Откажи"
 
+#: templates/food/meal_plan_detail.html:149
+msgid "Read more..."
+msgstr "Виж повече..."
+
+#: templates/food/meal_plan_list.html:9
+msgid "On My Menu This Week"
+msgstr "Какво има в менюто ми тази седмица"
+
+#: templates/food/meal_plan_list.html:12
+msgid "Seven dinners I'm looking forward to making this week."
+msgstr "Седемте рецепти, които нямам търпение да приготвя тази седмица"
+
+#: templates/food/meal_plan_list.html:74
+msgid "No weekly dinner plans available yet."
+msgstr "Няма налични седмични идеи"
+
+#: templates/food/meal_plan_list.html:85
+msgid "Weekly dinner plans pagination"
+msgstr ""
+
 #: templates/food/recipe_detail.html:80
 msgid "SERVINGS"
 msgstr "ПОРЦИИ"
@@ -939,6 +1002,10 @@ msgstr "въглехидрати"
 msgid "fat"
 msgstr "мазнини"
 
+#: templates/food/recipe_list.html:8
+msgid "Recipes"
+msgstr "Рецептурник"
+
 #: templates/food/recipe_list.html:53
 msgid "No recipes yet."
 msgstr "Все още няма рецепти."
@@ -950,3 +1017,17 @@ msgstr "Редактирай рецепта"
 #: templates/food/update_recipe_form.html:14
 msgid "Save Changes"
 msgstr "Запази промени"
+
+#~ msgid "Weekly Dinner Plans"
+#~ msgstr "Седмични идеи за вечеря"
+
+#~ msgid "Simple dinner inspiration for the week ahead."
+#~ msgstr "Идеи за предстоящата седмица"
+
+#, fuzzy
+#~| msgid "Edit Recipe"
+#~ msgid "View Recipe"
+#~ msgstr "Редактирай рецепта"
+
+#~ msgid "Articles"
+#~ msgstr "Дневник"

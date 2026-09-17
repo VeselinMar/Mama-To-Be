@@ -166,18 +166,37 @@ class RecipeInteractionAdmin(admin.ModelAdmin):
 # -------------------
 class MealPlanItemInline(admin.TabularInline):
     model = MealPlanItem
-    extra = 1
+    extra = 0
+    max_num = 7
     autocomplete_fields = ("recipe",)
-
+    ordering = ("day",)
 
 # -------------------
 # MEAL PLAN
 # -------------------
 @admin.register(MealPlan)
 class MealPlanAdmin(admin.ModelAdmin):
-    list_display = ("id",)  # Use id if week_start/created_at don't exist
-    search_fields = ("id",)  # Required for autocomplete references
-    inlines = [MealPlanItemInline]
+    list_display = (
+        "title",
+        "week_start",
+        "is_published",
+    )
+
+    list_filter = (
+        "is_published",
+    )
+
+    search_fields = (
+        "title",
+    )
+
+    ordering = (
+        "-week_start",
+    )
+
+    inlines = [
+        MealPlanItemInline,
+    ]
 
 
 # -------------------
@@ -185,7 +204,22 @@ class MealPlanAdmin(admin.ModelAdmin):
 # -------------------
 @admin.register(MealPlanItem)
 class MealPlanItemAdmin(admin.ModelAdmin):
-    list_display = ("meal_plan", "recipe", "meal_type")
-    list_filter = ("meal_type",)
-    search_fields = ("meal_plan__id", "recipe__translations__name")
-    autocomplete_fields = ("meal_plan", "recipe")
+    list_display = (
+        "meal_plan",
+        "day",
+        "recipe",
+    )
+
+    list_filter = (
+        "day",
+    )
+
+    search_fields = (
+        "meal_plan__title",
+        "recipe__translations__name",
+    )
+
+    autocomplete_fields = (
+        "meal_plan",
+        "recipe",
+    )

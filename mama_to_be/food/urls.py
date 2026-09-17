@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RecipeCreateView, RecipeUpdateView, RecipeListView, RecipeDetailView, ingredient_autocomplete, create_ingredient
+from .views import RecipeCreateView, RecipeUpdateView, RecipeListView, RecipeDetailView, MealPlanListView, MealPlanDetailView, ingredient_autocomplete, create_ingredient
 from mama_to_be.common.views import upload_image
 
 app_name = "food"
@@ -15,4 +15,7 @@ urlpatterns = [
     # ingredients
     path("ingredients/autocomplete/", ingredient_autocomplete, name="ingredient-autocomplete"),
     path("ingredients/create/", create_ingredient, name="ingredient-create"),
+    # meal plan
+    path("meal-plans/", MealPlanListView.as_view(), name="meal-plan-list",),
+    path("meal-plans/<int:pk>/", MealPlanDetailView.as_view(), name="meal-plan-detail"),
 ]

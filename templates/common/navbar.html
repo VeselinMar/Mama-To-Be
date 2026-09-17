@@ -213,7 +213,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"
            href="{% url 'articles:recent-articles' %}">
-            {% trans "Articles" %}
+            {% trans "Journal" %}
           </a>
           <ul class="dropdown-menu custom-dropdown">
             <li class="dropdown-title">{% trans "Learn more about" %}</li>
@@ -231,7 +231,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" 
           href="{% url 'food:recipe-list' %}">
-            {% trans "Recipes" %}
+            {% trans "Cookbook" %}
           </a>
           <ul class="dropdown-menu custom-dropdown">
             <li class="dropdown-title">{% trans "Explore recipes" %}</li>
@@ -242,6 +242,13 @@
               </a>
             </li>
           </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             href="{% url 'food:meal-plan-list' %}">
+             {% trans "This week on my menu" %}
+          </a>
         </li>
 
         <li class="nav-item">
