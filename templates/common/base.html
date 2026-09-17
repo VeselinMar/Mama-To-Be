@@ -58,19 +58,25 @@
         </p>
 
         <p>
-          <a href="{% url 'privacy_policy' %}">
-            {% trans "Read the full Privacy Policy" %}
+          <a href="{% url 'disclaimer' %}">
+            {% trans "Read the Disclaimer" %}
           </a>
         </p>
 
         <hr>
 
-        <p class="mb-0">
+        <p>
           {% blocktrans %}
           We use technologies that are necessary for the website to work. With your
           permission, we may also use analytics and external content such as
           Instagram, YouTube, and Google Maps.
           {% endblocktrans %}
+        </p>
+
+       <p>
+          <a href="{% url 'privacy_policy' %}">
+            {% trans "Read the full Privacy Policy" %}
+          </a>
         </p>
 
       </div>

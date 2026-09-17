@@ -1,0 +1,372 @@
+/* ------------------------------------- */
+/* BACKDROP */
+/* ------------------------------------- */
+
+.modal-backdrop.show {
+  background-color: #3b2924;
+  opacity: 0.38;
+}
+
+
+/* ------------------------------------- */
+/* MODAL CARD */
+/* ------------------------------------- */
+
+#consentModal .modal-content,
+#consentPreferencesModal .modal-content {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+
+  border: 1px solid rgba(210, 149, 157, 0.18);
+  border-radius: var(--radius-lg);
+
+  box-shadow:
+    0 20px 60px rgba(60, 40, 35, 0.14),
+    0 4px 16px rgba(60, 40, 35, 0.06);
+
+  overflow: hidden;
+}
+
+
+/* ------------------------------------- */
+/* DIALOG SIZE */
+/* ------------------------------------- */
+
+#consentModal .modal-dialog,
+#consentPreferencesModal .modal-dialog {
+  max-width: 680px;
+}
+
+
+/* ===================================== */
+/* HEADER */
+/* ===================================== */
+
+#consentModal .modal-header,
+#consentPreferencesModal .modal-header {
+  padding: 2rem 2.25rem 0.75rem;
+
+  border-bottom: 0;
+}
+
+#consentModal .modal-title,
+#consentPreferencesModal .modal-title {
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.25;
+
+  color: var(--color-text);
+}
+
+#consentModal .modal-title {
+  font-size: 2rem;
+}
+
+#consentPreferencesModal .modal-title {
+  font-size: 1.7rem;
+}
+
+
+/* ------------------------------------- */
+/* CLOSE BUTTON */
+/* ------------------------------------- */
+
+#consentPreferencesModal .btn-close {
+  opacity: 0.45;
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+#consentPreferencesModal .btn-close:hover {
+  opacity: 0.8;
+  transform: rotate(4deg);
+}
+
+
+/* ===================================== */
+/* BODY */
+/* ===================================== */
+
+#consentModal .modal-body,
+#consentPreferencesModal .modal-body {
+  padding: 0.75rem 2.25rem 1rem;
+}
+
+#consentModal .modal-body p,
+#consentPreferencesModal .modal-body p {
+  color: var(--color-text);
+}
+
+
+/* ------------------------------------- */
+/* LINKS */
+/* ------------------------------------- */
+
+#consentModal .modal-body a {
+  color: var(--color-primary-hover);
+
+  font-weight: 600;
+
+  text-decoration: underline;
+  text-decoration-color: rgba(210, 149, 157, 0.35);
+  text-underline-offset: 3px;
+}
+
+#consentModal .modal-body a:hover {
+  color: var(--color-primary);
+  text-decoration-color: currentColor;
+}
+
+
+/* ------------------------------------- */
+/* DIVIDER */
+/* ------------------------------------- */
+
+#consentModal .modal-body hr {
+  margin: 1.5rem 0;
+
+  border: 0;
+  border-top: 1px solid rgba(210, 149, 157, 0.2);
+
+  opacity: 1;
+}
+
+
+/* ===================================== */
+/* PREFERENCES */
+/* ===================================== */
+
+#consentPreferencesModal .modal-body > div.border {
+  background-color: var(--color-light);
+
+  border-color: rgba(210, 149, 157, 0.15) !important;
+  border-radius: var(--radius-md) !important;
+
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+#consentPreferencesModal .modal-body > div.border:hover {
+  background-color: var(--color-primary-soft);
+
+  border-color: rgba(210, 149, 157, 0.25) !important;
+}
+
+
+/* Preference headings */
+
+#consentPreferencesModal .modal-body h3 {
+  margin: 0 0 0.2rem;
+
+  font-family: var(--font-base);
+  font-size: 0.95rem !important;
+  font-weight: 600;
+
+  color: var(--color-text);
+}
+
+
+/* Preference descriptions */
+
+#consentPreferencesModal .modal-body .small {
+  color: var(--color-muted-text);
+  line-height: 1.45;
+}
+
+
+/* ===================================== */
+/* SWITCHES */
+/* ===================================== */
+
+#consentPreferencesModal .form-switch {
+  padding-left: 0;
+  flex-shrink: 0;
+}
+
+#consentPreferencesModal .form-switch .form-check-input {
+  width: 2.7rem;
+  height: 1.45rem;
+
+  margin: 0;
+
+  background-color: #eaded8;
+  background-image: none;
+
+  border: 0;
+  border-radius: var(--radius-full);
+
+  box-shadow: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+#consentPreferencesModal
+.form-switch .form-check-input:checked {
+  background-color: var(--color-primary-hover);
+}
+
+#consentPreferencesModal
+.form-switch .form-check-input:focus {
+  box-shadow:
+    0 0 0 3px rgba(210, 149, 157, 0.18);
+}
+
+#consentPreferencesModal
+.form-switch .form-check-input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+/* ===================================== */
+/* FOOTER */
+/* ===================================== */
+
+#consentModal .modal-footer,
+#consentPreferencesModal .modal-footer {
+  padding: 1rem 2.25rem 2rem;
+
+  border-top: 0;
+
+  gap: 0.6rem;
+}
+
+
+/* ===================================== */
+/* MODAL BUTTONS */
+/* ===================================== */
+
+#consentModal .modal-footer .btn,
+#consentPreferencesModal .modal-footer .btn {
+  min-height: 44px;
+
+  padding: 0.65rem 1.15rem;
+
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-base);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+
+/* ------------------------------------- */
+/* PRIMARY */
+/* ------------------------------------- */
+
+#consentModal .btn-primary,
+#consentPreferencesModal .btn-primary {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+
+  color: #fff;
+}
+
+#consentModal .btn-primary:hover,
+#consentPreferencesModal .btn-primary:hover {
+  background-color: #c3838c;
+  border-color: #c3838c;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 14px rgba(210, 149, 157, 0.25);
+}
+
+
+/* ------------------------------------- */
+/* SECONDARY */
+/* ------------------------------------- */
+
+#consentModal .btn-outline-secondary,
+#consentPreferencesModal .btn-outline-secondary {
+  color: var(--color-text);
+
+  background-color: transparent;
+  border-color: rgba(47, 47, 47, 0.16);
+}
+
+#consentModal .btn-outline-secondary:hover,
+#consentPreferencesModal .btn-outline-secondary:hover {
+  color: var(--color-text);
+
+  background-color: var(--color-primary-soft);
+  border-color: rgba(210, 149, 157, 0.3);
+
+  transform: translateY(-1px);
+}
+
+
+/* ------------------------------------- */
+/* OUTLINE PRIMARY */
+/* ------------------------------------- */
+
+#consentModal .btn-outline-primary,
+#consentPreferencesModal .btn-outline-primary {
+  color: var(--color-primary-hover);
+
+  background-color: transparent;
+  border-color: rgba(210, 149, 157, 0.55);
+}
+
+#consentModal .btn-outline-primary:hover,
+#consentPreferencesModal .btn-outline-primary:hover {
+  color: var(--color-text);
+
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary);
+}
+
+
+/* ===================================== */
+/* MOBILE */
+/* ===================================== */
+
+@media (max-width: 576px) {
+
+  #consentModal .modal-dialog,
+  #consentPreferencesModal .modal-dialog {
+    margin: 0.75rem;
+  }
+
+  #consentModal .modal-header,
+  #consentPreferencesModal .modal-header {
+    padding: 1.5rem 1.5rem 0.75rem;
+  }
+
+  #consentModal .modal-body,
+  #consentPreferencesModal .modal-body {
+    padding: 0.75rem 1.5rem 1rem;
+  }
+
+  #consentModal .modal-footer,
+  #consentPreferencesModal .modal-footer {
+    padding: 0.75rem 1.5rem 1.5rem;
+  }
+
+  #consentModal .modal-footer,
+  #consentPreferencesModal .modal-footer {
+    flex-direction: column;
+  }
+
+  #consentModal .modal-footer .btn,
+  #consentPreferencesModal .modal-footer .btn {
+    width: 100%;
+  }
+}

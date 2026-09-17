@@ -9,7 +9,7 @@
 @import "./components/footer.css";
 @import "./components/button.css";
 @import "./components/card.css";
-
+@import "./components/consent.css";
 
 /* Features */
 @import "./features/list-cards.css";
