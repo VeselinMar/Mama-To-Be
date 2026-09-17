@@ -27,10 +27,10 @@ class RecipeType(models.TextChoices):
     VEGAN = "vegan", "Vegan"
 
 class DifficultyChoices(models.TextChoices):
-    EASY = "easy", "Easy"
-    MEDIUM = "medium", "Medium"
-    HARD  = "hard", "Hard"
-
+    EASY = "easy", _("Easy")
+    MEDIUM = "medium", _("Medium")
+    HARD  = "hard", _("Hard")
+    
 class UnitChoices(models.TextChoices):
     GRAM = "g", _("g")
     KILOGRAM = "kg", _("kg")

@@ -1,0 +1,126 @@
+{% extends 'common/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+
+<div class="meal-plan-list-page">
+
+    <header class="meal-plan-list-header">
+        <h1>{% trans "On My Menu This Week" %}</h1>
+
+        <p>
+            {% trans "Seven dinners I'm looking forward to making this week." %}
+        </p>
+    </header>
+
+
+    <div class="meal-plan-list">
+
+        {% for meal_plan in meal_plans %}
+
+            <a href="{% url 'food:meal-plan-detail' meal_plan.pk %}"
+               class="meal-plan-card-link">
+
+                <article class="meal-plan-card">
+
+                    <div class="meal-plan-card-images">
+
+                        {% for item in meal_plan.items.all|slice:":7" %}
+
+                            {% if item.recipe.thumbnail %}
+                                <img
+                                    src="{{ item.recipe.thumbnail.url }}"
+                                    alt="{{ item.recipe.name }}"
+                                    class="meal-plan-card-image"
+                                >
+                            {% else %}
+                                <img
+                                    src="{% static 'icons/default-thumbnail.jpg' %}"
+                                    alt=""
+                                    class="meal-plan-card-image"
+                                >
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="meal-plan-card-body">
+
+                        <h2 class="meal-plan-card-title">
+                            {{ meal_plan.title }}
+                        </h2>
+
+                        <h2 class="meal-plan-card-title">
+                            {{ meal_plan.week_start|date:"F j" }} - {{ meal_plan.week_end|date:"j" }}
+                        </h2>
+
+                        {% if meal_plan.description %}
+                            <p class="meal-plan-card-description">
+                                {{ meal_plan.description }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            </a>
+
+        {% empty %}
+
+            <div class="meal-plan-empty">
+                <p>
+                    {% trans "No weekly dinner plans available yet." %}
+                </p>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% if is_paginated %}
+
+        <nav class="meal-plan-pagination" aria-label="{% trans 'Weekly dinner plans pagination' %}">
+
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}"
+                   class="meal-plan-pagination-link">
+                    &laquo;
+                </a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+
+                {% if num == page_obj.number %}
+
+                    <span class="meal-plan-pagination-link is-active">
+                        {{ num }}
+                    </span>
+
+                {% elif num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+
+                    <a href="?page={{ num }}"
+                       class="meal-plan-pagination-link">
+                        {{ num }}
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}"
+                   class="meal-plan-pagination-link">
+                    &raquo;
+                </a>
+            {% endif %}
+
+        </nav>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

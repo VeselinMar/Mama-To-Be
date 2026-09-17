@@ -11,7 +11,7 @@ import json
 from parler.utils.context import switch_language
 
 from .choices import UnitChoices
-from .models import Recipe, Ingredient, RecipeIngredient
+from .models import Recipe, Ingredient, RecipeIngredient, MealPlan
 from .forms import RecipeForm
 from mama_to_be.profiles.models import Profile
 
@@ -243,3 +243,58 @@ def create_ingredient(request):
         "name": ingredient.name,
         "created": created
     })
+
+
+# Meal Plan
+
+class MealPlanListView(ListView):
+    model = MealPlan
+    template_name = "food/meal_plan_list.html"
+    context_object_name = "meal_plans"
+    paginate_by = 6
+    
+    def get_queryset(self):
+        return (
+            MealPlan.objects
+            .filter(is_published=True)
+            .prefetch_related(
+                "items__recipe",
+            )
+            .order_by("-week_start")
+        )
+
+
+class MealPlanDetailView(DetailView):
+    model = MealPlan
+    template_name = "food/meal_plan_detail.html"
+    context_object_name = "meal_plan"
+
+    def get_queryset(self):
+        return (
+            MealPlan.objects
+            .filter(is_published=True)
+            .prefetch_related(
+                "items__recipe",
+                "items__recipe__translations",
+            )
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        lang = self.request.LANGUAGE_CODE
+
+        items = []
+
+        for item in self.object.items.all():
+            with switch_language(item.recipe, lang):
+                items.append({
+                    "day": item.get_day_display(),
+                    "recipe": item.recipe,
+                    "slug": item.recipe.slug,
+                })
+
+        context["meal_plan_items"] = items
+
+        return context
+

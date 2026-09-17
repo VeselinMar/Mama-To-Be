@@ -3,11 +3,13 @@ from django.db import models
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import get_language
+from datetime import timedelta
 from tinymce.models import HTMLField
 from parler.models import TranslatableModel, TranslatedFields, TranslatableManager
 from parler.utils.context import switch_language
 from slugify import slugify
 from django.contrib.postgres.search import SearchVectorField
+from django.utils.translation import gettext_lazy as _
 
 from .choices import AllergenChoices, RecipeType, DifficultyChoices, UnitChoices
 from .managers import RecipeQuerySet 
@@ -446,20 +448,40 @@ class RecipeInteraction(models.Model):
 # MEAL PLANNING
 # -------------------
 class MealPlan(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     week_start = models.DateField()
+
+    title = models.CharField(
+        max_length=200,
+        blank=True,
+    )
+
+    is_published = models.BooleanField(
+        default=False,
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def week_end(self):
+        return self.week_start + timedelta(days=7)
+
+    class Meta:
+        ordering = ["-week_start"]
+
     def __str__(self):
-        return f"{self.user} - week of {self.week_start}"
+        return self.title or f"Week of {self.week_start}"
+    
 
 
 class MealPlanItem(models.Model):
-    MEAL_TYPES = [
-        ('breakfast', 'Breakfast'),
-        ('lunch', 'Lunch'),
-        ('dinner', 'Dinner'),
+    DAYS = [
+        (0, _("Monday")),
+        (1, _("Tuesday")),
+        (2, _("Wednesday")),
+        (3, _("Thursday")),
+        (4, _("Friday")),
+        (5, _("Saturday")),
+        (6, _("Sunday")),
     ]
 
     meal_plan = models.ForeignKey(
@@ -468,14 +490,29 @@ class MealPlanItem(models.Model):
         related_name='items'
     )
 
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(
+        Recipe, 
+        on_delete=models.CASCADE
+        )
 
-    day = models.IntegerField()  # 0 = Monday, 6 = Sunday
-    meal_type = models.CharField(max_length=20, choices=MEAL_TYPES)
+    day = models.PositiveSmallIntegerField(
+        choices=DAYS,
+    )
 
     class Meta:
-        unique_together = ('meal_plan', 'day', 'meal_type')
+        ordering = ["day"]
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=["meal_plan", "day"],
+                name="unique_recipe_per_plan_day",
+            ),
+        ]
 
     def __str__(self):
-        recipe_name = self.recipe.safe_translation_getter('name', default='Unknown Recipe')
-        return f"{recipe_name} on day {self.day} ({self.meal_type})"
+        recipe_name = self.recipe.safe_translation_getter(
+            "name",
+            default="Unknown Recipe",
+        )
+
+        return f"{self.get_day_display()}: {recipe_name}"
