@@ -15,6 +15,7 @@
 @import "./features/list-cards.css";
 @import "./features/recipe-create.css";
 @import "./features/scrollbar.css";
+@import "./features/diclaimers.css";
 
 /* Pages */
 @import "./pages/home.css";

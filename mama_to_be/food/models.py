@@ -305,26 +305,36 @@ class Recipe(TranslatableModel):
             if not ri.ingredient:
                 continue
 
-            grams = self._convert_to_grams(ri.quantity, ri.unit)
+            macros = ri.macros
 
-            if not grams or grams <= 0:
-                continue
-
-            if grams > 1000:
-                logger.warning("Suspicious ingredient weight: %s", grams)
-
-            factor = grams / 100.0
-
-            protein += ri.ingredient.protein * factor
-            carbs += ri.ingredient.carbs * factor
-            fat += ri.ingredient.fat * factor
+            protein += macros["protein"]
+            carbs += macros["carbs"]
+            fat += macros["fat"]
 
         return {
             "protein": round(protein, 2),
             "carbs": round(carbs, 2),
             "fat": round(fat, 2),
         }
-    
+
+
+    @property
+    def macros_per_serving(self):
+        if not self.servings:
+            return {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 0,
+            }
+
+        macros = self.total_macros
+
+        return {
+            "protein": round(macros["protein"] / self.servings, 2),
+            "carbs": round(macros["carbs"] / self.servings, 2),
+            "fat": round(macros["fat"] / self.servings, 2),
+        }
+
     @property
     def total_calories(self):
         macros = self.total_macros
@@ -420,6 +430,41 @@ class RecipeIngredient(models.Model):
         unit = f" {self.unit}" if self.unit else ""
 
         return f"{quantity}{unit} {self.ingredient.name} in {recipe_name}"
+
+    @property
+    def grams(self):
+        return self.recipe._convert_to_grams(
+            self.quantity,
+            self.unit,
+            self.ingredient,
+        )
+    @property
+    def macros(self):
+        if not self.ingredient:
+            return {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 0,
+            }
+
+        grams = self.grams
+
+        if not grams or grams <= 0:
+            return {
+                "protein": 0,
+                "carbs": 0,
+                "fat": 0,
+            }
+
+        factor = grams / 100
+
+        return {
+            "protein": self.ingredient.protein * factor,
+            "carbs": self.ingredient.carbs * factor,
+            "fat": self.ingredient.fat * factor,
+        }
+
+
 
 # -------------------
 # USER INTERACTION
