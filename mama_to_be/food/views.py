@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db import transaction
+from django.db.models import Prefetch
 from django.http import JsonResponse
 import json
 
@@ -88,16 +89,16 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy("login")
     success_url = reverse_lazy("food:recipe-list")
 
-    def get_object(self):
-        lang = self.request.LANGUAGE_CODE
-        slug = self.kwargs["slug"]
-
-        return Recipe.objects.language(lang).get(
-            translations__slug=slug
-        )
-
     def get_queryset(self):
         return Recipe.objects.filter(author=self.request.user)
+    
+    def get_object(self, queryset=None):
+        queryset = queryset or self.get_queryset()
+        lang = self.request.LANGUAGE_CODE
+        return get_object_or_404(
+            queryset.language(lang),
+            translations__slug=self.kwargs["slug"],
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -165,6 +166,12 @@ class RecipeDetailView(DetailView):
     def get_queryset(self):
         lang = self.request.LANGUAGE_CODE
 
+        recipe_ingredients = (
+            RecipeIngredient.objects
+            .select_related("ingredient")
+            .prefetch_related("ingredient__translations")
+        )
+
         return (
             Recipe.objects
             .active_translations(lang)
@@ -172,15 +179,21 @@ class RecipeDetailView(DetailView):
                 translations__language_code=lang,
             )
             .prefetch_related(
-                "recipeingredient_set__ingredient__translations"
+                Prefetch(
+                    "recipeingredient_set",
+                    queryset=recipe_ingredients,
+                )
             )
         )
 
     def get_object(self, queryset=None):
-        queryset = self.get_queryset()
+        queryset = queryset or self.get_queryset()
+        lang = self.request.LANGUAGE_CODE
+
         return get_object_or_404(
             queryset,
-            translations__slug=self.kwargs["slug"]
+            translations__language_code=lang,
+            translations__slug=self.kwargs["slug"],
         )
 
     def get_context_data(self, **kwargs):

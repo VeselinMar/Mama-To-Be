@@ -1,0 +1,42 @@
+{% load static %}
+{% load i18n %}
+
+<section class="content-disclaimer" aria-labelledby="food-disclaimer-title">
+
+  <h2 id="food-disclaimer-title">
+    {% trans "A note about recipes and nutrition" %}
+  </h2>
+  <div class="disclaimer-content">
+
+  <p>
+    {% blocktrans %}
+    The recipes and meal ideas on Mom-To-Be are shared for general information and inspiration.
+    They are based on my own experience and preferences and are not intended to provide medical,
+    nutritional, or dietary advice.
+    {% endblocktrans %}
+  </p>
+
+  <p>
+    {% blocktrans %}
+    Nutritional information, including calories and macronutrients, is approximate and provided
+    for informational purposes only. Values may vary depending on the ingredients, brands,
+    quantities, preparation methods, and serving sizes used.
+    {% endblocktrans %}
+  </p>
+
+  <p>
+    {% blocktrans %}
+    If you are pregnant, breastfeeding, managing a medical condition, have a food allergy or
+    intolerance, or have specific dietary or nutritional needs, please consider your individual
+    circumstances and seek advice from a qualified healthcare or nutrition professional where
+    appropriate.
+    {% endblocktrans %}
+  </p>
+
+  <p>
+    {% blocktrans %}
+    Always check ingredient labels and use your own judgment when preparing and consuming food.
+    {% endblocktrans %}
+  </p>
+
+</section>

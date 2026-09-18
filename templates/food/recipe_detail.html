@@ -107,6 +107,7 @@
                         <li class="ingredient-item"
                             data-base-qty="{{ ri.quantity }}"
                             data-unit="{{ ri.unit }}"
+                            data-base-grams="{{ ri.grams }}"
                             data-protein="{{ ri.ingredient.protein }}"
                             data-carbs="{{ ri.ingredient.carbs }}"
                             data-fat="{{ ri.ingredient.fat }}">
@@ -141,7 +142,7 @@
 
             <!-- NUTRITION -->
             <section class="recipe-section nutrition-card">
-                <h4>{% trans "Nutrition (for whole recipe)" %}</h4>
+                <h4>{% trans "Nutrition (per serving)" %}</h4>
 
                 <div class="nutrition-grid">
 
@@ -151,17 +152,17 @@
                     </div>
 
                     <div class="nutrition-item">
-                        <strong id="protein">{{ recipe.total_macros.protein|floatformat:1 }}</strong>
+                        <strong id="protein">{{ recipe.macros_per_serving.protein|floatformat:1 }}</strong>
                         <span>{% trans "protein" %}</span>
                     </div>
 
                     <div class="nutrition-item">
-                        <strong id="carbs">{{ recipe.total_macros.carbs|floatformat:1 }}</strong>
+                        <strong id="carbs">{{ recipe.macros_per_serving.carbs|floatformat:1 }}</strong>
                         <span>{% trans "carbs" %}</span>
                     </div>
 
                     <div class="nutrition-item">
-                        <strong id="fat">{{ recipe.total_macros.fat|floatformat:1 }}</strong>
+                        <strong id="fat">{{ recipe.macros_per_serving.fat|floatformat:1 }}</strong>
                         <span>{% trans "fat" %}</span>
                     </div>
 
@@ -178,7 +179,7 @@
     <section class="recipe-content">
         {{ recipe.text|safe }}
     </section>
-
+    {% include "common/disclaimers/food.html" %}
     <!-- SHARE -->
     <div class="share-buttons"
          data-url="{{ request.build_absolute_uri }}"
