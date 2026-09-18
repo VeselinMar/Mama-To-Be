@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-17 13:31+0000\n"
-"PO-Revision-Date: 2026-09-17 15:32+0200\n"
+"POT-Creation-Date: 2026-09-18 10:29+0000\n"
+"PO-Revision-Date: 2026-09-18 12:35+0200\n"
 "Last-Translator: veselin <veselin.martinov@gmail.com>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -141,31 +141,31 @@ msgstr "скилидка"
 msgid "slice"
 msgstr "резен"
 
-#: mama_to_be/food/models.py:478
+#: mama_to_be/food/models.py:523
 msgid "Monday"
 msgstr "Понеделник"
 
-#: mama_to_be/food/models.py:479
+#: mama_to_be/food/models.py:524
 msgid "Tuesday"
 msgstr "Вторник"
 
-#: mama_to_be/food/models.py:480
+#: mama_to_be/food/models.py:525
 msgid "Wednesday"
 msgstr "Сряда"
 
-#: mama_to_be/food/models.py:481
+#: mama_to_be/food/models.py:526
 msgid "Thursday"
 msgstr "Четвъртък"
 
-#: mama_to_be/food/models.py:482
+#: mama_to_be/food/models.py:527
 msgid "Friday"
 msgstr "Петък"
 
-#: mama_to_be/food/models.py:483
+#: mama_to_be/food/models.py:528
 msgid "Saturday"
 msgstr "Събота"
 
-#: mama_to_be/food/models.py:484
+#: mama_to_be/food/models.py:529
 msgid "Sunday"
 msgstr "Неделя"
 
@@ -256,7 +256,7 @@ msgstr "Управление на настройките"
 msgid "Accept all"
 msgstr "Приеми всички"
 
-#: templates/common/base.html:127 templates/common/footer.html:37
+#: templates/common/base.html:127 templates/common/footer.html:38
 msgid "Privacy Preferences"
 msgstr "Предпочитания за поверителност"
 
@@ -409,6 +409,252 @@ msgstr "Маркетинг"
 msgid "Allow advertising, affiliate, or marketing technologies."
 msgstr "Разрешаване на рекламни, партньорски или маркетингови технологии."
 
+#: templates/common/disclaimers/article.html:6
+msgid "A note about personal experiences and information"
+msgstr "Забележка относно личният опит и информация"
+
+#: templates/common/disclaimers/article.html:10
+msgid ""
+"\n"
+"    The articles on Mom-To-Be often reflect my own experiences, "
+"observations, and approach to\n"
+"    pregnancy, parenting, childcare, and family life. I am not a healthcare "
+"professional,\n"
+"    childcare professional, psychologist, educator, or other specialist, and "
+"my experiences\n"
+"    should not be understood as professional advice or as a substitute for "
+"individual guidance\n"
+"    from a qualified professional.\n"
+"    "
+msgstr ""
+"\n"
+"    Статиите в „Mom-To-Be“ често отразяват моите лични преживявания, "
+"наблюдения и подход към\n"
+"    бременността, родителството, грижите за децата и семейния живот. Аз не "
+"съм медицински специалист,\n"
+"    специалист по грижи за деца, психолог, педагог или друг специалист, и "
+"моите преживявания\n"
+"    не трябва да се разглеждат като професионален съвет или като заместител "
+"на индивидуалните насоки\n"
+"    от квалифициран специалист.\n"
+"    "
+
+#: templates/common/disclaimers/article.html:20
+msgid ""
+"\n"
+"    When discussing topics that may benefit from professional or evidence-"
+"based guidance, I try\n"
+"    to provide relevant sources, references, or additional resources to help "
+"put my experiences\n"
+"    and perspectives into context. These resources are intended to support "
+"further information\n"
+"    and consideration, not to replace professional advice.\n"
+"    "
+msgstr ""
+"\n"
+"    Когато обсъждам теми, при които би било полезно да се потърси "
+"професионална или научно обоснована насока, се старая\n"
+"    да предоставям подходящи източници, препратки или допълнителни ресурси, "
+"които да помогнат за поставянето на моите преживявания\n"
+"    и гледни точки в контекст. Тези ресурси имат за цел да подпомогнат по-"
+"нататъшното информиране\n"
+"    и обмисляне, а не да заменят професионалния съвет.\n"
+"    "
+
+#: templates/common/disclaimers/article.html:29
+msgid ""
+"\n"
+"    Every family, child, pregnancy, and situation is different. An approach "
+"that worked for me or\n"
+"    my family may not be appropriate for someone else, and circumstances can "
+"change over time.\n"
+"    Please consider your own situation and seek advice from an appropriately "
+"qualified\n"
+"    professional when you have concerns or need individualized guidance.\n"
+"    "
+msgstr ""
+"\n"
+"    Всяко семейство, дете, бременност и ситуация са различни. Подходът, "
+"който е дал резултат при мен или\n"
+"    моето семейство, може да не е подходящ за някой друг, а обстоятелствата "
+"могат да се променят с времето.\n"
+"    Моля, вземете предвид собствената си ситуация и потърсете съвет от "
+"подходящо квалифициран\n"
+"    специалист, когато имате притеснения или се нуждаете от индивидуални "
+"насоки.\n"
+"    "
+
+#: templates/common/disclaimers/article.html:38
+msgid ""
+"\n"
+"    The information and experiences shared on Mom-To-Be are provided for "
+"general information,\n"
+"    reflection, and inspiration. Please use your own judgment when applying "
+"anything discussed\n"
+"    in an article to your own circumstances.\n"
+"    "
+msgstr ""
+"\n"
+"    Информацията и преживяванията, споделени в „Mom-To-Be“, се предоставят с "
+"цел обща информация,\n"
+"    размисъл и вдъхновение. Моля, разчитайте на собствената си преценка, "
+"когато прилагате нещо, обсъдено\n"
+"    в дадена статия, към вашите лични обстоятелства.\n"
+"    "
+
+#: templates/common/disclaimers/food.html:7
+msgid "A note about recipes and nutrition"
+msgstr "Забележка относно рецептите и храненето"
+
+#: templates/common/disclaimers/food.html:12
+msgid ""
+"\n"
+"    The recipes and meal ideas on Mom-To-Be are shared for general "
+"information and inspiration.\n"
+"    They are based on my own experience and preferences and are not intended "
+"to provide medical,\n"
+"    nutritional, or dietary advice.\n"
+"    "
+msgstr ""
+"\n"
+"    Забележка относно рецептите и храненето\n"
+"    Рецептите и идеите за ястия в „Mom-To-Be“ се споделят с цел обща "
+"информация и вдъхновение.\n"
+"    Те се основават на моя собствен опит и предпочитания и не са "
+"предназначени да предоставят медицински,\n"
+"    хранителни или диетични съвети.\n"
+"    "
+
+#: templates/common/disclaimers/food.html:20
+msgid ""
+"\n"
+"    Nutritional information, including calories and macronutrients, is "
+"approximate and provided\n"
+"    for informational purposes only. Values may vary depending on the "
+"ingredients, brands,\n"
+"    quantities, preparation methods, and serving sizes used.\n"
+"    "
+msgstr ""
+"\n"
+"    Хранителната информация, включително калориите и макронутриентите, е "
+"приблизителна и се предоставя\n"
+"    единствено с информационна цел. Стойностите могат да варират в "
+"зависимост от използваните съставки, марки,\n"
+"    количества, начини на приготвяне и размер на порциите.\n"
+"    "
+
+#: templates/common/disclaimers/food.html:28
+msgid ""
+"\n"
+"    If you are pregnant, breastfeeding, managing a medical condition, have a "
+"food allergy or\n"
+"    intolerance, or have specific dietary or nutritional needs, please "
+"consider your individual\n"
+"    circumstances and seek advice from a qualified healthcare or nutrition "
+"professional where\n"
+"    appropriate.\n"
+"    "
+msgstr ""
+"\n"
+"    Ако сте бременна, кърмите, страдате от някакво заболяване, имате "
+"хранителна алергия или\n"
+"    непоносимост, или имате специфични диетични или хранителни нужди, моля, "
+"вземете предвид индивидуалните си\n"
+"    обичайни обстоятелства и потърсете съвет от квалифициран медицински "
+"специалист или специалист по хранене, когато\n"
+"    това е уместно.\n"
+"    "
+
+#: templates/common/disclaimers/food.html:37
+msgid ""
+"\n"
+"    Always check ingredient labels and use your own judgment when preparing "
+"and consuming food.\n"
+"    "
+msgstr ""
+"\n"
+"    Винаги проверявайте етикетите със съставките и разчитайте на собствената "
+"си преценка при приготвянето и консумацията на храна.\n"
+"    "
+
+#: templates/common/disclaimers/meal_plan.html:6
+msgid "A note about meal plans and nutrition"
+msgstr "Забележка относно менютата и храненето"
+
+#: templates/common/disclaimers/meal_plan.html:10
+msgid ""
+"\n"
+"    The meal plans on Mom-To-Be are personal meal ideas shared for general "
+"information and\n"
+"    inspiration. They reflect my own approach to planning meals and are not "
+"intended to be a\n"
+"    prescribed diet, individualized nutrition plan, or medical or dietary "
+"advice.\n"
+"    "
+msgstr ""
+"\n"
+"    Плановете за хранене в „Mom-To-Be“ са лични идеи за хранене, споделени с "
+"цел обща информация и\n"
+"    вдъхновение. Те отразяват моя собствен подход към планирането на "
+"храненето и не са предназначени да служат като\n"
+"    предписана диета, индивидуален хранителен план или медицински или "
+"диетични съвети.\n"
+"    "
+
+#: templates/common/disclaimers/meal_plan.html:18
+msgid ""
+"\n"
+"    Nutritional information and macronutrient figures are approximate and "
+"provided for\n"
+"    informational purposes only. They are estimates and may vary depending "
+"on the ingredients,\n"
+"    brands, quantities, preparation methods, and serving sizes used.\n"
+"    "
+msgstr ""
+"\n"
+"    Хранителната информация и данните за макронутриентите са приблизителни и "
+"се предоставят\n"
+"    единствено с информационна цел. Те представляват приблизителни оценки и "
+"могат да варират в зависимост от използваните съставки,\n"
+"    марки, количества, начини на приготвяне и размер на порциите.\n"
+"    "
+
+#: templates/common/disclaimers/meal_plan.html:26
+msgid ""
+"\n"
+"    Everyone's nutritional needs are different. If you are pregnant, "
+"breastfeeding, managing a\n"
+"    medical condition, have a food allergy or intolerance, or have specific "
+"dietary or nutritional\n"
+"    needs, please consult an appropriate qualified healthcare or nutrition "
+"professional before\n"
+"    making significant changes to your diet.\n"
+"    "
+msgstr ""
+"\n"
+"    Хранителните нужди на всеки човек са различни. Ако сте бременна, "
+"кърмите, страдате от\n"
+"    някакво заболяване, имате хранителна алергия или непоносимост, или имате "
+"специфични диетични или хранителни\n"
+"    нужди, моля, консултирайте се с подходящ квалифициран медицински "
+"специалист или специалист по хранене, преди\n"
+"    да внесете значителни промени в диетата си.\n"
+"    "
+
+#: templates/common/disclaimers/meal_plan.html:35
+msgid ""
+"\n"
+"    Please use these meal plans as inspiration and adapt them to your own "
+"needs, preferences,\n"
+"    and circumstances.\n"
+"    "
+msgstr ""
+"\n"
+"    Моля, използвайте тези менюта като вдъхновение и ги адаптирайте според "
+"собствените си нужди, предпочитания\n"
+"    и обстоятелства.\n"
+"    "
+
 #: templates/common/footer.html:26 templates/common/navbar.html:257
 msgid "About"
 msgstr "За мен"
@@ -434,7 +680,7 @@ msgstr "Импресии"
 msgid "Privacy Policy"
 msgstr "Политика за поверителност"
 
-#: templates/common/footer.html:48
+#: templates/common/footer.html:49
 msgid "All rights reserved."
 msgstr "Всички права запазени."
 
@@ -1935,19 +2181,19 @@ msgstr "ПОРЦИИ"
 msgid "INGREDIENTS"
 msgstr "СЪСТАВКИ"
 
-#: templates/food/recipe_detail.html:144
-msgid "Nutrition (for whole recipe)"
-msgstr "Хранителност (за цялата рецепта)"
+#: templates/food/recipe_detail.html:145
+msgid "Nutrition (per serving)"
+msgstr "Хранителност (за една порция)"
 
-#: templates/food/recipe_detail.html:155
+#: templates/food/recipe_detail.html:156
 msgid "protein"
 msgstr "протеин"
 
-#: templates/food/recipe_detail.html:160
+#: templates/food/recipe_detail.html:161
 msgid "carbs"
 msgstr "въглехидрати"
 
-#: templates/food/recipe_detail.html:165
+#: templates/food/recipe_detail.html:166
 msgid "fat"
 msgstr "мазнини"
 
